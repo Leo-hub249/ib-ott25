@@ -539,15 +539,7 @@
       loading.style.display = 'block';
       
       try {
-        // Track evento Facebook per seconda purchase
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'Purchase', {
-            value: 200.00,
-            currency: 'EUR',
-            content_name: 'Consulenza Thomas'
-          });
-        }
-
+        
         // Invia richiesta one-click payment al backend
         const response = await fetch('/.netlify/functions/one-click-payment', {
           method: 'POST',
