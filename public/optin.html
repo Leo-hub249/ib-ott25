@@ -79,7 +79,7 @@
   
     .top-banner{
       text-align:center;
-      padding:25px 0 10px; 
+      padding:20px 0 8px; /* Ridotto da 25px a 20px */
     }
     
     .live-pill{
@@ -110,7 +110,7 @@
 
     .hero{
       text-align:center;
-      padding:35px 0 30px; 
+      padding:25px 0 25px; /* Ridotto da 35px a 25px */
     }
     
     .headline{
@@ -122,59 +122,59 @@
     
    
     .headline .line1{
-      font-size:44px;
+      font-size:40px; /* Ridotto da 44px */
       font-weight:700;
       color:#fff;
-      margin-bottom:12px;
+      margin-bottom:10px; /* Ridotto da 12px */
       line-height:1;
     }
     
    
     .headline .money-line{
-      font-size:110px;
+      font-size:95px; /* Ridotto da 110px */
       font-weight:700;
       color:var(--neon);
      
       text-shadow:
         0 0 25px rgba(184,252,141,.3),
         0 0 50px rgba(184,252,141,.15);
-      margin:8px 0;
+      margin:6px 0; /* Ridotto da 8px */
       line-height:.95;
       letter-spacing:-2px;
     }
    
     .headline .line3{
-      font-size:44px;
+      font-size:40px; /* Ridotto da 44px */
       font-weight:700;
       color:#fff;
-      margin-top:12px;
+      margin-top:10px; /* Ridotto da 12px */
       line-height:1.1;
     }
     
-    .headline .line3 .green{
+    .headline .line3 .green,
+    .headline .line3 .number-green{
       color:var(--neon);
-    
       text-shadow:0 0 20px rgba(184,252,141,.3);
     }
 
     /* Subheadlines */
     .sub{
       font-family:'Oswald',sans-serif;
-      font-size:23px;
+      font-size:21px; /* Ridotto da 23px */
       font-weight:400;
       line-height:1.35;
-      margin:25px auto 18px;
+      margin:20px auto 15px; /* Ridotto da 25px a 20px */
       max-width:950px;
       opacity:.95;
     }
     
     .ai-text{
       font-family:'Oswald',sans-serif;
-      font-size:26px;
+      font-size:24px; /* Ridotto da 26px */
       font-weight:700;
       color:var(--neon);
       text-transform:uppercase;
-      margin:18px auto 30px; /* Ridotto margin bottom */
+      margin:15px auto 25px; /* Ridotto da 18px a 15px */
       line-height:1.2;
       /* Fluorescenza molto ridotta */
       text-shadow:0 0 18px rgba(184,252,141,.3);
@@ -332,6 +332,7 @@
       align-items:center;
       justify-content:center;
       line-height:1;
+      z-index:10; /* Aggiunto per garantire che sia sopra */
     }
     
     .close-btn:hover{
@@ -559,7 +560,7 @@
         margin:15px auto 25px;
       }
       .video-section{
-        margin:30px 0 45px;
+        margin:15px 0 45px; /* Ridotto lo spazio sopra da 30px a 15px */
       }
       .cta{
         padding:18px 25px;
@@ -581,12 +582,23 @@
       .hint{
         font-size:19px;
         margin-bottom:15px;
+        margin-top:5px; /* Ridotto ulteriormente lo spazio sopra */
       }
       .arrows{
         font-size:36px;
         margin:15px 0;
       }
-      .modal-card{padding:36px 26px}
+      .modal-card{
+        padding:36px 26px;
+        padding-top:55px; /* Aggiunto più spazio in alto per la X */
+      }
+      .form-title{
+        font-size:28px; /* Ridotto leggermente su mobile */
+      }
+      .close-btn{
+        right:15px; /* Spostato più a sinistra */
+        top:15px; /* Spostato più in alto */
+      }
       .live-pill{
         font-size:13px;
         padding:11px 22px;
@@ -612,7 +624,7 @@
         <h1 class="headline">
           <div class="line1">SI PUÒ DAVVERO RICEVERE FINO A</div>
           <div class="money-line">10.000€ AL MESE</div>
-          <div class="line3">POSTANDO 1 <span class="green">VIDEO AL GIORNO</span> SUI SOCIAL?</div>
+          <div class="line3">POSTANDO <span class="number-green">1</span> <span class="green">VIDEO AL GIORNO</span> SUI SOCIAL?</div>
         </h1>
         
         <p class="sub">
