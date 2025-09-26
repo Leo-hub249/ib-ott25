@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Offerta Speciale - Biz Starter Pack</title>
+  <title>Offerta Esclusiva - Consulenza con Thomas</title>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -17,14 +17,14 @@
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '2180408928835338');
   fbq('track', 'PageView');
-  fbq('track', 'Lead');
+  fbq('track', 'Purchase', {
+    value: 50.00,
+    currency: 'EUR'
+  });
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel Code -->
-
-  <!-- Stripe -->
-  <script src="https://js.stripe.com/v3/"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,35 +112,35 @@
       50%{box-shadow:0 0 20px rgba(184,252,141,.5)}
     }
 
-    /* Main Content con spazi ridotti */
+    /* Main Content */
     .main{
       text-align:center;
       padding:15px 0 40px;
     }
 
     .headline{
-      font-size:48px;
+      font-size:46px;
       font-weight:700;
       color:var(--neon);
       text-transform:uppercase;
-      margin-bottom:12px; /* Ridotto */
+      margin-bottom:12px;
       text-shadow:0 0 20px rgba(184,252,141,.3);
       line-height:1;
     }
 
     .subheadline{
-      font-size:26px;
+      font-size:24px;
       font-weight:400;
-      margin-bottom:20px; /* Ridotto */
+      margin-bottom:20px;
       line-height:1.25;
     }
 
     .warning{
-      font-size:92px; /* Più grande */
+      font-size:92px;
       font-weight:700;
       color:var(--red);
       text-transform:uppercase;
-      margin:25px 0 15px; /* Ridotto */
+      margin:25px 0 15px;
       text-shadow:0 0 40px rgba(255,59,59,.6);
       animation:attention 2s ease-in-out infinite;
       letter-spacing:-1px;
@@ -153,7 +153,7 @@
 
     .bonus-text{
       font-size:22px;
-      margin-bottom:25px; /* Ridotto */
+      margin-bottom:25px;
       opacity:.95;
       line-height:1.3;
     }
@@ -161,7 +161,7 @@
     /* Video Container */
     .video-container{
       max-width:720px;
-      margin:0 auto 30px; /* Ridotto */
+      margin:0 auto 30px;
       border-radius:20px;
       overflow:hidden;
       box-shadow:0 30px 80px rgba(0,0,0,.8);
@@ -193,7 +193,7 @@
       opacity:.9;
     }
 
-    /* Offer Box con pulsante interno */
+    /* Offer Box */
     .offer-box{
       background:linear-gradient(145deg,#1a1a1a,#0a0a0a);
       border:2px solid var(--neon);
@@ -271,7 +271,7 @@
       margin-bottom:25px;
     }
 
-    /* Checkout Button dentro il box */
+    /* One Click Checkout Button */
     .cta-checkout{
       display:block;
       width:85%;
@@ -283,7 +283,7 @@
       background:linear-gradient(135deg,#FFD700,#FF8C00);
       color:#000;
       font-family:'Oswald',sans-serif;
-      font-size:24px;
+      font-size:22px;
       font-weight:900;
       text-transform:uppercase;
       cursor:pointer;
@@ -333,183 +333,44 @@
       transform:translateY(-2px) scale(1.01);
     }
 
-    /* Checkout Modal integrato */
-    .checkout-modal{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.95);
-      backdrop-filter:blur(20px);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:1000;
-      padding:20px;
-    }
-    
-    .checkout-modal.active{
-      display:flex;
-    }
-    
-    .checkout-container{
-      background:linear-gradient(145deg,#1a1a1a,#050505);
-      border:2px solid var(--neon);
-      border-radius:30px;
-      padding:40px;
-      max-width:500px;
-      width:100%;
-      box-shadow:
-        0 50px 100px rgba(184,252,141,.25),
-        inset 0 1px 0 rgba(255,255,255,.05);
-      position:relative;
-    }
-    
-    .checkout-close{
-      position:absolute;
-      right:20px;
-      top:20px;
-      background:none;
-      border:none;
-      color:#fff;
-      font-size:32px;
-      cursor:pointer;
-      opacity:.6;
-      transition:.3s;
-      width:32px;
-      height:32px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    
-    .checkout-close:hover{
-      opacity:1;
-      transform:rotate(90deg);
-    }
-    
-    .checkout-title{
-      font-size:28px;
-      font-weight:700;
-      color:var(--neon);
-      text-align:center;
-      margin-bottom:25px;
-      text-transform:uppercase;
-      text-shadow:0 0 20px rgba(184,252,141,.3);
-    }
-    
-    .checkout-price{
-      text-align:center;
-      margin-bottom:25px;
-      font-size:20px;
-      opacity:.9;
-    }
-    
-    .checkout-fields{
-      margin:20px 0;
-    }
-    
-    .checkout-field{
-      margin:20px 0;
-      position:relative;
-    }
-    
-    .checkout-field label{
-      position:absolute;
-      top:-10px;
-      left:18px;
-      background:linear-gradient(90deg,#1a1a1a,#050505);
-      padding:0 10px;
-      font-size:11px;
-      color:var(--neon);
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.8px;
-      opacity:.9;
-    }
-    
-    .checkout-field input{
-      width:100%;
-      padding:18px;
-      border-radius:15px;
-      border:1px solid rgba(184,252,141,.3);
-      background:rgba(0,0,0,.6);
-      color:#fff;
-      font-family:'Oswald',sans-serif;
-      font-size:16px;
-      transition:.3s;
-    }
-    
-    .checkout-field input:focus{
-      outline:none;
-      border-color:var(--neon);
-      box-shadow:
-        0 0 0 3px rgba(184,252,141,.15),
-        0 0 30px rgba(184,252,141,.1);
-    }
-    
-    #card-element{
-      padding:18px;
-      border-radius:15px;
-      border:1px solid rgba(184,252,141,.3);
-      background:rgba(0,0,0,.6);
-      transition:.3s;
-    }
-    
-    #card-element.StripeElement--focus{
-      border-color:var(--neon);
-      box-shadow:
-        0 0 0 3px rgba(184,252,141,.15),
-        0 0 30px rgba(184,252,141,.1);
-    }
-    
-    .checkout-error{
-      color:var(--red);
-      text-align:center;
-      margin:15px 0;
-      font-size:14px;
-      display:none;
-    }
-    
-    .checkout-submit{
-      width:100%;
-      padding:22px;
-      margin-top:25px;
-      border:none;
-      border-radius:999px;
-      background:linear-gradient(135deg,#FFD700,#FF8C00);
-      color:#000;
-      font-family:'Oswald',sans-serif;
-      font-size:20px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.8px;
-      cursor:pointer;
-      box-shadow:0 20px 50px rgba(255,215,0,.5);
-      transition:.3s;
-    }
-    
-    .checkout-submit:hover:not(:disabled){
-      transform:translateY(-2px);
-      box-shadow:0 25px 60px rgba(255,215,0,.6);
-    }
-    
-    .checkout-submit:disabled{
+    .cta-checkout:disabled{
       opacity:.5;
       cursor:not-allowed;
     }
-    
-    .checkout-submit.processing{
-      animation:pulse-gold 1.5s infinite;
+
+    /* Loading state */
+    .loading{
+      display:none;
+      text-align:center;
+      color:var(--neon);
+      margin:20px 0;
+      font-size:18px;
+      font-weight:600;
+      animation:glow 1.5s infinite;
     }
     
-    @keyframes pulse-gold{
-      50%{box-shadow:0 20px 60px rgba(255,215,0,.8)}
+    @keyframes glow{
+      50%{text-shadow:0 0 25px rgba(184,252,141,.6)}
+    }
+
+    /* Footer */
+    footer{
+      margin-top:60px;
+      padding-top:35px;
+      border-top:1px solid rgba(184,252,141,.15);
+      background:linear-gradient(180deg,transparent,rgba(0,0,0,1));
+    }
+    
+    .footer-content{
+      text-align:center;
+      padding-bottom:10px;
     }
 
     /* Responsive */
     @media (max-width:768px){
       .headline{font-size:38px}
-      .subheadline{font-size:22px}
-      .warning{font-size:58px}
+      .subheadline{font-size:20px}
+      .warning{font-size:68px}
       .bonus-text{font-size:19px}
       .offer-box{padding:30px 25px}
       .offer-title{font-size:34px}
@@ -533,7 +394,7 @@
         margin-bottom:15px;
       }
       .warning{
-        font-size:44px;
+        font-size:52px;
         margin:20px 0 12px;
       }
       .bonus-text{
@@ -593,58 +454,56 @@
     </div>
 
     <main class="main">
-      <h1 class="headline">Registrazione Confermata!</h1>
+      <h1 class="headline">Offerta sbloccata con successo!</h1>
       <p class="subheadline">
         Riceverai a breve un'email con il link privato per<br>
-        accedere all'evento live
+        accedere ai contenuti
       </p>
 
-      <h2 class="warning">MA ASPETTA!</h2>
+      <h2 class="warning">RIMANI QUI!</h2>
       
       <p class="bonus-text">
-        Abbiamo preparato un bonus per te, guarda il video qui sotto per<br>
-        vedere di cosa si tratta...
+        Perché hai modo di accedere ad un'offerta mai fatta prima...
       </p>
 
       <div class="video-container">
-        <img src="1.png" alt="Video Bonus">
+        <img src="1.png" alt="Video Offerta">
       </div>
 
       <!-- Skip link SOPRA l'offerta -->
-      <a href="/thankyou1" class="skip-link" id="skipLink">
+      <a href="/thankyou2" class="skip-link" id="skipLink">
         No grazie, non mi interessa accedere all'offerta disponibile solo su questa<br>
         pagina e voglio solo confermare la mia iscrizione
       </a>
 
       <div class="offer-box">
-        <h3 class="offer-title">BIZ STARTER PACK</h3>
+        <h3 class="offer-title">CONSULENZA CON THOMAS</h3>
         <p class="offer-subtitle">
-          Accedi alle lezioni esclusive + BONUS<br>
+          30 minuti di chiamata privata<br>
           <span class="red">(DISPONIBILE SOLO SU QUESTA PAGINA)</span>
         </p>
 
         <ul class="offer-list">
-          <li>Come fare i tuoi primi 100€ al giorno attraverso un personal brand</li>
-          <li>Come iniziare senza doverci mettere la faccia - 2 strategie che noi utilizziamo</li>
-          <li>Tutti i tool AI per creare degli avatar digitali che sembrano persone reali</li>
-          <li>[BOUNS] CASO STUDIO: Come abbiamo fatto 150.000€ in 2 ore lanciando un prodotto digitale</li>
-          <li>[BONUS] Replica dell'evento</li>
+          <li>Accedi a 30 minuti di video-consulenza privata direttamente con Thomas Macorig</li>
+          <li>NB: Accedendo a questa offerta riceverai automaticamente a 200€ di sconto sul percorso che verrà lanciato il live il 9 ottobre alle 21:00</li>
         </ul>
 
         <div class="price-section">
-          <div class="price">50€</div>
-          <div class="price-compare">AL POSTO DI 200€</div>
+          <div class="price">200€</div>
+          <div class="price-compare">AL POSTO DI 500€</div>
         </div>
 
-        <!-- Pulsante DENTRO il box -->
-        <button class="cta-checkout" id="checkoutBtn">
+        <!-- One-click checkout button -->
+        <button class="cta-checkout" id="oneClickBtn">
           → ACCEDI ORA ←
         </button>
       </div>
+
+      <div class="loading">⏳ Elaborazione pagamento...</div>
     </main>
 
-    <footer style="margin-top:60px; padding-top:35px; border-top:1px solid rgba(184,252,141,.15); background:linear-gradient(180deg,transparent,rgba(0,0,0,1));">
-      <div style="text-align:center; padding-bottom:10px;">
+    <footer>
+      <div class="footer-content">
         <img src="2.webp" alt="Logo" style="max-width:310px; width:100%; opacity:.85; margin-bottom:15px;">
         <p style="max-width:960px; margin:0 auto 15px; font-size:12px; line-height:1.8; color:rgba(255,255,255,.45); font-family:system-ui,sans-serif; padding:0 20px;">
           * I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo a Infobiz University potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito. DYOR / NFA Copyright 2025 – TMC Holding LLC Tutti i diritti riservati.
@@ -658,228 +517,88 @@
     </footer>
   </div>
 
-  <!-- Modal Checkout integrato -->
-  <div class="checkout-modal" id="checkoutModal">
-    <div class="checkout-container">
-      <button class="checkout-close" onclick="closeCheckout()">&times;</button>
-      <h3 class="checkout-title">Completa l'acquisto</h3>
-      <p class="checkout-price">Biz Starter Pack - <strong style="color:var(--neon)">50€</strong></p>
-      
-      <form id="payment-form">
-        <div class="checkout-fields">
-          <div class="checkout-field">
-            <label>EMAIL</label>
-            <input type="email" id="checkout-email" required>
-          </div>
-          
-          <div class="checkout-field">
-            <label>NOME COMPLETO</label>
-            <input type="text" id="checkout-name" required>
-          </div>
-          
-          <div class="checkout-field">
-            <label>CARTA</label>
-            <div id="card-element"></div>
-          </div>
-        </div>
-        
-        <div class="checkout-error" id="card-errors"></div>
-        
-        <button type="submit" class="checkout-submit" id="submit-payment">
-          ACCEDI ORA
-        </button>
-      </form>
-    </div>
-  </div>
-
   <script>
-    // Recupera i dati salvati dall'optin
+    // Recupera i dati salvati
     const userData = {
       name: sessionStorage.getItem('user_name') || '',
       email: sessionStorage.getItem('user_email') || '',
-      phone: sessionStorage.getItem('user_phone') || ''
+      phone: sessionStorage.getItem('user_phone') || '',
+      paymentMethodId: sessionStorage.getItem('payment_method_id') || '' // Salvato dall'OTO1
     };
 
     console.log('Dati utente recuperati:', userData);
 
-    // Stripe configuration
-    const STRIPE_PUBLIC_KEY = 'pk_live_51IDw0AE9CzAMobs3J8gGyyQBkOK9GhUO1VIIb0RveSzQ3cv0qao4q14hwVe168gTx1WCn89Qvj1J8JR8l0iMnBNZ00iU2yhcKT'; // INSERISCI LA TUA CHIAVE PUBBLICA STRIPE
-    
-    // Inizializza Stripe e Elements
-    const stripe = Stripe(STRIPE_PUBLIC_KEY);
-    const elements = stripe.elements({
-      fonts: [{
-        cssSrc: 'https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap'
-      }]
-    });
-    
-    // Stile per card element
-    const cardStyle = {
-      base: {
-        color: '#fff',
-        fontFamily: 'Oswald, sans-serif',
-        fontSize: '16px',
-        '::placeholder': {
-          color: 'rgba(255,255,255,0.4)'
-        }
-      },
-      invalid: {
-        color: '#FF3B3B',
-        iconColor: '#FF3B3B'
-      }
-    };
-    
-    // Crea card element
-    const cardElement = elements.create('card', {style: cardStyle});
-    
-    // Funzioni modal
-    function openCheckout() {
-      document.getElementById('checkoutModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
+    // Gestione One-Click Checkout
+    document.getElementById('oneClickBtn').addEventListener('click', async function() {
+      const btn = this;
+      const loading = document.querySelector('.loading');
       
-      // Pre-compila i dati
-      document.getElementById('checkout-email').value = userData.email;
-      document.getElementById('checkout-name').value = userData.name;
-      
-      // Monta card element
-      cardElement.mount('#card-element');
-      
-      // Track evento
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'InitiateCheckout', {
-          value: 50.00,
-          currency: 'EUR'
-        });
-      }
-    }
-    
-    function closeCheckout() {
-      document.getElementById('checkoutModal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-    
-    // Gestione apertura checkout
-    document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
-    
-    // Gestione errori card
-    cardElement.on('change', function(event) {
-      const displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-        displayError.style.display = 'block';
-      } else {
-        displayError.textContent = '';
-        displayError.style.display = 'none';
-      }
-    });
-    
-    // Gestione form pagamento
-    const form = document.getElementById('payment-form');
-    form.addEventListener('submit', async function(event) {
-      event.preventDefault();
-      
-      const submitButton = document.getElementById('submit-payment');
-      const errorElement = document.getElementById('card-errors');
-      
-      // Disabilita pulsante
-      submitButton.disabled = true;
-      submitButton.classList.add('processing');
-      submitButton.textContent = 'Elaborazione...';
+      // Disabilita pulsante e mostra loading
+      btn.disabled = true;
+      btn.style.display = 'none';
+      loading.style.display = 'block';
       
       try {
-        // Crea payment method
-        const {paymentMethod, error} = await stripe.createPaymentMethod({
-          type: 'card',
-          card: cardElement,
-          billing_details: {
-            name: document.getElementById('checkout-name').value,
-            email: document.getElementById('checkout-email').value
-          }
-        });
-        
-        if (error) {
-          throw new Error(error.message);
+        // Track evento Facebook per seconda purchase
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Purchase', {
+            value: 200.00,
+            currency: 'EUR',
+            content_name: 'Consulenza Thomas'
+          });
         }
-        
-        // Invia al backend
-        const response = await fetch('/.netlify/functions/process-payment', {
+
+        // Invia richiesta one-click payment al backend
+        const response = await fetch('/.netlify/functions/one-click-payment', {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
-            paymentMethodId: paymentMethod.id,
-            amount: 5000, // 50€ in centesimi
+            paymentMethodId: userData.paymentMethodId,
+            customerEmail: userData.email,
+            amount: 20000, // 200€ in centesimi
             currency: 'eur',
-            customerEmail: document.getElementById('checkout-email').value,
-            customerName: document.getElementById('checkout-name').value,
-            product: 'biz_starter_pack'
+            product: 'consulenza_thomas',
+            description: 'Consulenza con Thomas - 30 minuti'
           })
         });
-        
+
         const result = await response.json();
         
         if (result.success) {
-          // Salva il payment method per l'OTO2 (one-click)
-          sessionStorage.setItem('payment_method_id', paymentMethod.id);
-          
-          // Pagamento riuscito
-          if (typeof fbq !== 'undefined') {
-            fbq('track', 'Purchase', {
-              value: 50.00,
-              currency: 'EUR'
-            });
-          }
-          window.location.href = '/oto2';
+          // Pagamento riuscito - vai a thankyou3
+          window.location.href = '/thankyou3';
         } else if (result.requiresAction) {
-          // Richiede 3D Secure
-          const {error} = await stripe.confirmCardPayment(result.clientSecret);
-          if (error) {
-            throw new Error(error.message);
-          } else {
-            // Salva il payment method anche dopo 3D Secure
-            sessionStorage.setItem('payment_method_id', paymentMethod.id);
-            
-            // Pagamento confermato
-            if (typeof fbq !== 'undefined') {
-              fbq('track', 'Purchase', {
-                value: 50.00,
-                currency: 'EUR'
-              });
-            }
-            window.location.href = '/oto2';
-          }
+          // Richiede autenticazione 3D Secure
+          // In questo caso potresti dover gestire un modal Stripe
+          alert('Il pagamento richiede una verifica aggiuntiva');
+          window.location.href = '/thankyou2';
         } else {
           throw new Error(result.error || 'Pagamento non riuscito');
         }
         
       } catch (error) {
-        errorElement.textContent = error.message;
-        errorElement.style.display = 'block';
-        submitButton.disabled = false;
-        submitButton.classList.remove('processing');
-        submitButton.textContent = 'ACCEDI ORA';
+        console.error('Errore pagamento:', error);
+        alert('Si è verificato un errore. Riprova più tardi.');
+        // In caso di errore vai comunque a thankyou2
+        window.location.href = '/thankyou2';
       }
     });
 
-    // Skip link
+    // Skip link - rifiuta offerta
     document.getElementById('skipLink').addEventListener('click', function(e) {
       e.preventDefault();
       
       // Track rifiuto offerta
       if (typeof fbq !== 'undefined') {
-        fbq('trackCustom', 'SkipOTO1');
+        fbq('trackCustom', 'SkipOTO2');
       }
       
-      window.location.href = '/thankyou1';
-    });
-    
-    // Chiudi modal con ESC
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && document.getElementById('checkoutModal').classList.contains('active')) {
-        closeCheckout();
-      }
+      window.location.href = '/thankyou2';
     });
 
-    // Auto-scroll al caricamento per mobile
+    // Auto-scroll per mobile
     if (window.innerWidth < 768) {
       setTimeout(() => {
         window.scrollTo({
