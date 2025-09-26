@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offerta Speciale - Biz Starter Pack</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2180408928835338');
+  fbq('track', 'PageView');
+  fbq('track', 'Lead');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --neon:#B8FC8D;
+      --red:#FF3B3B;
+      --gold1:#FFD700; 
+      --gold2:#FFA500;
+    }
+    
+    *{box-sizing:border-box;margin:0;padding:0}
+    
+    body{
+      font-family:'Oswald',sans-serif;
+      color:#fff;
+      background:#000;
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+    }
+
+    /* Background con griglia e sfumature */
+    .background{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(184,252,141,.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 70%, rgba(184,252,141,.1) 0%, transparent 50%),
+        #000;
+    }
+    
+    .grid{
+      position:fixed;
+      inset:0;
+      z-index:1;
+      opacity:.06;
+      background-image:
+        linear-gradient(rgba(184,252,141,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,252,141,1) 1px, transparent 1px);
+      background-size:50px 50px;
+    }
+
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      padding:0 20px;
+      position:relative;
+      z-index:2;
+    }
+
+    /* Top Banner */
+    .top-banner{
+      text-align:center;
+      padding:25px 0 20px;
+    }
+    
+    .live-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 35px;
+      border-radius:999px;
+      background:rgba(40,40,40,.9);
+      backdrop-filter:blur(12px);
+      font-size:16px;
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--neon);
+      box-shadow:0 0 15px rgba(184,252,141,.4);
+      animation:pulse 2s infinite;
+    }
+    
+    @keyframes pulse{
+      50%{box-shadow:0 0 20px rgba(184,252,141,.5)}
+    }
+
+    /* Main Content */
+    .main{
+      text-align:center;
+      padding:20px 0 40px;
+    }
+
+    .headline{
+      font-size:48px;
+      font-weight:700;
+      color:var(--neon);
+      text-transform:uppercase;
+      margin-bottom:20px;
+      text-shadow:0 0 20px rgba(184,252,141,.3);
+      line-height:1.1;
+    }
+
+    .subheadline{
+      font-size:26px;
+      font-weight:400;
+      margin-bottom:30px;
+      line-height:1.3;
+    }
+
+    .warning{
+      font-size:64px;
+      font-weight:700;
+      color:var(--red);
+      text-transform:uppercase;
+      margin:30px 0 20px;
+      text-shadow:0 0 30px rgba(255,59,59,.5);
+      animation:attention 2s ease-in-out infinite;
+    }
+
+    @keyframes attention{
+      0%, 100%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+    }
+
+    .bonus-text{
+      font-size:22px;
+      margin-bottom:30px;
+      opacity:.95;
+      line-height:1.4;
+    }
+
+    /* Video Container */
+    .video-container{
+      max-width:720px;
+      margin:0 auto 40px;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,.8);
+    }
+
+    .video-container img{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      display:block;
+    }
+
+    .disclaimer{
+      font-size:14px;
+      opacity:.7;
+      font-style:italic;
+      margin:15px auto;
+      max-width:650px;
+    }
+
+    /* Offer Box */
+    .offer-box{
+      background:linear-gradient(145deg,#1a1a1a,#0a0a0a);
+      border:2px solid var(--neon);
+      border-radius:25px;
+      padding:40px;
+      margin:40px auto;
+      max-width:700px;
+      box-shadow:
+        0 30px 70px rgba(184,252,141,.2),
+        inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .offer-title{
+      font-size:42px;
+      font-weight:700;
+      color:var(--neon);
+      text-transform:uppercase;
+      margin-bottom:15px;
+      text-shadow:0 0 25px rgba(184,252,141,.3);
+    }
+
+    .offer-subtitle{
+      font-size:20px;
+      margin-bottom:30px;
+    }
+
+    .offer-subtitle .red{
+      color:var(--red);
+      font-weight:600;
+    }
+
+    .offer-list{
+      text-align:left;
+      margin:30px 0;
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    .offer-list li{
+      margin:15px 0;
+      padding-left:30px;
+      position:relative;
+      list-style:none;
+    }
+
+    .offer-list li:before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      color:var(--neon);
+      font-weight:bold;
+      font-size:22px;
+    }
+
+    /* Price */
+    .price-section{
+      margin:35px 0;
+      text-align:center;
+    }
+
+    .price{
+      font-size:86px;
+      font-weight:700;
+      color:var(--neon);
+      text-shadow:0 0 30px rgba(184,252,141,.4);
+      line-height:1;
+      margin:15px 0;
+    }
+
+    .price-compare{
+      font-size:20px;
+      color:var(--red);
+      text-decoration:line-through;
+      opacity:.8;
+      margin-bottom:10px;
+    }
+
+    /* Buttons */
+    .cta-checkout{
+      display:inline-block;
+      width:90%;
+      max-width:500px;
+      padding:24px 50px;
+      margin:20px auto;
+      border-radius:999px;
+      border:none;
+      background:linear-gradient(135deg,var(--gold1),var(--gold2));
+      color:#000;
+      font-family:'Oswald',sans-serif;
+      font-size:22px;
+      font-weight:900;
+      text-transform:uppercase;
+      cursor:pointer;
+      box-shadow:
+        0 20px 50px rgba(255,215,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.4);
+      transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position:relative;
+      overflow:hidden;
+      letter-spacing:.5px;
+    }
+
+    .cta-checkout:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:
+        0 25px 60px rgba(255,215,0,.6),
+        inset 0 1px 0 rgba(255,255,255,.5);
+    }
+
+    .cta-checkout:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        135deg,
+        transparent 30%,
+        rgba(255,255,255,.4) 50%,
+        transparent 70%
+      );
+      transform:translateX(-100%) skewX(-20deg);
+      transition:transform .6s;
+    }
+
+    .cta-checkout:hover:before{
+      transform:translateX(100%) skewX(-20deg);
+    }
+
+    .skip-link{
+      display:inline-block;
+      margin-top:15px;
+      padding:12px 30px;
+      color:rgba(255,255,255,.6);
+      text-decoration:underline;
+      font-size:16px;
+      cursor:pointer;
+      transition:all .3s;
+    }
+
+    .skip-link:hover{
+      color:rgba(255,255,255,.9);
+    }
+
+    /* Loading */
+    .loading{
+      display:none;
+      text-align:center;
+      color:var(--neon);
+      margin:20px 0;
+      font-size:18px;
+      font-weight:600;
+      animation:glow 1.5s infinite;
+    }
+    
+    @keyframes glow{
+      50%{text-shadow:0 0 25px rgba(184,252,141,.6)}
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .headline{font-size:38px}
+      .subheadline{font-size:22px}
+      .warning{font-size:48px}
+      .bonus-text{font-size:19px}
+      .offer-box{padding:30px 25px}
+      .offer-title{font-size:34px}
+      .offer-list{font-size:16px}
+      .price{font-size:68px}
+      .cta-checkout{
+        font-size:19px;
+        padding:22px 40px;
+      }
+    }
+    
+    @media (max-width:480px){
+      .headline{
+        font-size:30px;
+        line-height:1.15;
+      }
+      .subheadline{font-size:19px}
+      .warning{
+        font-size:38px;
+        margin:25px 0 15px;
+      }
+      .bonus-text{font-size:17px}
+      .offer-box{
+        padding:25px 20px;
+        margin:30px auto;
+      }
+      .offer-title{font-size:28px}
+      .offer-subtitle{font-size:17px}
+      .offer-list{font-size:15px}
+      .offer-list li{padding-left:25px}
+      .price{font-size:54px}
+      .price-compare{font-size:18px}
+      .cta-checkout{
+        font-size:17px;
+        padding:20px 35px;
+        width:92%;
+      }
+      .skip-link{
+        font-size:14px;
+        padding:10px 25px;
+      }
+      .disclaimer{font-size:12px}
+      .live-pill{
+        font-size:13px;
+        padding:11px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="grid"></div>
+  
+  <div class="container">
+    <div class="top-banner">
+      <div class="live-pill">
+        <span class="dot"></span>
+        <strong>EVENTO ONLINE:</strong> Giovedì 9 ottobre ore 21:00
+      </div>
+    </div>
+
+    <main class="main">
+      <h1 class="headline">Registrazione Confermata!</h1>
+      <p class="subheadline">
+        Riceverai a breve un'email con il link privato per<br>
+        accedere all'evento live
+      </p>
+
+      <h2 class="warning">MA ASPETTA!</h2>
+      
+      <p class="bonus-text">
+        Abbiamo preparato un bonus per te, guarda il video qui sotto per<br>
+        vedere di cosa si tratta...
+      </p>
+
+      <div class="video-container">
+        <img src="oto1-video.jpg" alt="Video Bonus">
+      </div>
+
+      <p class="disclaimer">
+        No grazie, non mi interessa accedere all'offerta disponibile solo su questa<br>
+        pagina e voglio solo confermare la mia iscrizione
+      </p>
+
+      <div class="offer-box">
+        <h3 class="offer-title">BIZ STARTER PACK</h3>
+        <p class="offer-subtitle">
+          Accedi alle lezioni esclusive + BONUS<br>
+          <span class="red">(DISPONIBILE SOLO SU QUESTA PAGINA)</span>
+        </p>
+
+        <ul class="offer-list">
+          <li>Come fare i tuoi primi 100€ al giorno attraverso un personal brand</li>
+          <li>Come iniziare senza doverci mettere la faccia - 2 strategie che noi utilizziamo</li>
+          <li>Tutti i tool AI per creare degli avatar digitali che sembrano persone reali</li>
+          <li>[BOUNS] CASO STUDIO: Come abbiamo fatto 150.000€ in 2 ore lanciando un prodotto digitale</li>
+          <li>[BONUS] Replica dell'evento</li>
+        </ul>
+
+        <div class="price-section">
+          <div class="price">50€</div>
+          <div class="price-compare">AL POSTO DI 200€</div>
+        </div>
+      </div>
+
+      <button class="cta-checkout" id="checkoutBtn">
+        *CHECKOUT* →
+      </button>
+
+      <a href="/thankyou1" class="skip-link" id="skipLink">
+        No grazie, voglio solo la registrazione gratuita
+      </a>
+
+      <div class="loading">⏳ Reindirizzamento in corso...</div>
+    </main>
+  </div>
+
+  <script>
+    // Recupera i dati salvati dall'optin
+    const userData = {
+      name: sessionStorage.getItem('user_name') || '',
+      email: sessionStorage.getItem('user_email') || '',
+      phone: sessionStorage.getItem('user_phone') || ''
+    };
+
+    // Stripe configuration
+    const STRIPE_PUBLIC_KEY = 'pk_live_YOUR_STRIPE_KEY'; // INSERISCI LA TUA CHIAVE PUBBLICA STRIPE
+    const PRICE_ID = 'price_YOUR_PRICE_ID'; // INSERISCI IL TUO PRICE ID STRIPE
+    
+    // Inizializza Stripe
+    const stripe = Stripe(STRIPE_PUBLIC_KEY);
+
+    // Gestione checkout Stripe
+    document.getElementById('checkoutBtn').addEventListener('click', async function() {
+      const btn = this;
+      const loading = document.querySelector('.loading');
+      
+      btn.style.display = 'none';
+      loading.style.display = 'block';
+      
+      try {
+        // Track evento Facebook
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'InitiateCheckout', {
+            value: 50.00,
+            currency: 'EUR'
+          });
+        }
+
+        // Crea sessione Stripe con dati pre-compilati
+        const response = await fetch('/.netlify/functions/create-checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            priceId: PRICE_ID,
+            customerEmail: userData.email,
+            customerName: userData.name,
+            successUrl: window.location.origin + '/oto2',
+            cancelUrl: window.location.origin + '/thankyou1',
+            metadata: {
+              product: 'biz_starter_pack',
+              phone: userData.phone
+            }
+          })
+        });
+
+        const { sessionId } = await response.json();
+        
+        // Redirect a Stripe Checkout
+        const { error } = await stripe.redirectToCheckout({ sessionId });
+        
+        if (error) {
+          console.error('Errore Stripe:', error);
+          // Fallback redirect
+          window.location.href = '/thankyou1';
+        }
+        
+      } catch (error) {
+        console.error('Errore checkout:', error);
+        // In caso di errore, vai comunque a thankyou
+        window.location.href = '/thankyou1';
+      }
+    });
+
+    // Skip link
+    document.getElementById('skipLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Track rifiuto offerta
+      if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', 'SkipOTO1');
+      }
+      
+      window.location.href = '/thankyou1';
+    });
+
+    // Auto-scroll al caricamento per mobile
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.querySelector('.headline').offsetTop - 20,
+          behavior: 'smooth'
+        });
+      }, 500);
+    }
+  </script>
+</body>
+</html>
