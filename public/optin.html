@@ -760,16 +760,26 @@
       
       try{
         if(typeof fbq!=='undefined') fbq('track','CompleteRegistration');
+        
+        // Salva i dati in sessionStorage per passarli all'OTO1
+        sessionStorage.setItem('user_name', document.getElementById('fullName').value);
+        sessionStorage.setItem('user_email', document.getElementById('email').value);
+        sessionStorage.setItem('user_phone', document.getElementById('countryCode').value + document.getElementById('phone').value);
+        
         const res=await fetch(NETLIFY_FUNCTION_URL,{
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body:JSON.stringify(payload)
         });
         if(!res.ok) throw new Error('Errore registrazione');
-        window.location.href='/oto1'; // CAMBIATO DA /oto1 a /oto1
+        window.location.href='/oto1';
       }catch(err){
         console.error('Errore:',err);
-        window.location.href='/oto1'; // CAMBIATO ANCHE QUI
+        // Anche in caso di errore, salva i dati e procedi
+        sessionStorage.setItem('user_name', document.getElementById('fullName').value);
+        sessionStorage.setItem('user_email', document.getElementById('email').value);
+        sessionStorage.setItem('user_phone', document.getElementById('countryCode').value + document.getElementById('phone').value);
+        window.location.href='/oto1';
       }
     });
 
