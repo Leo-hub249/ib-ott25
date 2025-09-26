@@ -136,13 +136,14 @@
     }
 
     .warning{
-      font-size:76px; /* Aumentato */
+      font-size:92px; /* Più grande */
       font-weight:700;
       color:var(--red);
       text-transform:uppercase;
       margin:25px 0 15px; /* Ridotto */
-      text-shadow:0 0 35px rgba(255,59,59,.5);
+      text-shadow:0 0 40px rgba(255,59,59,.6);
       animation:attention 2s ease-in-out infinite;
+      letter-spacing:-1px;
     }
 
     @keyframes attention{
@@ -332,19 +333,176 @@
       transform:translateY(-2px) scale(1.01);
     }
 
-    /* Loading */
-    .loading{
+    /* Checkout Modal integrato */
+    .checkout-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.95);
+      backdrop-filter:blur(20px);
       display:none;
-      text-align:center;
-      color:var(--neon);
-      margin:20px 0;
-      font-size:18px;
-      font-weight:600;
-      animation:glow 1.5s infinite;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      padding:20px;
     }
     
-    @keyframes glow{
-      50%{text-shadow:0 0 25px rgba(184,252,141,.6)}
+    .checkout-modal.active{
+      display:flex;
+    }
+    
+    .checkout-container{
+      background:linear-gradient(145deg,#1a1a1a,#050505);
+      border:2px solid var(--neon);
+      border-radius:30px;
+      padding:40px;
+      max-width:500px;
+      width:100%;
+      box-shadow:
+        0 50px 100px rgba(184,252,141,.25),
+        inset 0 1px 0 rgba(255,255,255,.05);
+      position:relative;
+    }
+    
+    .checkout-close{
+      position:absolute;
+      right:20px;
+      top:20px;
+      background:none;
+      border:none;
+      color:#fff;
+      font-size:32px;
+      cursor:pointer;
+      opacity:.6;
+      transition:.3s;
+      width:32px;
+      height:32px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    
+    .checkout-close:hover{
+      opacity:1;
+      transform:rotate(90deg);
+    }
+    
+    .checkout-title{
+      font-size:28px;
+      font-weight:700;
+      color:var(--neon);
+      text-align:center;
+      margin-bottom:25px;
+      text-transform:uppercase;
+      text-shadow:0 0 20px rgba(184,252,141,.3);
+    }
+    
+    .checkout-price{
+      text-align:center;
+      margin-bottom:25px;
+      font-size:20px;
+      opacity:.9;
+    }
+    
+    .checkout-fields{
+      margin:20px 0;
+    }
+    
+    .checkout-field{
+      margin:20px 0;
+      position:relative;
+    }
+    
+    .checkout-field label{
+      position:absolute;
+      top:-10px;
+      left:18px;
+      background:linear-gradient(90deg,#1a1a1a,#050505);
+      padding:0 10px;
+      font-size:11px;
+      color:var(--neon);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      opacity:.9;
+    }
+    
+    .checkout-field input{
+      width:100%;
+      padding:18px;
+      border-radius:15px;
+      border:1px solid rgba(184,252,141,.3);
+      background:rgba(0,0,0,.6);
+      color:#fff;
+      font-family:'Oswald',sans-serif;
+      font-size:16px;
+      transition:.3s;
+    }
+    
+    .checkout-field input:focus{
+      outline:none;
+      border-color:var(--neon);
+      box-shadow:
+        0 0 0 3px rgba(184,252,141,.15),
+        0 0 30px rgba(184,252,141,.1);
+    }
+    
+    #card-element{
+      padding:18px;
+      border-radius:15px;
+      border:1px solid rgba(184,252,141,.3);
+      background:rgba(0,0,0,.6);
+      transition:.3s;
+    }
+    
+    #card-element.StripeElement--focus{
+      border-color:var(--neon);
+      box-shadow:
+        0 0 0 3px rgba(184,252,141,.15),
+        0 0 30px rgba(184,252,141,.1);
+    }
+    
+    .checkout-error{
+      color:var(--red);
+      text-align:center;
+      margin:15px 0;
+      font-size:14px;
+      display:none;
+    }
+    
+    .checkout-submit{
+      width:100%;
+      padding:22px;
+      margin-top:25px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#FFD700,#FF8C00);
+      color:#000;
+      font-family:'Oswald',sans-serif;
+      font-size:20px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      cursor:pointer;
+      box-shadow:0 20px 50px rgba(255,215,0,.5);
+      transition:.3s;
+    }
+    
+    .checkout-submit:hover:not(:disabled){
+      transform:translateY(-2px);
+      box-shadow:0 25px 60px rgba(255,215,0,.6);
+    }
+    
+    .checkout-submit:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+    
+    .checkout-submit.processing{
+      animation:pulse-gold 1.5s infinite;
+    }
+    
+    @keyframes pulse-gold{
+      50%{box-shadow:0 20px 60px rgba(255,215,0,.8)}
     }
 
     /* Responsive */
@@ -486,6 +644,54 @@
 
       <div class="loading">⏳ Reindirizzamento in corso...</div>
     </main>
+
+    <footer style="margin-top:60px; padding-top:35px; border-top:1px solid rgba(184,252,141,.15); background:linear-gradient(180deg,transparent,rgba(0,0,0,1));">
+      <div style="text-align:center; padding-bottom:10px;">
+        <img src="2.webp" alt="Logo" style="max-width:310px; width:100%; opacity:.85; margin-bottom:15px;">
+        <p style="max-width:960px; margin:0 auto 15px; font-size:12px; line-height:1.8; color:rgba(255,255,255,.45); font-family:system-ui,sans-serif; padding:0 20px;">
+          * I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo a Infobiz University potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito. DYOR / NFA Copyright 2025 – TMC Holding LLC Tutti i diritti riservati.
+        </p>
+        <div style="display:flex; gap:28px; justify-content:center; padding-top:14px; border-top:1px solid rgba(255,255,255,.1);">
+          <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank" style="color:rgba(255,255,255,.65); text-decoration:none; font-size:13px; font-family:system-ui,sans-serif; transition:.3s;">Privacy Policy</a>
+          <a href="https://learn.infobiz.com/cookie-policy/" target="_blank" style="color:rgba(255,255,255,.65); text-decoration:none; font-size:13px; font-family:system-ui,sans-serif; transition:.3s;">Cookie Policy</a>
+          <a href="https://learn.infobiz.com/terms-of-service/" target="_blank" style="color:rgba(255,255,255,.65); text-decoration:none; font-size:13px; font-family:system-ui,sans-serif; transition:.3s;">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal Checkout integrato -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-container">
+      <button class="checkout-close" onclick="closeCheckout()">&times;</button>
+      <h3 class="checkout-title">Completa l'acquisto</h3>
+      <p class="checkout-price">Biz Starter Pack - <strong style="color:var(--neon)">50€</strong></p>
+      
+      <form id="payment-form">
+        <div class="checkout-fields">
+          <div class="checkout-field">
+            <label>EMAIL</label>
+            <input type="email" id="checkout-email" required>
+          </div>
+          
+          <div class="checkout-field">
+            <label>NOME COMPLETO</label>
+            <input type="text" id="checkout-name" required>
+          </div>
+          
+          <div class="checkout-field">
+            <label>CARTA DI CREDITO</label>
+            <div id="card-element"></div>
+          </div>
+        </div>
+        
+        <div class="checkout-error" id="card-errors"></div>
+        
+        <button type="submit" class="checkout-submit" id="submit-payment">
+          PAGA 50€
+        </button>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -500,62 +706,147 @@
 
     // Stripe configuration
     const STRIPE_PUBLIC_KEY = 'pk_live_51IDw0AE9CzAMobs3J8gGyyQBkOK9GhUO1VIIb0RveSzQ3cv0qao4q14hwVe168gTx1WCn89Qvj1J8JR8l0iMnBNZ00iU2yhcKT'; // INSERISCI LA TUA CHIAVE PUBBLICA STRIPE
-    const PRICE_ID = 'price_1SBZhZE9CzAMobs3cFMdo1yU'; // INSERISCI IL TUO PRICE ID STRIPE
     
-    // Inizializza Stripe
+    // Inizializza Stripe e Elements
     const stripe = Stripe(STRIPE_PUBLIC_KEY);
-
-    // Gestione checkout Stripe
-    document.getElementById('checkoutBtn').addEventListener('click', async function() {
-      const btn = this;
-      const loading = document.querySelector('.loading');
+    const elements = stripe.elements({
+      fonts: [{
+        cssSrc: 'https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap'
+      }]
+    });
+    
+    // Stile per card element
+    const cardStyle = {
+      base: {
+        color: '#fff',
+        fontFamily: 'Oswald, sans-serif',
+        fontSize: '16px',
+        '::placeholder': {
+          color: 'rgba(255,255,255,0.4)'
+        }
+      },
+      invalid: {
+        color: '#FF3B3B',
+        iconColor: '#FF3B3B'
+      }
+    };
+    
+    // Crea card element
+    const cardElement = elements.create('card', {style: cardStyle});
+    
+    // Funzioni modal
+    function openCheckout() {
+      document.getElementById('checkoutModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
       
-      btn.style.display = 'none';
-      loading.style.display = 'block';
+      // Pre-compila i dati
+      document.getElementById('checkout-email').value = userData.email;
+      document.getElementById('checkout-name').value = userData.name;
+      
+      // Monta card element
+      cardElement.mount('#card-element');
+      
+      // Track evento
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout', {
+          value: 50.00,
+          currency: 'EUR'
+        });
+      }
+    }
+    
+    function closeCheckout() {
+      document.getElementById('checkoutModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Gestione apertura checkout
+    document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+    
+    // Gestione errori card
+    cardElement.on('change', function(event) {
+      const displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+        displayError.style.display = 'block';
+      } else {
+        displayError.textContent = '';
+        displayError.style.display = 'none';
+      }
+    });
+    
+    // Gestione form pagamento
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      const submitButton = document.getElementById('submit-payment');
+      const errorElement = document.getElementById('card-errors');
+      
+      // Disabilita pulsante
+      submitButton.disabled = true;
+      submitButton.classList.add('processing');
+      submitButton.textContent = 'Elaborazione...';
       
       try {
-        // Track evento Facebook
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'InitiateCheckout', {
-            value: 50.00,
-            currency: 'EUR'
-          });
-        }
-
-        // Crea sessione Stripe con dati pre-compilati
-        const response = await fetch('/.netlify/functions/create-checkout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            priceId: PRICE_ID,
-            customerEmail: userData.email,
-            customerName: userData.name,
-            successUrl: window.location.origin + '/oto2',
-            cancelUrl: window.location.origin + '/thankyou1',
-            metadata: {
-              product: 'biz_starter_pack',
-              phone: userData.phone
-            }
-          })
+        // Crea payment method
+        const {paymentMethod, error} = await stripe.createPaymentMethod({
+          type: 'card',
+          card: cardElement,
+          billing_details: {
+            name: document.getElementById('checkout-name').value,
+            email: document.getElementById('checkout-email').value
+          }
         });
-
-        const { sessionId } = await response.json();
-        
-        // Redirect a Stripe Checkout
-        const { error } = await stripe.redirectToCheckout({ sessionId });
         
         if (error) {
-          console.error('Errore Stripe:', error);
-          // Fallback redirect
-          window.location.href = '/thankyou1';
+          throw new Error(error.message);
+        }
+        
+        // Invia al backend
+        const response = await fetch('/.netlify/functions/process-payment', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            paymentMethodId: paymentMethod.id,
+            amount: 5000, // 50€ in centesimi
+            currency: 'eur',
+            customerEmail: document.getElementById('checkout-email').value,
+            customerName: document.getElementById('checkout-name').value,
+            product: 'biz_starter_pack'
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          // Pagamento riuscito
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Purchase', {
+              value: 50.00,
+              currency: 'EUR'
+            });
+          }
+          window.location.href = '/oto2';
+        } else if (result.requiresAction) {
+          // Richiede 3D Secure
+          const {error} = await stripe.confirmCardPayment(result.clientSecret);
+          if (error) {
+            throw new Error(error.message);
+          } else {
+            // Pagamento confermato
+            window.location.href = '/oto2';
+          }
+        } else {
+          throw new Error(result.error || 'Pagamento non riuscito');
         }
         
       } catch (error) {
-        console.error('Errore checkout:', error);
-        // In caso di errore, vai comunque a thankyou
-        window.location.href = '/thankyou1';
+        errorElement.textContent = error.message;
+        errorElement.style.display = 'block';
+        submitButton.disabled = false;
+        submitButton.classList.remove('processing');
+        submitButton.textContent = 'PAGA 50€';
       }
     });
 
@@ -569,6 +860,13 @@
       }
       
       window.location.href = '/thankyou1';
+    });
+    
+    // Chiudi modal con ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('checkoutModal').classList.contains('active')) {
+        closeCheckout();
+      }
     });
 
     // Auto-scroll al caricamento per mobile
