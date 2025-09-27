@@ -178,13 +178,7 @@
       border-radius:20px;
       overflow:hidden;
       box-shadow:0 30px 80px rgba(0,0,0,.8);
-    }
-
-    .video-container img{
-      width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      display:block;
+      background:#000;
     }
 
     .skip-link{
@@ -704,7 +698,8 @@
       </p>
 
       <div class="video-container">
-        <img src="1.png" alt="Video Bonus">
+        <!-- Video Vidalytics OTO1 -->
+        <div id="vidalytics_embed_fmqnE2VLyXSvpOqc" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
       </div>
 
       <a href="/thankyou1" class="skip-link" id="skipLink">
@@ -723,7 +718,7 @@
           <li>Come fare i tuoi primi 100€ al giorno attraverso un personal brand</li>
           <li>Come iniziare senza doverci mettere la faccia - 2 strategie che noi utilizziamo</li>
           <li>Tutti i tool AI per creare degli avatar digitali che sembrano persone reali</li>
-          <li>[BOUNS] CASO STUDIO: Come abbiamo fatto 150.000€ in 2 ore lanciando un prodotto digitale</li>
+          <li>[BONUS] CASO STUDIO: Come abbiamo fatto 150.000€ in 2 ore lanciando un prodotto digitale</li>
           <li>[BONUS] Replica dell'evento</li>
         </ul>
 
@@ -786,6 +781,20 @@
     </div>
   </div>
 
+  <!-- Script Vidalytics OTO1 -->
+  <script type="text/javascript">
+  (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+      if (!vsl){vsl=function(u,cb){
+          if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+          if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+          i.getElementsByTagName("head")[0].appendChild(s);
+      };}
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+  })(window, document, 'Vidalytics', 'vidalytics_embed_fmqnE2VLyXSvpOqc', 'https://fast.vidalytics.com/embeds/41zpqkg6/fmqnE2VLyXSvpOqc/');
+  </script>
+
+  <!-- Script principale -->
   <script>
     const userData = {
       name: sessionStorage.getItem('user_name') || '',

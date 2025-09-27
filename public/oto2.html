@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Offerta Esclusiva - Consulenza con Thomas</title>
 
+  <!-- Script Vidalytics OTO2 -->
+  <script type="text/javascript">
+  (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+      if (!vsl){vsl=function(u,cb){
+          if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+          if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+          i.getElementsByTagName("head")[0].appendChild(s);
+      };}
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+  })(window, document, 'Vidalytics', 'vidalytics_embed_4PQhLTaHHKqckZ78', 'https://fast.vidalytics.com/embeds/41zpqkg6/4PQhLTaHHKqckZ78/');
+  </script>
+
+  <!-- Script principale -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -552,7 +566,8 @@
       </p>
 
       <div class="video-container">
-        <img src="1.png" alt="Video Offerta">
+        <!-- Video Vidalytics OTO2 -->
+        <div id="vidalytics_embed_4PQhLTaHHKqckZ78" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
       </div>
 
       <a href="/thankyou2" class="skip-link" id="skipLink">
@@ -601,6 +616,7 @@
   </div>
 
   <script>
+    // Recupera i dati salvati dalla OTO1
     const userData = {
       name: sessionStorage.getItem('user_name') || '',
       email: sessionStorage.getItem('user_email') || '',
@@ -610,16 +626,30 @@
 
     console.log('Dati utente recuperati:', userData);
 
+    // Verifica che ci sia un payment method salvato
+    if (!userData.paymentMethodId) {
+      console.error('Nessun metodo di pagamento trovato');
+    }
+
+    // Gestione click sul pulsante di acquisto
     document.getElementById('oneClickBtn').addEventListener('click', async function() {
       const btn = this;
       const loading = document.querySelector('.loading');
       
+      // Verifica che ci sia il payment method
+      if (!userData.paymentMethodId) {
+        alert('Errore: metodo di pagamento non trovato. Per favore completa prima l\'acquisto precedente.');
+        window.location.href = '/oto1';
+        return;
+      }
+      
+  
       btn.disabled = true;
       btn.style.display = 'none';
       loading.style.display = 'block';
       
       try {
-        
+        // Chiama la funzione Netlify per processare il pagamento one-click
         const response = await fetch('/.netlify/functions/one-click-payment', {
           method: 'POST',
           headers: {
@@ -628,20 +658,42 @@
           body: JSON.stringify({
             paymentMethodId: userData.paymentMethodId,
             customerEmail: userData.email,
-            amount: 20000,
+            amount: 20000, // 200€ in centesimi
             currency: 'eur',
             product: 'consulenza_thomas',
-            description: 'Consulenza con Thomas - 30 minuti'
+            description: 'Consulenza con Thomas - 30 minuti',
+            priceId: 'price_1SBz80E9CzAMobs3at4Si8YS' 
           })
         });
 
         const result = await response.json();
         
         if (result.success) {
+          // Pagamento completato con successo
+          console.log('Pagamento completato:', result.paymentIntentId);
+          
+          // Track evento Facebook Pixel
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Purchase', {
+              value: 200.00,
+              currency: 'EUR',
+              content_name: 'Consulenza con Thomas',
+              content_ids: ['consulenza_thomas'],
+              content_type: 'product'
+            });
+          }
+          
+          // Salva info aggiuntive
+          sessionStorage.setItem('oto2_purchased', 'true');
+          
+          // Reindirizza alla thank you page finale
           window.location.href = '/thankyou3';
+          
         } else if (result.requiresAction) {
+          // Il pagamento richiede autenticazione 3D Secure
           alert('Il pagamento richiede una verifica aggiuntiva');
           window.location.href = '/thankyou2';
+          
         } else {
           throw new Error(result.error || 'Pagamento non riuscito');
         }
@@ -649,28 +701,56 @@
       } catch (error) {
         console.error('Errore pagamento:', error);
         alert('Si è verificato un errore. Riprova più tardi.');
-        window.location.href = '/thankyou2';
+        
+        // Ripristina il pulsante
+        btn.disabled = false;
+        btn.style.display = 'block';
+        loading.style.display = 'none';
+        
+        // Reindirizza dopo 2 secondi
+        setTimeout(() => {
+          window.location.href = '/thankyou2';
+        }, 2000);
       }
     });
 
+    // Gestione del link skip
     document.getElementById('skipLink').addEventListener('click', function(e) {
       e.preventDefault();
       
+      // Track evento custom per Facebook
       if (typeof fbq !== 'undefined') {
-        fbq('trackCustom', 'SkipOTO2');
+        fbq('trackCustom', 'SkipOTO2', {
+          value: 200.00,
+          currency: 'EUR'
+        });
       }
       
+    
+      sessionStorage.setItem('oto2_skipped', 'true');
+      
+      // Reindirizza alla thank you page
       window.location.href = '/thankyou2';
     });
 
+    // Scroll automatico su mobile
     if (window.innerWidth < 768) {
       setTimeout(() => {
-        window.scrollTo({
-          top: document.querySelector('.headline').offsetTop - 20,
-          behavior: 'smooth'
-        });
+        const headline = document.querySelector('.headline');
+        if (headline) {
+          window.scrollTo({
+            top: headline.offsetTop - 20,
+            behavior: 'smooth'
+          });
+        }
       }, 500);
     }
+
+    // Debug info
+    console.log('=== Debug Info ===');
+    console.log('Payment Method ID:', userData.paymentMethodId);
+    console.log('Customer Email:', userData.email);
+    console.log('Customer Name:', userData.name);
   </script>
 </body>
 </html>

@@ -14,21 +14,22 @@ exports.handler = async (event, context) => {
   };
 
   try {
-    const { 
-      paymentMethodId, 
-      customerEmail, 
-      amount, 
+    const {
+      paymentMethodId,
+      customerEmail,
+      amount,
       currency,
       product,
-      description 
+      description,
+      priceId
     } = JSON.parse(event.body);
 
-    // Trova o crea il cliente
+    // Trova il cliente esistente (deve esistere dalla OTO1)
     const customers = await stripe.customers.list({
       email: customerEmail,
       limit: 1
     });
-    
+
     let customer = customers.data[0];
     
     if (!customer) {
@@ -49,7 +50,9 @@ exports.handler = async (event, context) => {
       confirm: true,
       description: description,
       metadata: {
-        product: product
+        product: product,
+        priceId: priceId || '',
+        customerEmail: customerEmail
       }
     });
 
@@ -57,17 +60,22 @@ exports.handler = async (event, context) => {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ success: true })
+        body: JSON.stringify({ 
+          success: true,
+          paymentIntentId: paymentIntent.id
+        })
       };
     } else if (paymentIntent.status === 'requires_action') {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           requiresAction: true,
-          clientSecret: paymentIntent.client_secret 
+          clientSecret: paymentIntent.client_secret
         })
       };
+    } else {
+      throw new Error('Stato pagamento non gestito: ' + paymentIntent.status);
     }
 
   } catch (error) {
