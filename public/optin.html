@@ -807,6 +807,8 @@
     else if(path==='/igb' || path==='/igb/') source='igb';
     else if(path==='/tt' || path==='/tt/') source='tt';
     else if(path==='/mail' || path==='/mail/') source='mail';
+    else if(path==='/ytb' || path==='/ytb/') source='ytb'; 
+    else if(path==='/ytd' || path==='/ytd/') source='ytd';  
     
     if(source!=='direct') sessionStorage.setItem('traffic_source',source);
     const finalSource=sessionStorage.getItem('traffic_source')||source;

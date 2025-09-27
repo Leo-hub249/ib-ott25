@@ -13,10 +13,12 @@
   from = "/mads"
   to = "/optin.html"
   status = 200
+
 [[redirects]]
   from = "/tg"
   to = "/optin.html"
   status = 200
+
 [[redirects]]
   from = "/igs"
   to = "/optin.html"
@@ -25,11 +27,23 @@
   from = "/igb"
   to = "/optin.html"
   status = 200
+
 [[redirects]]
   from = "/tt"
   to = "/optin.html"
   status = 200
+
 [[redirects]]
   from = "/mail"
+  to = "/optin.html"
+  status = 200
+
+[[redirects]]
+  from = "/ytb"
+  to = "/optin.html"
+  status = 200
+  
+[[redirects]]
+  from = "/ytd"
   to = "/optin.html"
   status = 200
