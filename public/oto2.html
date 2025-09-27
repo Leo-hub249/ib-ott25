@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Offerta Esclusiva - Consulenza con Thomas</title>
 
-  <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -24,9 +23,7 @@
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel Code -->
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -50,7 +47,6 @@
       position:relative;
     }
 
-    /* Background con griglia e sfumature */
     .background{
       position:fixed;
       inset:0;
@@ -80,46 +76,64 @@
       z-index:2;
     }
 
-    /* Top Banner */
     .top-banner{
       text-align:center;
-      padding:25px 0 15px;
+      padding:10px 0 3px;
     }
     
     .live-pill{
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      padding:14px 35px;
+      gap:8px;
+      padding:8px 20px;
       border-radius:999px;
       background:rgba(40,40,40,.9);
       backdrop-filter:blur(12px);
-      font-size:16px;
-      font-weight:600;
-      letter-spacing:.2px;
+      font-size:14px;
+      font-weight:400;
+      letter-spacing:.1px;
     }
     
     .dot{
-      width:10px;
-      height:10px;
+      width:8px;
+      height:8px;
       border-radius:50%;
       background:var(--neon);
-      box-shadow:0 0 15px rgba(184,252,141,.4);
-      animation:pulse 2s infinite;
+      box-shadow:
+        0 0 20px rgba(184,252,141,.9),
+        0 0 40px rgba(184,252,141,.6),
+        0 0 60px rgba(184,252,141,.4),
+        inset 0 0 10px rgba(255,255,255,.5);
+      animation:pulse 1.5s infinite;
+      filter:brightness(1.2);
     }
     
     @keyframes pulse{
-      50%{box-shadow:0 0 20px rgba(184,252,141,.5)}
+      0%, 100%{
+        box-shadow:
+          0 0 20px rgba(184,252,141,.9),
+          0 0 40px rgba(184,252,141,.6),
+          0 0 60px rgba(184,252,141,.4),
+          inset 0 0 10px rgba(255,255,255,.5);
+        transform:scale(1);
+      }
+      50%{
+        box-shadow:
+          0 0 30px rgba(184,252,141,1),
+          0 0 50px rgba(184,252,141,.8),
+          0 0 80px rgba(184,252,141,.6),
+          inset 0 0 15px rgba(255,255,255,.7);
+        transform:scale(1.1);
+      }
     }
 
-    /* Main Content */
     .main{
       text-align:center;
-      padding:15px 0 40px;
+      padding:20px 0 40px;
     }
 
     .headline{
-      font-size:46px;
+      font-size:56px;
       font-weight:700;
       color:var(--neon);
       text-transform:uppercase;
@@ -129,18 +143,18 @@
     }
 
     .subheadline{
-      font-size:24px;
+      font-size:28px;
       font-weight:400;
-      margin-bottom:20px;
+      margin-bottom:10px;
       line-height:1.25;
     }
 
     .warning{
-      font-size:92px;
+      font-size:105px;
       font-weight:700;
       color:var(--red);
       text-transform:uppercase;
-      margin:25px 0 15px;
+      margin:10px 0 5px;
       text-shadow:0 0 40px rgba(255,59,59,.6);
       animation:attention 2s ease-in-out infinite;
       letter-spacing:-1px;
@@ -152,16 +166,16 @@
     }
 
     .bonus-text{
-      font-size:22px;
-      margin-bottom:25px;
+      font-size:24px;
+      margin-bottom:20px;
+      margin-top:5px;
       opacity:.95;
       line-height:1.3;
     }
 
-    /* Video Container */
     .video-container{
       max-width:720px;
-      margin:0 auto 30px;
+      margin:0 auto 25px;
       border-radius:20px;
       overflow:hidden;
       box-shadow:0 30px 80px rgba(0,0,0,.8);
@@ -174,10 +188,9 @@
       display:block;
     }
 
-    /* Skip link sopra l'offerta */
     .skip-link{
       display:inline-block;
-      margin:10px auto 25px;
+      margin:18px auto 25px;
       padding:8px 20px;
       color:rgba(255,255,255,.5);
       text-decoration:underline;
@@ -193,13 +206,12 @@
       opacity:.9;
     }
 
-    /* Offer Box */
     .offer-box{
       background:linear-gradient(145deg,#1a1a1a,#0a0a0a);
       border:2px solid var(--neon);
       border-radius:25px;
       padding:40px;
-      margin:30px auto;
+      margin:15px auto 350px;
       max-width:700px;
       box-shadow:
         0 30px 70px rgba(184,252,141,.2),
@@ -207,7 +219,7 @@
     }
 
     .offer-title{
-      font-size:42px;
+      font-size:48px;
       font-weight:700;
       color:var(--neon);
       text-transform:uppercase;
@@ -216,7 +228,7 @@
     }
 
     .offer-subtitle{
-      font-size:20px;
+      font-size:22px;
       margin-bottom:25px;
     }
 
@@ -228,7 +240,7 @@
     .offer-list{
       text-align:left;
       margin:25px 0;
-      font-size:18px;
+      font-size:20px;
       line-height:1.7;
     }
 
@@ -248,14 +260,13 @@
       font-size:22px;
     }
 
-    /* Price */
     .price-section{
       margin:30px 0;
       text-align:center;
     }
 
     .price{
-      font-size:86px;
+      font-size:92px;
       font-weight:700;
       color:var(--neon);
       text-shadow:0 0 30px rgba(184,252,141,.4);
@@ -264,19 +275,18 @@
     }
 
     .price-compare{
-      font-size:20px;
+      font-size:22px;
       color:var(--red);
       text-decoration:line-through;
       opacity:.8;
       margin-bottom:25px;
     }
 
-    /* One Click Checkout Button */
     .cta-checkout{
       display:block;
       width:85%;
       max-width:450px;
-      padding:26px 50px;
+      padding:20px 45px;
       margin:30px auto 10px;
       border-radius:999px;
       border:none;
@@ -288,10 +298,9 @@
       text-transform:uppercase;
       cursor:pointer;
       box-shadow:
-        0 25px 60px rgba(255,215,0,.6),
-        0 10px 30px rgba(255,140,0,.4),
-        inset 0 2px 0 rgba(255,255,255,.5),
-        inset 0 -2px 0 rgba(0,0,0,.1);
+        0 10px 25px rgba(255,215,0,.3),
+        0 5px 12px rgba(255,165,0,.2),
+        inset 0 1px 0 rgba(255,255,255,.4);
       transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position:relative;
       overflow:hidden;
@@ -302,10 +311,9 @@
     .cta-checkout:hover{
       transform:translateY(-4px) scale(1.03);
       box-shadow:
-        0 30px 70px rgba(255,215,0,.7),
-        0 15px 40px rgba(255,140,0,.5),
-        inset 0 2px 0 rgba(255,255,255,.6),
-        inset 0 -2px 0 rgba(0,0,0,.15);
+        0 15px 35px rgba(255,215,0,.4),
+        0 8px 18px rgba(255,165,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.5);
     }
 
     .cta-checkout:before{
@@ -338,7 +346,6 @@
       cursor:not-allowed;
     }
 
-    /* Loading state */
     .loading{
       display:none;
       text-align:center;
@@ -353,9 +360,8 @@
       50%{text-shadow:0 0 25px rgba(184,252,141,.6)}
     }
 
-    /* Footer */
     footer{
-      margin-top:60px;
+      margin-top:0;
       padding-top:35px;
       border-top:1px solid rgba(184,252,141,.15);
       background:linear-gradient(180deg,transparent,rgba(0,0,0,1));
@@ -365,55 +371,130 @@
       text-align:center;
       padding-bottom:10px;
     }
+    
+    .footer-logo{
+      max-width:180px;
+      width:100%;
+      opacity:.85;
+      margin-bottom:15px;
+    }
+    
+    .disclaimer{
+      max-width:960px;
+      margin:0 auto 15px;
+      font-size:12px;
+      line-height:1.8;
+      color:rgba(255,255,255,.45);
+      font-family:system-ui,sans-serif;
+      padding:0 20px;
+    }
+    
+    .footer-links{
+      display:flex;
+      gap:28px;
+      justify-content:center;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.1);
+    }
+    
+    .footer-links a{
+      color:rgba(255,255,255,.65);
+      text-decoration:none;
+      font-size:13px;
+      font-family:system-ui,sans-serif;
+      transition:.3s;
+    }
+    
+    .footer-links a:hover{
+      color:var(--neon);
+    }
 
-    /* Responsive */
     @media (max-width:768px){
-      .headline{font-size:38px}
-      .subheadline{font-size:20px}
-      .warning{font-size:68px}
-      .bonus-text{font-size:19px}
-      .offer-box{padding:30px 25px}
-      .offer-title{font-size:34px}
-      .offer-list{font-size:16px}
-      .price{font-size:68px}
+      .headline{font-size:42px}
+      .subheadline{
+        font-size:24px;
+        margin-bottom:8px;
+      }
+      .warning{
+        font-size:68px;
+        margin:8px 0 5px;
+      }
+      .bonus-text{
+        font-size:21px;
+        margin-top:5px;
+        margin-bottom:18px;
+      }
+      .video-container{
+        margin-bottom:18px;
+      }
+      .skip-link{
+        margin:15px auto 18px;
+      }
+      .offer-box{
+        padding:30px 25px;
+        margin:12px auto 280px;
+      }
+      .offer-title{font-size:38px}
+      .offer-list{font-size:18px}
+      .price{font-size:72px}
       .cta-checkout{
-        font-size:20px;
-        padding:24px 40px;
+        font-size:19px;
+        padding:18px 40px;
         width:88%;
       }
+      .live-pill{
+        font-size:13px;
+        padding:7px 18px;
+      }
+      .footer-logo{max-width:150px}
     }
     
     @media (max-width:480px){
+      .top-banner{padding:8px 0 2px}
+      .main{padding:15px 0 35px}
       .headline{
         font-size:30px;
         line-height:1.1;
         margin-bottom:10px;
+        white-space:normal;
       }
       .subheadline{
         font-size:18px;
-        margin-bottom:15px;
+        margin-bottom:8px;
+        white-space:normal;
+        line-height:1.3;
       }
       .warning{
-        font-size:52px;
-        margin:20px 0 12px;
+        font-size:44px;
+        margin:8px 0 3px;
+        white-space:nowrap;
       }
       .bonus-text{
         font-size:16px;
-        margin-bottom:20px;
+        margin-bottom:15px;
+        margin-top:3px;
+        white-space:normal;
+        line-height:1.4;
+      }
+      .video-container{
+        margin-bottom:15px;
       }
       .skip-link{
         font-size:12px;
-        margin:8px auto 20px;
+        margin:12px auto 15px;
       }
       .offer-box{
         padding:25px 18px;
-        margin:25px auto;
+        margin:10px auto 220px;
       }
       .offer-title{
         font-size:28px;
         margin-bottom:10px;
       }
-      .offer-subtitle{font-size:16px}
+      .offer-subtitle{
+        font-size:16px;
+        white-space:normal;
+      }
       .offer-list{
         font-size:14px;
         margin:20px 0;
@@ -428,16 +509,20 @@
         margin-bottom:20px;
       }
       .cta-checkout{
-        font-size:18px;
-        padding:22px 35px;
+        font-size:16px;
+        padding:16px 30px;
         width:90%;
         margin:25px auto 8px;
       }
-      .video-container{margin-bottom:20px}
       .live-pill{
-        font-size:13px;
-        padding:11px 22px;
+        font-size:11px;
+        padding:6px 15px;
       }
+      .dot{
+        width:6px;
+        height:6px;
+      }
+      .footer-logo{max-width:120px}
     }
   </style>
 </head>
@@ -449,7 +534,7 @@
     <div class="top-banner">
       <div class="live-pill">
         <span class="dot"></span>
-        <strong>EVENTO ONLINE:</strong> Giovedì 9 ottobre ore 21:00
+        EVENTO ONLINE: Giovedì 9 ottobre ore 21:00
       </div>
     </div>
 
@@ -470,7 +555,6 @@
         <img src="1.png" alt="Video Offerta">
       </div>
 
-      <!-- Skip link SOPRA l'offerta -->
       <a href="/thankyou2" class="skip-link" id="skipLink">
         No grazie, non mi interessa accedere all'offerta disponibile solo su questa<br>
         pagina e voglio solo confermare la mia iscrizione
@@ -493,7 +577,6 @@
           <div class="price-compare">AL POSTO DI 500€</div>
         </div>
 
-        <!-- One-click checkout button -->
         <button class="cta-checkout" id="oneClickBtn">
           → ACCEDI ORA ←
         </button>
@@ -504,43 +587,39 @@
 
     <footer>
       <div class="footer-content">
-        <img src="2.webp" alt="Logo" style="max-width:310px; width:100%; opacity:.85; margin-bottom:15px;">
-        <p style="max-width:960px; margin:0 auto 15px; font-size:12px; line-height:1.8; color:rgba(255,255,255,.45); font-family:system-ui,sans-serif; padding:0 20px;">
-          * I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo a Infobiz University potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito. DYOR / NFA Copyright 2025 – TMC Holding LLC Tutti i diritti riservati.
+        <img class="footer-logo" src="2.webp" alt="Logo">
+        <p class="disclaimer">
+          I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo ai contenuti gratuiti di infobiz.com potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito.
         </p>
-        <div style="display:flex; gap:28px; justify-content:center; padding-top:14px; border-top:1px solid rgba(255,255,255,.1);">
-          <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank" style="color:rgba(255,255,255,.65); text-decoration:none; font-size:13px; font-family:system-ui,sans-serif; transition:.3s;">Privacy Policy</a>
-          <a href="https://learn.infobiz.com/cookie-policy/" target="_blank" style="color:rgba(255,255,255,.65); text-decoration:none; font-size:13px; font-family:system-ui,sans-serif; transition:.3s;">Cookie Policy</a>
-          <a href="https://learn.infobiz.com/terms-of-service/" target="_blank" style="color:rgba(255,255,255,.65); text-decoration:none; font-size:13px; font-family:system-ui,sans-serif; transition:.3s;">Terms of Service</a>
+        <div class="footer-links">
+          <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank">Privacy Policy</a>
+          <a href="https://learn.infobiz.com/cookie-policy/" target="_blank">Cookie Policy</a>
+          <a href="https://learn.infobiz.com/terms-of-service/" target="_blank">Terms of Service</a>
         </div>
       </div>
     </footer>
   </div>
 
   <script>
-    // Recupera i dati salvati
     const userData = {
       name: sessionStorage.getItem('user_name') || '',
       email: sessionStorage.getItem('user_email') || '',
       phone: sessionStorage.getItem('user_phone') || '',
-      paymentMethodId: sessionStorage.getItem('payment_method_id') || '' // Salvato dall'OTO1
+      paymentMethodId: sessionStorage.getItem('payment_method_id') || ''
     };
 
     console.log('Dati utente recuperati:', userData);
 
-    // Gestione One-Click Checkout
     document.getElementById('oneClickBtn').addEventListener('click', async function() {
       const btn = this;
       const loading = document.querySelector('.loading');
       
-      // Disabilita pulsante e mostra loading
       btn.disabled = true;
       btn.style.display = 'none';
       loading.style.display = 'block';
       
       try {
         
-        // Invia richiesta one-click payment al backend
         const response = await fetch('/.netlify/functions/one-click-payment', {
           method: 'POST',
           headers: {
@@ -549,7 +628,7 @@
           body: JSON.stringify({
             paymentMethodId: userData.paymentMethodId,
             customerEmail: userData.email,
-            amount: 20000, // 200€ in centesimi
+            amount: 20000,
             currency: 'eur',
             product: 'consulenza_thomas',
             description: 'Consulenza con Thomas - 30 minuti'
@@ -559,11 +638,8 @@
         const result = await response.json();
         
         if (result.success) {
-          // Pagamento riuscito - vai a thankyou3
           window.location.href = '/thankyou3';
         } else if (result.requiresAction) {
-          // Richiede autenticazione 3D Secure
-          // In questo caso potresti dover gestire un modal Stripe
           alert('Il pagamento richiede una verifica aggiuntiva');
           window.location.href = '/thankyou2';
         } else {
@@ -573,16 +649,13 @@
       } catch (error) {
         console.error('Errore pagamento:', error);
         alert('Si è verificato un errore. Riprova più tardi.');
-        // In caso di errore vai comunque a thankyou2
         window.location.href = '/thankyou2';
       }
     });
 
-    // Skip link - rifiuta offerta
     document.getElementById('skipLink').addEventListener('click', function(e) {
       e.preventDefault();
       
-      // Track rifiuto offerta
       if (typeof fbq !== 'undefined') {
         fbq('trackCustom', 'SkipOTO2');
       }
@@ -590,7 +663,6 @@
       window.location.href = '/thankyou2';
     });
 
-    // Auto-scroll per mobile
     if (window.innerWidth < 768) {
       setTimeout(() => {
         window.scrollTo({

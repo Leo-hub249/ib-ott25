@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registrazione Confermata</title>
 
-  <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,7 +20,6 @@
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,82 +37,99 @@
       color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Background */
-    .bg {
+    .background {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(184,252,141,0.1) 0%, transparent 50%);
+      inset: 0;
       z-index: 0;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(184,252,141,.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 70%, rgba(184,252,141,.15) 0%, transparent 50%),
+        #000;
     }
     
-    .grid-bg {
+    .grid {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        linear-gradient(rgba(184,252,141,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(184,252,141,0.1) 1px, transparent 1px);
-      background-size: 50px 50px;
+      inset: 0;
       z-index: 1;
+      opacity: .08;
+      background-image:
+        linear-gradient(rgba(184,252,141,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,252,141,1) 1px, transparent 1px);
+      background-size: 50px 50px;
     }
 
-    /* Content */
-    .content {
+    .container {
       position: relative;
       z-index: 2;
-      padding: 30px 20px 80px;
+      padding: 20px 20px 80px;
       max-width: 900px;
       margin: 0 auto;
       text-align: center;
       min-height: calc(100vh - 180px);
     }
 
-    /* Banner */
     .banner {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: rgba(40,40,40,0.9);
-      padding: 14px 30px;
-      border-radius: 50px;
-      margin-bottom: 40px;
-      font-size: 15px;
-      font-weight: 600;
+      backdrop-filter: blur(12px);
+      padding: 8px 20px;
+      border-radius: 999px;
+      margin-bottom: 30px;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: .1px;
     }
     
     .green-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background: #B8FC8D;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(184,252,141,0.5);
-      animation: pulse 2s infinite;
+      box-shadow:
+        0 0 20px rgba(184,252,141,.9),
+        0 0 40px rgba(184,252,141,.6),
+        0 0 60px rgba(184,252,141,.4),
+        inset 0 0 10px rgba(255,255,255,.5);
+      animation: pulse 1.5s infinite;
+      filter: brightness(1.2);
     }
     
     @keyframes pulse {
-      50% { box-shadow: 0 0 20px rgba(184,252,141,0.8); }
+      0%, 100%{
+        box-shadow:
+          0 0 20px rgba(184,252,141,.9),
+          0 0 40px rgba(184,252,141,.6),
+          0 0 60px rgba(184,252,141,.4),
+          inset 0 0 10px rgba(255,255,255,.5);
+        transform:scale(1);
+      }
+      50%{
+        box-shadow:
+          0 0 30px rgba(184,252,141,1),
+          0 0 50px rgba(184,252,141,.8),
+          0 0 80px rgba(184,252,141,.6),
+          inset 0 0 15px rgba(255,255,255,.7);
+        transform:scale(1.1);
+      }
     }
 
-    /* Titolo */
     h1 {
       color: #B8FC8D;
-      font-size: 56px;
+      font-size: 68px;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 20px;
       text-shadow: 0 0 30px rgba(184,252,141,0.5);
     }
 
-    /* Sottotitolo */
     .subtitle {
-      font-size: 24px;
+      font-size: 28px;
       margin-bottom: 20px;
       text-transform: uppercase;
       opacity: 0.95;
@@ -122,16 +137,14 @@
       font-weight: 600;
     }
     
-    /* Email di supporto */
     .support-text {
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 35px;
       opacity: 0.9;
       line-height: 1.4;
       font-weight: 400;
     }
 
-    /* Video */
     .video {
       max-width: 700px;
       margin: 0 auto 40px;
@@ -144,18 +157,18 @@
       width: 100%;
       height: auto;
       display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
     }
 
-    /* CTA Text */
     .cta-text {
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 20px;
       line-height: 1.3;
     }
 
-    /* Frecce */
     .arrows {
       font-size: 40px;
       margin: 20px 0 30px;
@@ -166,22 +179,24 @@
       50% { transform: translateY(10px); }
     }
 
-    /* Pulsante Telegram */
     .telegram-button {
       display: inline-flex;
       align-items: center;
       gap: 12px;
       background: linear-gradient(135deg, #229ED9, #0088cc);
       color: white;
-      padding: 22px 50px;
-      border-radius: 50px;
+      padding: 20px 45px;
+      border-radius: 999px;
       text-decoration: none;
-      font-size: 19px;
+      font-size: 21px;
       font-weight: 700;
       text-transform: uppercase;
-      box-shadow: 0 15px 40px rgba(34,158,217,0.4);
-      transition: all 0.3s ease;
+      box-shadow: 
+        0 10px 25px rgba(34,158,217,0.3),
+        0 5px 12px rgba(0,136,204,0.2);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       margin-bottom: 40px;
+      letter-spacing: .5px;
     }
     
     .telegram-button svg {
@@ -191,11 +206,12 @@
     }
     
     .telegram-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 50px rgba(34,158,217,0.5);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 
+        0 15px 35px rgba(34,158,217,0.4),
+        0 8px 18px rgba(0,136,204,0.25);
     }
 
-    /* Footer aggiornato */
     footer {
       margin-top: 60px;
       padding-top: 35px;
@@ -213,7 +229,7 @@
     }
     
     .footer-logo {
-      max-width: 310px;
+      max-width: 180px;
       width: 100%;
       opacity: 0.85;
       margin-bottom: 15px;
@@ -246,93 +262,120 @@
     }
     
     .footer-links a:hover {
-      color: rgba(255,255,255,0.9);
+      color: #B8FC8D;
     }
 
-    /* Mobile */
     @media (max-width: 768px) {
-      h1 { font-size: 42px; }
-      .subtitle { font-size: 20px; }
-      .cta-text { font-size: 24px; }
+      h1 { font-size: 52px; }
+      .subtitle { font-size: 22px; }
+      .support-text { font-size: 17px; }
+      .cta-text { font-size: 28px; }
       .telegram-button { 
-        font-size: 17px; 
-        padding: 20px 40px;
+        font-size: 18px; 
+        padding: 18px 40px;
       }
       .telegram-button svg {
         width: 22px;
         height: 22px;
       }
+      .banner {
+        font-size: 13px;
+        padding: 7px 18px;
+      }
+      .footer-logo {
+        max-width: 150px;
+      }
     }
     
     @media (max-width: 480px) {
-      h1 { font-size: 32px; }
-      .subtitle { font-size: 17px; }
-      .cta-text { font-size: 19px; }
+      .container {
+        padding: 15px 20px 60px;
+      }
+      h1 { 
+        font-size: 38px;
+        margin-bottom: 15px;
+      }
+      .subtitle { 
+        font-size: 17px;
+        margin-bottom: 15px;
+        white-space: normal;
+        line-height: 1.3;
+      }
+      .support-text {
+        font-size: 14px;
+        margin-bottom: 25px;
+        white-space: normal;
+      }
+      .cta-text { 
+        font-size: 22px;
+        white-space: normal;
+      }
       .arrows { font-size: 34px; }
       .telegram-button { 
-        font-size: 15px; 
-        padding: 18px 35px;
+        font-size: 16px; 
+        padding: 16px 30px;
       }
       .telegram-button svg {
         width: 20px;
         height: 20px;
       }
       .banner {
-        font-size: 13px;
-        padding: 12px 24px;
+        font-size: 11px;
+        padding: 6px 15px;
+        margin-top: 8px;
+        margin-bottom: 20px;
       }
-      .content {
-        padding-bottom: 40px;
+      .green-dot {
+        width: 6px;
+        height: 6px;
       }
       .footer-links {
         flex-wrap: wrap;
         gap: 15px;
       }
+      .footer-logo {
+        max-width: 120px;
+      }
+      .video {
+        margin-bottom: 30px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="bg"></div>
-  <div class="grid-bg"></div>
+  <div class="background"></div>
+  <div class="grid"></div>
   
-  <div class="content">
-    <!-- Banner evento -->
+  <div class="container">
     <div class="banner">
       <span class="green-dot"></span>
-      <strong>EVENTO ONLINE:</strong> Giovedì 9 ottobre ore 21:00
+      EVENTO ONLINE: Giovedì 9 ottobre ore 21:00
     </div>
 
-    <!-- Titolo principale -->
     <h1>CONFERMATO!</h1>
     
-    <!-- Sottotitolo -->
     <p class="subtitle">
       Riceverai a breve un'email con il link privato per<br>
       accedere all'evento live e per accedere ai tuoi<br>
       bonus
     </p>
 
-    <!-- Testo supporto -->
     <p class="support-text">
       Se dovessi riscontrare problemi nell'accedere ai bonus manda un'email<br>
       a info@infobiz.com
     </p>
 
-    <!-- Video -->
     <div class="video">
       <img src="1.png" alt="Video">
     </div>
 
-    <!-- CTA Text -->
     <p class="cta-text">
       Entra nel canale telegram per<br>
       ricevere ulteriori bonus
     </p>
 
-    <!-- Frecce -->
     <div class="arrows">👇👇👇</div>
 
-    <!-- Pulsante Telegram con logo -->
     <a href="https://t.me/+btQp2qJQfy8wNjAy" target="_blank" class="telegram-button">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121L8.32 13.617l-2.96-.924c-.64-.203-.658-.64.135-.953l11.566-4.458c.538-.196 1.006.128.832.941z"/>
@@ -341,12 +384,11 @@
     </a>
   </div>
 
-  <!-- Footer completo -->
   <footer>
     <div class="footer-content">
       <img src="2.webp" alt="Logo" class="footer-logo">
       <p class="footer-disclaimer">
-        * I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo a Infobiz University potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito. DYOR / NFA Copyright 2025 – TMC Holding LLC Tutti i diritti riservati.
+        I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo ai contenuti gratuiti di infobiz.com potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito.
       </p>
       <div class="footer-links">
         <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank">Privacy Policy</a>
@@ -357,7 +399,6 @@
   </footer>
 
   <script>
-    // Track click Telegram
     document.querySelector('.telegram-button').addEventListener('click', function() {
       if (typeof fbq !== 'undefined') {
         fbq('trackCustom', 'JoinTelegram');
