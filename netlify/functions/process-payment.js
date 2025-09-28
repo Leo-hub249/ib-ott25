@@ -54,7 +54,7 @@ exports.handler = async (event, context) => {
       customer: customer.id
     });
 
-    // Crea il payment intent
+    // Crea il payment intent con return_url per supportare tutti i metodi di pagamento
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount,
       currency: currency,
@@ -66,16 +66,18 @@ exports.handler = async (event, context) => {
         product: product,
         customerEmail: customerEmail,
         customerName: customerName
-      }
+      },
+      // URL di ritorno dopo il pagamento (per metodi che richiedono redirect)
+      return_url: 'https://infobiz.com/oto2'
     });
 
     if (paymentIntent.status === 'succeeded') {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           success: true,
-          customerId: customer.id 
+          customerId: customer.id
         })
       };
     } else if (paymentIntent.status === 'requires_action') {
