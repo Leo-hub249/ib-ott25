@@ -1,17 +1,18 @@
 {
-    "name": "crypto-landing",
-    "version": "1.0.0",
-    "description": "Landing page con Netlify Functions",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "googleapis": "^118.0.0",
-      "axios": "^1.6.0",
-      "stripe": "^14.0.0"
-    }
+  "name": "crypto-landing",
+  "version": "1.0.0",
+  "description": "Landing page con Netlify Functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "googleapis": "^118.0.0",
+    "axios": "^1.6.0",
+    "stripe": "^14.0.0",
+    "node-fetch": "^2.6.7"
   }
+}
