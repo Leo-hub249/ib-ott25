@@ -5,26 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Offerta Esclusiva - Consulenza con Thomas</title>
 
-  <!-- Script Vidalytics OTO2 -->
-  <script type="text/javascript">
-  (function (v, i, d, a, l, y, t, c, s) {
-      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
-      if (!vsl){vsl=function(u,cb){
-          if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
-          if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
-          i.getElementsByTagName("head")[0].appendChild(s);
-      };}
-      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-  })(window, document, 'Vidalytics', 'vidalytics_embed_4PQhLTaHHKqckZ78', 'https://fast.vidalytics.com/embeds/41zpqkg6/4PQhLTaHHKqckZ78/');
-  </script>
-
-  <!-- Script principale -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
+  n.queue=[];t=b.createElement(e);t.async=1;
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
@@ -188,18 +174,48 @@
     }
 
     .video-container{
-      max-width:900px;
+      max-width:860px;
       margin:0 auto 25px;
       border-radius:20px;
       overflow:hidden;
       box-shadow:0 30px 80px rgba(0,0,0,.8);
+      background:#000;
     }
-
-    .video-container img{
-      width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      display:block;
+    
+    /* STILE PER IL BOTTONE TEST */
+    .test-webhook-btn{
+      background: linear-gradient(135deg, #ff6b6b, #ff4444);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      margin: 20px auto;
+      display: block;
+      cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      box-shadow: 0 5px 15px rgba(255,68,68,.3);
+      transition: all 0.3s ease;
+    }
+    
+    .test-webhook-btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,68,68,.4);
+    }
+    
+    .test-info{
+      background: rgba(255,107,107,.1);
+      border: 1px solid rgba(255,107,107,.3);
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin: 10px auto;
+      max-width: 500px;
+      font-size: 12px;
+      color: #ff9999;
+      text-align: center;
     }
 
     .skip-link{
@@ -570,6 +586,15 @@
         <div id="vidalytics_embed_4PQhLTaHHKqckZ78" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
       </div>
 
+      <!-- BOTTONE TEST WEBHOOK - RIMUOVERE IN PRODUZIONE -->
+      <div class="test-info">
+        ⚠️ AMBIENTE DI TEST - Questo bottone è solo per sviluppatori
+      </div>
+      <button id="testWebhook" class="test-webhook-btn">
+        🧪 TEST WEBHOOK MAKE (SOLO DEV)
+      </button>
+      <!-- FINE BOTTONE TEST -->
+
       <a href="/thankyou2" class="skip-link" id="skipLink">
         No grazie, non mi interessa accedere all'offerta disponibile solo su questa<br>
         pagina e voglio solo confermare la mia iscrizione
@@ -615,6 +640,20 @@
     </footer>
   </div>
 
+  <!-- Script Vidalytics OTO2 -->
+  <script type="text/javascript">
+  (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+      if (!vsl){vsl=function(u,cb){
+          if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+          if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+          i.getElementsByTagName("head")[0].appendChild(s);
+      };}
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+  })(window, document, 'Vidalytics', 'vidalytics_embed_4PQhLTaHHKqckZ78', 'https://fast.vidalytics.com/embeds/41zpqkg6/4PQhLTaHHKqckZ78/');
+  </script>
+
+  <!-- Script principale -->
   <script>
     // Recupera i dati salvati dalla OTO1
     const userData = {
@@ -625,6 +664,56 @@
     };
 
     console.log('Dati utente recuperati:', userData);
+
+    // ========== SCRIPT TEST WEBHOOK - RIMUOVERE IN PRODUZIONE ==========
+    document.getElementById('testWebhook')?.addEventListener('click', async function() {
+      console.log('Invio dati test a Make...');
+      
+      // IMPORTANTE: Inserisci qui l'URL del tuo webhook Make
+      const WEBHOOK_URL = 'https://hook.eu2.make.com/t93bl2g9slxu7r399ut8sat7srxzorrr'; // <-- SOSTITUISCI CON IL TUO URL
+      
+      const testData = {
+        email: 'test@esempio.com',
+        nome: 'Test Cliente',
+        importo: 200,
+        valuta: 'eur',
+        prodotto: 'consulenza_thomas',
+        descrizione: 'TEST - Consulenza con Thomas - 30 minuti',
+        stripeCustomerId: 'cus_TEST_' + Date.now(),
+        stripePaymentIntentId: 'pi_TEST_' + Date.now(),
+        stripePriceId: 'price_1SBz80E9CzAMobs3at4Si8YS',
+        dataAcquisto: new Date().toISOString(),
+        tag: 'OTO2_Consulenza_200',
+        tipoAcquisto: 'one-click',
+        nomeOfferta: 'TEST - Consulenza Thomas 30 minuti'
+      };
+      
+      console.log('Dati test:', testData);
+      
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(testData)
+        });
+        
+        const responseText = await response.text();
+        
+        if (response.ok) {
+          alert('✅ Test webhook inviato con successo!\n\nControlla il tuo scenario Make');
+          console.log('✅ Successo! Risposta:', responseText);
+        } else {
+          alert('❌ Errore invio webhook\n\nStatus: ' + response.status);
+          console.error('❌ Errore:', response.status, responseText);
+        }
+      } catch (error) {
+        alert('❌ Errore di rete: ' + error.message);
+        console.error('❌ Errore:', error);
+      }
+    });
+    // ========== FINE SCRIPT TEST WEBHOOK ==========
 
     // Verifica che ci sia un payment method salvato
     if (!userData.paymentMethodId) {
@@ -643,7 +732,7 @@
         return;
       }
       
-  
+      // Disabilita il pulsante e mostra loading
       btn.disabled = true;
       btn.style.display = 'none';
       loading.style.display = 'block';
@@ -658,11 +747,12 @@
           body: JSON.stringify({
             paymentMethodId: userData.paymentMethodId,
             customerEmail: userData.email,
+            customerName: userData.name,
             amount: 20000, // 200€ in centesimi
             currency: 'eur',
             product: 'consulenza_thomas',
             description: 'Consulenza con Thomas - 30 minuti',
-            priceId: 'price_1SBz80E9CzAMobs3at4Si8YS' 
+            priceId: 'price_1SBz80E9CzAMobs3at4Si8YS'
           })
         });
 
@@ -726,7 +816,7 @@
         });
       }
       
-    
+      // Salva che ha saltato l'OTO2
       sessionStorage.setItem('oto2_skipped', 'true');
       
       // Reindirizza alla thank you page

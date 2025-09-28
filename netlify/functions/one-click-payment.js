@@ -17,6 +17,7 @@ exports.handler = async (event, context) => {
     const {
       paymentMethodId,
       customerEmail,
+      customerName,
       amount,
       currency,
       product,
@@ -52,11 +53,68 @@ exports.handler = async (event, context) => {
       metadata: {
         product: product,
         priceId: priceId || '',
-        customerEmail: customerEmail
+        customerEmail: customerEmail,
+        customerName: customerName || ''
       }
     });
 
     if (paymentIntent.status === 'succeeded') {
+      
+      // INVIA I DATI AL WEBHOOK DI MAKE
+      if (process.env.MAKE_WEBHOOK_OTO2) {
+        try {
+          const fetch = require('node-fetch');
+          
+          const webhookData = {
+            // Dati cliente
+            email: customerEmail,
+            nome: customerName || customer.name || '',
+            
+            // Dati pagamento
+            importo: amount / 100, // Converti in euro
+            valuta: currency,
+            prodotto: product,
+            descrizione: description,
+            
+            // Dati Stripe
+            stripeCustomerId: customer.id,
+            stripePaymentIntentId: paymentIntent.id,
+            stripePriceId: priceId || '',
+            
+            // Timestamp
+            dataAcquisto: new Date().toISOString(),
+            
+            // Tag per GoHighLevel
+            tag: 'OTO2_Consulenza_200',
+            
+            // Info aggiuntive
+            tipoAcquisto: 'one-click',
+            nomeOfferta: 'Consulenza Thomas 30 minuti'
+          };
+
+          console.log('Invio webhook a Make:', webhookData);
+
+          const webhookResponse = await fetch(process.env.MAKE_WEBHOOK_OTO2, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(webhookData)
+          });
+
+          if (webhookResponse.ok) {
+            console.log('✅ Webhook inviato con successo a Make');
+          } else {
+            console.error('⚠️ Errore risposta webhook:', await webhookResponse.text());
+          }
+
+        } catch (webhookError) {
+          console.error('❌ Errore invio webhook a Make:', webhookError);
+          // NON bloccare il pagamento se il webhook fallisce
+          // Il pagamento è già andato a buon fine
+        }
+      }
+
       return {
         statusCode: 200,
         headers,
@@ -65,6 +123,7 @@ exports.handler = async (event, context) => {
           paymentIntentId: paymentIntent.id
         })
       };
+      
     } else if (paymentIntent.status === 'requires_action') {
       return {
         statusCode: 200,
