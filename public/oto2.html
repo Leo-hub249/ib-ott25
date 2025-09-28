@@ -343,15 +343,45 @@
     .loading{
       display:none;
       text-align:center;
-      color:var(--neon);
-      margin:20px 0;
-      font-size:18px;
-      font-weight:600;
-      animation:glow 1.5s infinite;
+      margin:20px auto;
+      padding:30px;
+      max-width:400px;
     }
-    
-    @keyframes glow{
-      50%{text-shadow:0 0 25px rgba(184,252,141,.6)}
+
+    .loading-spinner {
+      display:inline-block;
+      width:60px;
+      height:60px;
+      margin:0 auto 20px;
+      border:4px solid rgba(184,252,141,.2);
+      border-top:4px solid var(--neon);
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+      box-shadow:0 0 20px rgba(184,252,141,.3);
+    }
+
+    @keyframes spin {
+      0% { transform:rotate(0deg); }
+      100% { transform:rotate(360deg); }
+    }
+
+    .loading-text {
+      color:var(--neon);
+      font-size:20px;
+      font-weight:600;
+      animation:pulse-text 1.5s ease-in-out infinite;
+      letter-spacing:1px;
+    }
+
+    @keyframes pulse-text {
+      0%, 100% {
+        opacity:1;
+        text-shadow:0 0 15px rgba(184,252,141,.5);
+      }
+      50% {
+        opacity:0.8;
+        text-shadow:0 0 30px rgba(184,252,141,.9);
+      }
     }
 
     footer{
@@ -440,6 +470,11 @@
         font-size:13px;
         padding:7px 18px;
       }
+      .loading-spinner{
+        width:50px;
+        height:50px;
+      }
+      .loading-text{font-size:18px}
       .footer-logo{max-width:150px}
     }
     
@@ -516,6 +551,11 @@
         width:6px;
         height:6px;
       }
+      .loading-spinner{
+        width:40px;
+        height:40px;
+      }
+      .loading-text{font-size:16px}
       .footer-logo{max-width:120px}
     }
   </style>
@@ -575,9 +615,12 @@
         <button class="cta-checkout" id="oneClickBtn">
           → ACCEDI ORA ←
         </button>
-      </div>
 
-      <div class="loading">⏳ Elaborazione pagamento...</div>
+        <div class="loading" id="loadingDiv">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Elaborazione pagamento in corso...</div>
+        </div>
+      </div>
     </main>
 
     <footer>
@@ -628,7 +671,8 @@
     // Gestione click sul pulsante di acquisto
     document.getElementById('oneClickBtn').addEventListener('click', async function() {
       const btn = this;
-      const loading = document.querySelector('.loading');
+      const loading = document.getElementById('loadingDiv');
+      const originalBtnText = btn.textContent;
       
       // Verifica che ci sia il payment method
       if (!userData.paymentMethodId) {
@@ -637,10 +681,20 @@
         return;
       }
       
-      // Disabilita il pulsante e mostra loading
+      // Disabilita il pulsante e mostra loading con animazione migliorata
       btn.disabled = true;
-      btn.style.display = 'none';
-      loading.style.display = 'block';
+      btn.style.opacity = '0.5';
+      btn.style.cursor = 'not-allowed';
+      btn.textContent = 'Attendere...';
+      
+      // Mostra il loading con un piccolo ritardo per smoothness
+      setTimeout(() => {
+        loading.style.display = 'block';
+        // Scrolla verso il loading se necessario su mobile
+        if (window.innerWidth < 768) {
+          loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
       
       try {
         // Chiama la funzione Netlify per processare il pagamento one-click
@@ -652,7 +706,7 @@
           body: JSON.stringify({
             paymentMethodId: userData.paymentMethodId,
             customerEmail: userData.email,
-            customerName: userData.name, // Aggiungi il nome
+            customerName: userData.name,
             amount: 20000, // 200€ in centesimi
             currency: 'eur',
             product: 'consulenza_thomas',
@@ -669,6 +723,14 @@
           
           // Salva info aggiuntive
           sessionStorage.setItem('oto2_purchased', 'true');
+          
+          // Track evento Facebook
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Purchase', {
+              value: 200.00,
+              currency: 'EUR'
+            });
+          }
           
           // Reindirizza alla thank you page finale
           window.location.href = '/thankyou3';
@@ -688,7 +750,9 @@
         
         // Ripristina il pulsante
         btn.disabled = false;
-        btn.style.display = 'block';
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btn.textContent = originalBtnText;
         loading.style.display = 'none';
         
         // Reindirizza dopo 2 secondi
@@ -701,14 +765,6 @@
     // Gestione del link skip
     document.getElementById('skipLink').addEventListener('click', function(e) {
       e.preventDefault();
-      
-      // Track evento custom per Facebook
-      if (typeof fbq !== 'undefined') {
-        fbq('trackCustom', 'SkipOTO2', {
-          value: 200.00,
-          currency: 'EUR'
-        });
-      }
       
       // Salva che ha saltato l'OTO2
       sessionStorage.setItem('oto2_skipped', 'true');
