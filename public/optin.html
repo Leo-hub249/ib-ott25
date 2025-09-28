@@ -828,7 +828,7 @@
       const giorno=liveDate.getDate();
       const mese=liveDate.toLocaleDateString('en-US',{month:'short'}).toLowerCase();
       const anno=liveDate.getFullYear().toString().slice(-2);
-      const dynamicTag=`leads - bot${giorno} ${mese}${anno}`;
+      const dynamicTag=`leads - ib${giorno} ${mese}${anno}`;
       
       const payload={
         nome_completo:document.getElementById('fullName').value,
