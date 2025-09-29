@@ -794,8 +794,9 @@
   })(window, document, 'Vidalytics', 'vidalytics_embed_fmqnE2VLyXSvpOqc', 'https://fast.vidalytics.com/embeds/41zpqkg6/fmqnE2VLyXSvpOqc/');
   </script>
 
-  <!-- Script principale -->
+  <!-- Script principale CORRETTO -->
   <script>
+    // Recupera dati utente dal sessionStorage
     const userData = {
       name: sessionStorage.getItem('user_name') || '',
       email: sessionStorage.getItem('user_email') || '',
@@ -804,6 +805,7 @@
 
     console.log('Dati utente recuperati:', userData);
 
+    // Configurazione Stripe
     const STRIPE_PUBLIC_KEY = 'pk_live_51IDw0AE9CzAMobs3J8gGyyQBkOK9GhUO1VIIb0RveSzQ3cv0qao4q14hwVe168gTx1WCn89Qvj1J8JR8l0iMnBNZ00iU2yhcKT';
     
     const stripe = Stripe(STRIPE_PUBLIC_KEY);
@@ -829,16 +831,23 @@
     };
     
     const cardElement = elements.create('card', {style: cardStyle});
+    let cardMounted = false;
     
     function openCheckout() {
       document.getElementById('checkoutModal').classList.add('active');
       document.body.style.overflow = 'hidden';
       
+      // Pre-compila i campi con i dati dell'utente
       document.getElementById('checkout-email').value = userData.email;
       document.getElementById('checkout-name').value = userData.name;
       
-      cardElement.mount('#card-element');
+      // Monta l'elemento card solo se non è già stato montato
+      if (!cardMounted) {
+        cardElement.mount('#card-element');
+        cardMounted = true;
+      }
       
+      // Traccia l'evento
       if (typeof fbq !== 'undefined') {
         fbq('track', 'InitiateCheckout', {
           value: 50.00,
@@ -852,8 +861,10 @@
       document.body.style.overflow = 'auto';
     }
     
+    // Event listener per il bottone di checkout
     document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
     
+    // Gestione errori della carta
     cardElement.on('change', function(event) {
       const displayError = document.getElementById('card-errors');
       if (event.error) {
@@ -865,6 +876,7 @@
       }
     });
     
+    // Gestione del form di pagamento
     const form = document.getElementById('payment-form');
     form.addEventListener('submit', async function(event) {
       event.preventDefault();
@@ -872,77 +884,141 @@
       const submitButton = document.getElementById('submit-payment');
       const errorElement = document.getElementById('card-errors');
       
+      // Disabilita il pulsante e mostra stato di elaborazione
       submitButton.disabled = true;
       submitButton.classList.add('processing');
       submitButton.textContent = 'Elaborazione...';
       
       try {
+        // Ottieni email e nome dai campi del form
+        const customerEmail = document.getElementById('checkout-email').value;
+        const customerName = document.getElementById('checkout-name').value;
+        
+        // Validazione base
+        if (!customerEmail || !customerName) {
+          throw new Error('Compila tutti i campi richiesti');
+        }
+        
+        console.log('Creazione payment method...');
+        
+        // Crea il payment method
         const {paymentMethod, error} = await stripe.createPaymentMethod({
           type: 'card',
           card: cardElement,
           billing_details: {
-            name: document.getElementById('checkout-name').value,
-            email: document.getElementById('checkout-email').value
+            name: customerName,
+            email: customerEmail
           }
         });
         
         if (error) {
+          console.error('Errore creazione payment method:', error);
           throw new Error(error.message);
         }
         
+        console.log('Payment method creato:', paymentMethod.id);
+        
+        // Invia la richiesta al backend
         const response = await fetch('/.netlify/functions/process-payment', {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             paymentMethodId: paymentMethod.id,
-            amount: 5000,
+            amount: 5000, // 50€ in centesimi
             currency: 'eur',
-            customerEmail: document.getElementById('checkout-email').value,
-            customerName: document.getElementById('checkout-name').value,
+            customerEmail: customerEmail,
+            customerName: customerName,
             product: 'biz_starter_pack'
           })
         });
         
-        const result = await response.json();
+        // Verifica se la risposta è ok
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Errore risposta server:', errorText);
+          throw new Error('Errore nel processamento del pagamento');
+        }
         
+        const result = await response.json();
+        console.log('Risposta server:', result);
+        
+        // Gestisci il risultato
         if (result.success) {
+          // Salva i dati per le pagine successive
           sessionStorage.setItem('payment_method_id', paymentMethod.id);
+          sessionStorage.setItem('customer_id', result.customerId);
+          sessionStorage.setItem('customer_email', customerEmail);
+          sessionStorage.setItem('customer_name', customerName);
           
+          // Traccia la conversione
           if (typeof fbq !== 'undefined') {
             fbq('track', 'Purchase', {
               value: 50.00,
-              currency: 'EUR'
+              currency: 'EUR',
+              content_name: 'Biz Starter Pack',
+              content_type: 'product'
             });
           }
+          
+          // Redirect alla prossima pagina
           window.location.href = '/oto2';
-        } else if (result.requiresAction) {
-          const {error} = await stripe.confirmCardPayment(result.clientSecret);
-          if (error) {
-            throw new Error(error.message);
+          
+        } else if (result.requiresAction && result.clientSecret) {
+          // Gestisci 3D Secure o altre verifiche
+          console.log('Richiesta autenticazione 3D Secure...');
+          
+          const {error: confirmError} = await stripe.confirmCardPayment(result.clientSecret);
+          
+          if (confirmError) {
+            console.error('Errore conferma pagamento:', confirmError);
+            throw new Error(confirmError.message);
           } else {
+            // Pagamento confermato con successo
             sessionStorage.setItem('payment_method_id', paymentMethod.id);
+            sessionStorage.setItem('customer_id', result.customerId);
+            sessionStorage.setItem('customer_email', customerEmail);
+            sessionStorage.setItem('customer_name', customerName);
             
             if (typeof fbq !== 'undefined') {
               fbq('track', 'Purchase', {
                 value: 50.00,
-                currency: 'EUR'
+                currency: 'EUR',
+                content_name: 'Biz Starter Pack',
+                content_type: 'product'
               });
             }
+            
             window.location.href = '/oto2';
           }
         } else {
-          throw new Error(result.error || 'Pagamento non riuscito');
+          // Errore generico
+          const errorMsg = result.error || 'Pagamento non riuscito. Riprova.';
+          console.error('Errore pagamento:', errorMsg);
+          throw new Error(errorMsg);
         }
         
       } catch (error) {
-        errorElement.textContent = error.message;
+        console.error('Errore nel processo di pagamento:', error);
+        
+        // Mostra l'errore all'utente
+        errorElement.textContent = error.message || 'Si è verificato un errore. Riprova.';
         errorElement.style.display = 'block';
+        
+        // Riabilita il pulsante
         submitButton.disabled = false;
         submitButton.classList.remove('processing');
         submitButton.textContent = 'ACCEDI ORA';
+        
+        // Scroll all'errore su mobile
+        if (window.innerWidth < 768) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }
     });
 
+    // Gestione skip link
     document.getElementById('skipLink').addEventListener('click', function(e) {
       e.preventDefault();
       
@@ -953,18 +1029,23 @@
       window.location.href = '/thankyou1';
     });
     
+    // Chiudi modal con ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && document.getElementById('checkoutModal').classList.contains('active')) {
         closeCheckout();
       }
     });
 
+    // Auto-scroll su mobile dopo caricamento
     if (window.innerWidth < 768) {
       setTimeout(() => {
-        window.scrollTo({
-          top: document.querySelector('.headline').offsetTop - 20,
-          behavior: 'smooth'
-        });
+        const headline = document.querySelector('.headline');
+        if (headline) {
+          window.scrollTo({
+            top: headline.offsetTop - 20,
+            behavior: 'smooth'
+          });
+        }
       }, 500);
     }
   </script>

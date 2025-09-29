@@ -32,42 +32,46 @@ exports.handler = async (event, context) => {
     let customer;
     if (customers.data.length > 0) {
       customer = customers.data[0];
-      // Aggiorna il metodo di pagamento predefinito
-      await stripe.customers.update(customer.id, {
-        invoice_settings: {
-          default_payment_method: paymentMethodId
-        }
-      });
     } else {
       customer = await stripe.customers.create({
         email: customerEmail,
-        name: customerName,
-        payment_method: paymentMethodId,
-        invoice_settings: {
-          default_payment_method: paymentMethodId
-        }
+        name: customerName
       });
     }
 
-    // Collega il metodo di pagamento al cliente (importante per one-click successivi)
-    await stripe.paymentMethods.attach(paymentMethodId, {
-      customer: customer.id
+    // IMPORTANTE: Prima collega il metodo di pagamento al cliente
+    try {
+      await stripe.paymentMethods.attach(paymentMethodId, {
+        customer: customer.id
+      });
+    } catch (attachError) {
+      // Se il metodo è già collegato, continua
+      console.log('Payment method già collegato o errore:', attachError.message);
+    }
+
+    // POI aggiorna il cliente con il metodo di pagamento predefinito
+    await stripe.customers.update(customer.id, {
+      invoice_settings: {
+        default_payment_method: paymentMethodId
+      }
     });
 
-    // Crea il payment intent con return_url per supportare tutti i metodi di pagamento
+    // Crea il payment intent
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount,
       currency: currency,
       customer: customer.id,
       payment_method: paymentMethodId,
       confirm: true,
+      automatic_payment_methods: {
+        enabled: false // Disabilita automatic payment methods per evitare conflitti
+      },
       description: 'Biz Starter Pack',
       metadata: {
         product: product,
         customerEmail: customerEmail,
         customerName: customerName
       },
-      // URL di ritorno dopo il pagamento (per metodi che richiedono redirect)
       return_url: 'https://infobiz.com/oto2'
     });
 
@@ -77,10 +81,12 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({
           success: true,
-          customerId: customer.id
+          customerId: customer.id,
+          paymentIntentId: paymentIntent.id
         })
       };
-    } else if (paymentIntent.status === 'requires_action') {
+    } else if (paymentIntent.status === 'requires_action' || 
+               paymentIntent.status === 'requires_confirmation') {
       return {
         statusCode: 200,
         headers,
@@ -95,10 +101,24 @@ exports.handler = async (event, context) => {
 
   } catch (error) {
     console.error('Errore process-payment:', error);
+    
+    // Log dettagliato per debug
+    if (error.type === 'StripeInvalidRequestError') {
+      console.error('Dettagli errore Stripe:', {
+        type: error.type,
+        code: error.code,
+        param: error.param,
+        message: error.message
+      });
+    }
+
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: error.message })
+      body: JSON.stringify({ 
+        error: error.message,
+        type: error.type || 'unknown'
+      })
     };
   }
 };
