@@ -2,10 +2,10 @@
   functions = "netlify/functions"
   publish = "public"
 
-# Root mostra la sales page (index.html)
+# Root mostra l'optin (non più index.html)
 [[redirects]]
   from = "/"
-  to = "/index.html"
+  to = "/optin.html"
   status = 200
   
 # Tutti i percorsi di marketing mostrano l'optin
@@ -13,12 +13,10 @@
   from = "/mads"
   to = "/optin.html"
   status = 200
-
 [[redirects]]
   from = "/tg"
   to = "/optin.html"
   status = 200
-
 [[redirects]]
   from = "/igs"
   to = "/optin.html"
@@ -27,22 +25,18 @@
   from = "/igb"
   to = "/optin.html"
   status = 200
-
 [[redirects]]
   from = "/tt"
   to = "/optin.html"
   status = 200
-
 [[redirects]]
   from = "/mail"
   to = "/optin.html"
   status = 200
-
 [[redirects]]
   from = "/ytb"
   to = "/optin.html"
   status = 200
-  
 [[redirects]]
   from = "/ytd"
   to = "/optin.html"
