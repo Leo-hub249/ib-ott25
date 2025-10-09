@@ -319,6 +319,9 @@
       font-size:24px;
       font-weight:900;
       text-transform:uppercase;
+      text-decoration:none;
+      text-align:center;
+      line-height:1;
       cursor:pointer;
       box-shadow:
         0 12px 35px rgba(255,215,0,.4),
@@ -497,121 +500,6 @@
     @keyframes float{
       0%, 100%{transform:translateY(0)}
       50%{transform:translateY(-10px)}
-    }
-
-    /* Stripe Modal Overlay */
-    .stripe-modal{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.92);
-      backdrop-filter:blur(8px);
-      z-index:10000;
-      padding:20px;
-      overflow-y:auto;
-    }
-
-    .stripe-modal.active{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-      padding-top:40px;
-    }
-
-    .stripe-modal-close{
-      position:fixed;
-      top:20px;
-      right:20px;
-      width:50px;
-      height:50px;
-      background:rgba(255,255,255,.1);
-      border:2px solid rgba(255,255,255,.3);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition:all .3s;
-      z-index:10001;
-      color:#fff;
-      font-size:32px;
-      font-weight:300;
-      line-height:1;
-    }
-
-    .stripe-modal-close:hover{
-      background:rgba(255,255,255,.2);
-      border-color:rgba(255,255,255,.5);
-      transform:rotate(90deg);
-    }
-
-    .stripe-iframe-container{
-      width:100%;
-      max-width:800px;
-      background:#fff;
-      border-radius:16px;
-      overflow:hidden;
-      box-shadow:0 30px 90px rgba(0,0,0,.5);
-      margin-bottom:30px;
-      min-height:600px;
-    }
-
-    #checkout{
-      width:100%;
-      min-height:600px;
-    }
-
-    .modal-spots-bar{
-      width:100%;
-      max-width:600px;
-      margin-top:20px;
-      padding:20px;
-      background:rgba(255,59,59,.1);
-      border:2px solid var(--red);
-      border-radius:20px;
-      backdrop-filter:blur(10px);
-    }
-
-    .modal-spots-title{
-      font-size:20px;
-      font-weight:700;
-      color:var(--red);
-      text-transform:uppercase;
-      margin-bottom:15px;
-      text-align:center;
-      letter-spacing:.5px;
-    }
-
-    .modal-spots-bar-container{
-      background:rgba(0,0,0,.5);
-      height:32px;
-      border-radius:999px;
-      overflow:hidden;
-      position:relative;
-      border:1px solid rgba(255,59,59,.3);
-    }
-
-    .modal-spots-bar-fill{
-      height:100%;
-      background:linear-gradient(90deg,#FF3B3B,#FF6B6B);
-      transition:width 1.5s ease-out;
-      border-radius:999px;
-      box-shadow:0 0 20px rgba(255,59,59,.5);
-    }
-
-    .modal-spots-text{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:15px;
-      font-weight:700;
-      color:#fff;
-      text-shadow:0 0 10px rgba(0,0,0,.9);
-      z-index:1;
-      letter-spacing:.5px;
     }
 
     footer{
@@ -868,9 +756,9 @@
           <div class="price-compare">VALORE REALE: €1.500</div>
         </div>
 
-        <button class="cta-checkout" id="checkoutBtn">
+        <a href="https://buy.stripe.com/aFa6oHe3t7hP5HTfbu7Vm3S" class="cta-checkout" id="checkoutBtn" target="_blank" rel="noopener">
           → ACCEDI ORA ←
-        </button>
+        </a>
 
         <!-- Spots Counter -->
         <div class="spots-section">
