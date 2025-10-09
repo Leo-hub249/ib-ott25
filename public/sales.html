@@ -266,7 +266,6 @@
       margin-bottom:30px;
     }
 
-    /* Spots Counter */
     .spots-section{
       margin:25px 0 0;
       padding:0;
@@ -369,6 +368,178 @@
       transform:translateY(-2px) scale(1.02);
     }
 
+    /* Checkout Modal */
+    .checkout-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.97);
+      backdrop-filter:blur(20px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      padding:20px;
+    }
+    
+    .checkout-modal.active{
+      display:flex;
+    }
+    
+    .checkout-container{
+      background:linear-gradient(145deg,#1a1a1a,#050505);
+      border:2px solid var(--neon);
+      border-radius:30px;
+      padding:40px;
+      max-width:500px;
+      width:100%;
+      box-shadow:
+        0 50px 100px rgba(184,252,141,.25),
+        inset 0 1px 0 rgba(255,255,255,.05);
+      position:relative;
+    }
+    
+    .checkout-close{
+      position:absolute;
+      right:20px;
+      top:20px;
+      background:none;
+      border:none;
+      color:#fff;
+      font-size:32px;
+      cursor:pointer;
+      opacity:.6;
+      transition:.3s;
+      width:32px;
+      height:32px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    
+    .checkout-close:hover{
+      opacity:1;
+      transform:rotate(90deg);
+    }
+    
+    .checkout-title{
+      font-size:28px;
+      font-weight:700;
+      color:var(--neon);
+      text-align:center;
+      margin-bottom:25px;
+      text-transform:uppercase;
+      text-shadow:0 0 20px rgba(184,252,141,.3);
+    }
+    
+    .checkout-price{
+      text-align:center;
+      margin-bottom:25px;
+      font-size:20px;
+      opacity:.9;
+    }
+    
+    .checkout-fields{
+      margin:20px 0;
+    }
+    
+    .checkout-field{
+      margin:20px 0;
+      position:relative;
+    }
+    
+    .checkout-field label{
+      position:absolute;
+      top:-10px;
+      left:18px;
+      background:linear-gradient(90deg,#1a1a1a,#050505);
+      padding:0 10px;
+      font-size:11px;
+      color:var(--neon);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      opacity:.9;
+    }
+    
+    .checkout-field input{
+      width:100%;
+      padding:18px;
+      border-radius:15px;
+      border:1px solid rgba(184,252,141,.3);
+      background:rgba(0,0,0,.6);
+      color:#fff;
+      font-family:'Oswald',sans-serif;
+      font-size:16px;
+      transition:.3s;
+    }
+    
+    .checkout-field input:focus{
+      outline:none;
+      border-color:var(--neon);
+      box-shadow:
+        0 0 0 3px rgba(184,252,141,.15),
+        0 0 30px rgba(184,252,141,.1);
+    }
+    
+    #card-element{
+      padding:18px;
+      border-radius:15px;
+      border:1px solid rgba(184,252,141,.3);
+      background:rgba(0,0,0,.6);
+      transition:.3s;
+    }
+    
+    #card-element.StripeElement--focus{
+      border-color:var(--neon);
+      box-shadow:
+        0 0 0 3px rgba(184,252,141,.15),
+        0 0 30px rgba(184,252,141,.1);
+    }
+    
+    .checkout-error{
+      color:var(--red);
+      text-align:center;
+      margin:15px 0;
+      font-size:14px;
+      display:none;
+    }
+    
+    .checkout-submit{
+      width:100%;
+      padding:22px;
+      margin-top:25px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#FFD700,#FF8C00);
+      color:#000;
+      font-family:'Oswald',sans-serif;
+      font-size:20px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      cursor:pointer;
+      box-shadow:0 20px 50px rgba(255,215,0,.5);
+      transition:.3s;
+    }
+    
+    .checkout-submit:hover:not(:disabled){
+      transform:translateY(-2px);
+      box-shadow:0 25px 60px rgba(255,215,0,.6);
+    }
+    
+    .checkout-submit:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+    
+    .checkout-submit.processing{
+      animation:pulse-gold 1.5s infinite;
+    }
+    
+    @keyframes pulse-gold{
+      50%{box-shadow:0 20px 60px rgba(255,215,0,.8)}
+    }
+
     /* WhatsApp Support Section */
     .support-section{
       margin:65px 0 50px;
@@ -467,7 +638,6 @@
       z-index:1;
     }
 
-    /* Floating WhatsApp Button */
     .whatsapp-float{
       position:fixed;
       width:65px;
@@ -553,10 +723,7 @@
 
     @media (max-width:768px){
       .top-banner{margin-top:20px; margin-bottom:28px}
-      .exclusive-banner{
-        padding:8px 26px;
-        font-size:11px;
-      }
+      .exclusive-banner{padding:8px 26px;font-size:11px}
       .main{padding:8px 0 40px}
       .headline{font-size:46px}
       .intro-text{font-size:20px}
@@ -566,154 +733,49 @@
       .offer-list{font-size:19px}
       .price{font-size:78px}
       .price-compare{font-size:22px}
-      .cta-checkout{
-        font-size:21px;
-        padding:20px 45px;
-        width:92%;
-      }
+      .cta-checkout{font-size:21px;padding:20px 45px;width:92%}
       .spots-bar-container{height:26px}
       .spots-text{font-size:12px}
-      .support-section{
-        margin:55px 0 45px;
-        padding:45px 30px;
-      }
+      .support-section{margin:55px 0 45px;padding:45px 30px}
       .support-text{font-size:34px}
       .support-subtext{font-size:26px}
       .arrows-down{font-size:48px}
-      .arrows-down svg{width:60px; height:60px}
-      .whatsapp-button{
-        font-size:21px;
-        padding:20px 45px;
-      }
-      .whatsapp-button svg{
-        width:28px;
-        height:28px;
-      }
-      .whatsapp-float{
-        width:60px;
-        height:60px;
-        bottom:20px;
-        right:20px;
-      }
-      .whatsapp-float img{
-        width:35px;
-        height:35px;
-      }
-      .stripe-iframe{height:650px}
-      #checkout{min-height:550px}
-      .modal-spots-bar{max-width:500px}
-      .modal-spots-title{font-size:18px}
-      .modal-spots-bar-container{height:30px}
-      .modal-spots-text{font-size:14px}
+      .whatsapp-button{font-size:21px;padding:20px 45px}
+      .whatsapp-button svg{width:28px;height:28px}
+      .whatsapp-float{width:60px;height:60px;bottom:20px;right:20px}
+      .whatsapp-float img{width:35px;height:35px}
+      .checkout-container{padding:35px 28px}
     }
     
     @media (max-width:480px){
-      .top-banner{margin-bottom:22px; margin-top:15px}
-      .exclusive-banner{
-        padding:7px 20px;
-        font-size:10px;
-      }
+      .top-banner{margin-bottom:22px;margin-top:15px}
+      .exclusive-banner{padding:7px 20px;font-size:10px}
       .main{padding:5px 0 40px}
-      .headline{
-        font-size:32px;
-        margin-bottom:22px;
-        line-height:1.15;
-      }
-      .intro-text{
-        font-size:17px;
-        margin-bottom:30px;
-      }
-      .offer-box{
-        padding:28px 20px;
-        margin:15px auto 40px;
-      }
-      .offer-title{
-        font-size:30px;
-        margin-bottom:12px;
-      }
-      .offer-subtitle{
-        font-size:17px;
-        margin-bottom:25px;
-      }
-      .offer-list{
-        font-size:15px;
-        margin:25px 0;
-        line-height:1.7;
-      }
-      .offer-list li{
-        padding-left:28px;
-        margin:12px 0;
-      }
-      .offer-list li:before{
-        font-size:22px;
-      }
+      .headline{font-size:32px;margin-bottom:22px;line-height:1.15}
+      .intro-text{font-size:17px;margin-bottom:30px}
+      .offer-box{padding:28px 20px;margin:15px auto 40px}
+      .offer-title{font-size:30px;margin-bottom:12px}
+      .offer-subtitle{font-size:17px;margin-bottom:25px}
+      .offer-list{font-size:15px;margin:25px 0;line-height:1.7}
+      .offer-list li{padding-left:28px;margin:12px 0}
+      .offer-list li:before{font-size:22px}
       .price{font-size:58px}
-      .price-compare{
-        font-size:19px;
-        margin-bottom:25px;
-      }
-      .cta-checkout{
-        font-size:18px;
-        padding:18px 35px;
-        width:92%;
-        margin-bottom:20px;
-      }
+      .price-compare{font-size:19px;margin-bottom:25px}
+      .cta-checkout{font-size:18px;padding:18px 35px;width:92%;margin-bottom:20px}
       .spots-bar-container{height:24px}
       .spots-text{font-size:11px}
-      .support-section{
-        margin:45px 0 35px;
-        padding:35px 20px;
-      }
-      .support-text{
-        font-size:26px;
-        padding:0 10px;
-      }
-      .support-subtext{
-        font-size:20px;
-        margin-bottom:25px;
-      }
-      .arrows-down{
-        font-size:45px;
-        margin:15px 0 22px;
-      }
-      .arrows-down svg{width:55px; height:55px}
-      .whatsapp-button{
-        font-size:17px;
-        padding:18px 35px;
-      }
-      .whatsapp-button svg{
-        width:24px;
-        height:24px;
-      }
+      .support-section{margin:45px 0 35px;padding:35px 20px}
+      .support-text{font-size:26px;padding:0 10px}
+      .support-subtext{font-size:20px;margin-bottom:25px}
+      .arrows-down{font-size:45px;margin:15px 0 22px}
+      .whatsapp-button{font-size:17px;padding:18px 35px}
+      .whatsapp-button svg{width:24px;height:24px}
       .footer-logo{max-width:140px}
-      .whatsapp-float{
-        width:55px;
-        height:55px;
-        bottom:18px;
-        right:18px;
-      }
-      .whatsapp-float img{
-        width:32px;
-        height:32px;
-      }
-      .stripe-modal{padding:15px; padding-top:70px}
-      .stripe-modal-close{
-        top:15px;
-        right:15px;
-        width:45px;
-        height:45px;
-        font-size:28px;
-      }
-      .stripe-iframe{height:600px}
-      #checkout{min-height:500px}
-      .modal-spots-bar{
-        max-width:100%;
-        padding:15px;
-        margin-top:15px;
-      }
-      .modal-spots-title{font-size:16px; margin-bottom:12px}
-      .modal-spots-bar-container{height:28px}
-      .modal-spots-text{font-size:13px}
+      .whatsapp-float{width:55px;height:55px;bottom:18px;right:18px}
+      .whatsapp-float img{width:32px;height:32px}
+      .checkout-container{padding:28px 20px;padding-top:50px}
+      .checkout-title{font-size:24px}
+      .checkout-close{right:15px;top:15px;font-size:28px}
     }
   </style>
 </head>
@@ -756,11 +818,10 @@
           <div class="price-compare">VALORE REALE: €1.500</div>
         </div>
 
-        <a href="https://buy.stripe.com/aFa6oHe3t7hP5HTfbu7Vm3S" class="cta-checkout" id="checkoutBtn" target="_blank" rel="noopener">
+        <button class="cta-checkout" id="checkoutBtn">
           → ACCEDI ORA ←
-        </a>
+        </button>
 
-        <!-- Spots Counter -->
         <div class="spots-section">
           <div class="spots-bar-container">
             <div class="spots-bar" id="spotsBar"></div>
@@ -769,7 +830,6 @@
         </div>
       </div>
 
-      <!-- WhatsApp Support Section -->
       <div class="support-section">
         <p class="support-text">
           Hai dubbi o domande?
@@ -806,71 +866,59 @@
     </footer>
   </div>
 
-  <!-- Floating WhatsApp Button -->
   <button class="whatsapp-float" onclick="openWhatsApp()">
     <img src="https://learn.infobiz.com/wp-content/uploads/2022/10/whatsApp.png" alt="WhatsApp">
   </button>
 
-  <!-- Stripe Modal -->
-  <div class="stripe-modal" id="stripeModal">
-    <button class="stripe-modal-close" onclick="closeStripeModal()">×</button>
-    
-    <div class="stripe-iframe-container">
-      <!-- Stripe Embedded Checkout verrà montato qui -->
-      <div id="checkout"></div>
-    </div>
-
-    <div class="modal-spots-bar">
-      <div class="modal-spots-title">⚠️ Posti Limitati</div>
-      <div class="modal-spots-bar-container">
-        <div class="modal-spots-bar-fill" id="modalSpotsBar"></div>
-        <div class="modal-spots-text" id="modalSpotsText">20 POSTI DISPONIBILI</div>
-      </div>
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-container">
+      <button class="checkout-close" onclick="closeCheckout()">×</button>
+      <h3 class="checkout-title">Completa l'acquisto</h3>
+      <p class="checkout-price">Consulenza Thomas 1h - <strong style="color:var(--neon)">500€</strong></p>
+      
+      <form id="payment-form">
+        <div class="checkout-fields">
+          <div class="checkout-field">
+            <label>EMAIL</label>
+            <input type="email" id="checkout-email" required>
+          </div>
+          
+          <div class="checkout-field">
+            <label>NOME COMPLETO</label>
+            <input type="text" id="checkout-name" required>
+          </div>
+          
+          <div class="checkout-field">
+            <label>CARTA</label>
+            <div id="card-element"></div>
+          </div>
+        </div>
+        
+        <div class="checkout-error" id="card-errors"></div>
+        
+        <button type="submit" class="checkout-submit" id="submit-payment">
+          ACCEDI ORA
+        </button>
+      </form>
     </div>
   </div>
 
-  <!-- Stripe.js SDK -->
-  <script src="https://js.stripe.com/v3/"></script>
-
-  <!-- Script Vidalytics -->
-  <script type="text/javascript">
-  (function (v, i, d, a, l, y, t, c, s) {
-      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
-      if (!vsl){vsl=function(u,cb){
-          if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
-          if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
-          i.getElementsByTagName("head")[0].appendChild(s);
-      };}
-      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-  })(window, document, 'Vidalytics', 'vidalytics_embed_4PQhLTaHHKqckZ78', 'https://fast.vidalytics.com/embeds/41zpqkg6/4PQhLTaHHKqckZ78/');
-  </script>
-
-  <!-- Main Script -->
   <script>
-    // Spots Counter Animation - ULTRA VELOCE
+    // Spots Counter
     const totalSpots = 20;
-    let availableSpots = Math.floor(Math.random() * 8) + 13; // Random tra 13-20
+    let availableSpots = Math.floor(Math.random() * 8) + 13;
     
     function updateSpotsBar() {
       const percentage = (availableSpots / totalSpots) * 100;
       const spotsBar = document.getElementById('spotsBar');
       const spotsText = document.getElementById('spotsText');
-      const modalSpotsBar = document.getElementById('modalSpotsBar');
-      const modalSpotsText = document.getElementById('modalSpotsText');
       
-      // Aggiorna barra principale
       if (spotsBar && spotsText) {
         spotsBar.style.width = percentage + '%';
         spotsText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
       }
       
-      // Aggiorna barra nel modal
-      if (modalSpotsBar && modalSpotsText) {
-        modalSpotsBar.style.width = percentage + '%';
-        modalSpotsText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
-      }
-      
-      // Diminuisci i posti ogni 5-10 secondi (ULTRA VELOCE)
       if (availableSpots > 5) {
         const randomDelay = Math.floor(Math.random() * 5000) + 5000;
         setTimeout(() => {
@@ -880,117 +928,163 @@
       }
     }
     
-    // Inizializza la barra
     setTimeout(updateSpotsBar, 1000);
 
-    // WhatsApp Functions
     function openWhatsApp() {
       window.open("https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+vorrei+maggiori+informazioni+sulla+consulenza+con+Thomas", "_blank");
     }
 
-    // Stripe Modal Functions con Checkout Session
-    async function openStripeModal() {
-      const modal = document.getElementById('stripeModal');
-      const iframe = document.getElementById('stripeIframe');
+    // Stripe Configuration
+    const STRIPE_PUBLIC_KEY = 'pk_live_51IDw0AE9CzAMobs3J8gGyyQBkOK9GhUO1VIIb0RveSzQ3cv0qao4q14hwVe168gTx1WCn89Qvj1J8JR8l0iMnBNZ00iU2yhcKT';
+    const stripe = Stripe(STRIPE_PUBLIC_KEY);
+    const elements = stripe.elements({
+      fonts: [{
+        cssSrc: 'https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap'
+      }]
+    });
+    
+    const cardStyle = {
+      base: {
+        color: '#fff',
+        fontFamily: 'Oswald, sans-serif',
+        fontSize: '16px',
+        '::placeholder': {
+          color: 'rgba(255,255,255,0.4)'
+        }
+      },
+      invalid: {
+        color: '#FF3B3B',
+        iconColor: '#FF3B3B'
+      }
+    };
+    
+    const cardElement = elements.create('card', {style: cardStyle});
+    let cardMounted = false;
+    
+    function openCheckout() {
+      document.getElementById('checkoutModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
       
-      // Track event
+      if (!cardMounted) {
+        cardElement.mount('#card-element');
+        cardMounted = true;
+      }
+      
       if (typeof fbq !== 'undefined') {
         fbq('track', 'InitiateCheckout', {
-          content_name: 'Consulenza Thomas 1h',
           value: 500.00,
           currency: 'EUR'
         });
       }
+    }
+    
+    function closeCheckout() {
+      document.getElementById('checkoutModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+    
+    cardElement.on('change', function(event) {
+      const displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+        displayError.style.display = 'block';
+      } else {
+        displayError.textContent = '';
+        displayError.style.display = 'none';
+      }
+    });
+    
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      const submitButton = document.getElementById('submit-payment');
+      const errorElement = document.getElementById('card-errors');
+      
+      submitButton.disabled = true;
+      submitButton.classList.add('processing');
+      submitButton.textContent = 'Elaborazione...';
       
       try {
-        // Chiama la funzione Netlify per creare una Checkout Session
-        const response = await fetch('/.netlify/functions/create-checkout-session', {
+        const customerEmail = document.getElementById('checkout-email').value;
+        const customerName = document.getElementById('checkout-name').value;
+        
+        if (!customerEmail || !customerName) {
+          throw new Error('Compila tutti i campi richiesti');
+        }
+        
+        const {paymentMethod, error} = await stripe.createPaymentMethod({
+          type: 'card',
+          card: cardElement,
+          billing_details: {
+            name: customerName,
+            email: customerEmail
+          }
+        });
+        
+        if (error) {
+          throw new Error(error.message);
+        }
+        
+        const response = await fetch('/.netlify/functions/create-checkout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            priceId: 'price_1SGGpSE9CzAMobs3EMQEvQVo', // Price ID Consulenza Thomas
+            priceId: 'price_1SGGpSE9CzAMobs3EMQEvQVo',
+            customerEmail: customerEmail,
+            customerName: customerName,
             successUrl: window.location.origin + '/thankyou-consulenza',
-            cancelUrl: window.location.href
+            cancelUrl: window.location.href,
+            metadata: {
+              product: 'consulenza_thomas_1h',
+              source: 'sales_page'
+            }
           })
         });
         
-        const data = await response.json();
+        if (!response.ok) {
+          throw new Error('Errore nel processamento del pagamento');
+        }
         
-        if (data.sessionUrl) {
-          // Carica la Checkout Session nell'iframe
-          iframe.src = data.sessionUrl;
+        const result = await response.json();
+        
+        if (result.sessionId) {
+          const {error: stripeError} = await stripe.redirectToCheckout({
+            sessionId: result.sessionId
+          });
           
-          // Mostra il modal
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-          
-          // Aggiorna la barra nel modal
-          updateSpotsBar();
+          if (stripeError) {
+            throw new Error(stripeError.message);
+          }
         } else {
-          throw new Error('No session URL returned');
+          throw new Error('Errore nella creazione della sessione');
         }
         
       } catch (error) {
-        console.error('Errore creazione checkout:', error);
-        // Fallback: apri in nuova tab
-        alert('Apertura checkout in corso...');
-        window.open('https://buy.stripe.com/aFa6oHe3t7hP5HTfbu7Vm3S', '_blank');
-      }
-    }
-
-    function closeStripeModal() {
-      const modal = document.getElementById('stripeModal');
-      const iframe = document.getElementById('stripeIframe');
-      
-      // Chiudi il modal
-      modal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-      
-      // Resetta l'iframe dopo un breve delay
-      setTimeout(() => {
-        iframe.src = '';
-      }, 300);
-    }
-
-    // Chiudi modal con ESC
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeStripeModal();
-      }
-    });
-
-    // Chiudi modal cliccando fuori
-    document.getElementById('stripeModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeStripeModal();
-      }
-    });
-
-    // Checkout Button
-    document.getElementById('checkoutBtn').addEventListener('click', function() {
-      openStripeModal();
-    });
-
-    // Auto-scroll su mobile
-    if (window.innerWidth < 768) {
-      setTimeout(() => {
-        const headline = document.querySelector('.headline');
-        if (headline) {
-          window.scrollTo({
-            top: headline.offsetTop - 20,
-            behavior: 'smooth'
-          });
+        console.error('Errore:', error);
+        errorElement.textContent = error.message || 'Si è verificato un errore. Riprova.';
+        errorElement.style.display = 'block';
+        
+        submitButton.disabled = false;
+        submitButton.classList.remove('processing');
+        submitButton.textContent = 'ACCEDI ORA';
+        
+        if (window.innerWidth < 768) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-      }, 500);
-    }
+      }
+    });
 
-    // Debug info
-    console.log('=== Sales Page Loaded ===');
-    console.log('Posti iniziali:', availableSpots);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('checkoutModal').classList.contains('active')) {
+        closeCheckout();
+      }
+    });
 
-    // Auto-scroll su mobile
     if (window.innerWidth < 768) {
       setTimeout(() => {
         const headline = document.querySelector('.headline');
