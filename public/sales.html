@@ -1033,8 +1033,8 @@
         
         console.log('Payment method creato:', paymentMethod.id);
         
-        // Usa process-payment come nella OTO1
-        const response = await fetch('/.netlify/functions/process-payment', {
+        // Usa process-payment-consulenza (specifico per questa sales page)
+        const response = await fetch('/.netlify/functions/process-payment-consulenza', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
