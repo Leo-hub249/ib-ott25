@@ -94,41 +94,41 @@
       display:inline-flex;
       align-items:center;
       padding:10px 32px;
-      background:linear-gradient(135deg, rgba(184,252,141,.12), rgba(184,252,141,.06));
-      border:1.5px solid rgba(184,252,141,.4);
+      background:linear-gradient(135deg, rgba(255,59,59,.15), rgba(255,59,59,.08));
+      border:1.5px solid rgba(255,59,59,.5);
       border-radius:50px;
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:1.5px;
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:1.8px;
       text-transform:uppercase;
-      color:#B8FC8D;
-      text-shadow:0 0 15px rgba(184,252,141,.5);
+      color:#FF3B3B;
+      text-shadow:0 0 20px rgba(255,59,59,.6);
       box-shadow:
-        0 0 25px rgba(184,252,141,.2),
+        0 0 30px rgba(255,59,59,.25),
         inset 0 1px 0 rgba(255,255,255,.1);
       transition:all .3s;
-      animation:glow-pulse 3s ease-in-out infinite;
+      animation:glow-pulse-red 3s ease-in-out infinite;
     }
     
-    @keyframes glow-pulse{
+    @keyframes glow-pulse-red{
       0%, 100%{
         box-shadow:
-          0 0 25px rgba(184,252,141,.2),
+          0 0 30px rgba(255,59,59,.25),
           inset 0 1px 0 rgba(255,255,255,.1);
-        border-color:rgba(184,252,141,.4);
+        border-color:rgba(255,59,59,.5);
       }
       50%{
         box-shadow:
-          0 0 35px rgba(184,252,141,.3),
+          0 0 40px rgba(255,59,59,.35),
           inset 0 1px 0 rgba(255,255,255,.15);
-        border-color:rgba(184,252,141,.6);
+        border-color:rgba(255,59,59,.7);
       }
     }
     
     .exclusive-banner:hover{
-      background:linear-gradient(135deg, rgba(184,252,141,.18), rgba(184,252,141,.1));
+      background:linear-gradient(135deg, rgba(255,59,59,.2), rgba(255,59,59,.12));
       box-shadow:
-        0 0 40px rgba(184,252,141,.35),
+        0 0 45px rgba(255,59,59,.4),
         inset 0 1px 0 rgba(255,255,255,.15);
     }
 
@@ -218,29 +218,6 @@
     .offer-subtitle .gold{
       color:var(--gold1);
       font-weight:700;
-    }
-
-    .offer-list{
-      text-align:left;
-      margin:35px 0;
-      font-size:22px;
-      line-height:1.8;
-    }
-
-    .offer-list li{
-      margin:16px 0;
-      padding-left:35px;
-      position:relative;
-      list-style:none;
-    }
-
-    .offer-list li:before{
-      content:"✓";
-      position:absolute;
-      left:0;
-      color:var(--neon);
-      font-weight:bold;
-      font-size:26px;
     }
 
     .price-section{
@@ -613,6 +590,23 @@
       fill:#635bff;
     }
 
+    .alternative-payment{
+      margin:18px 0 0;
+      padding:16px;
+      background:rgba(37,211,102,.08);
+      border:1px solid rgba(37,211,102,.25);
+      border-radius:15px;
+      text-align:center;
+      font-size:13px;
+      line-height:1.6;
+      color:rgba(255,255,255,.85);
+    }
+
+    .alternative-payment strong{
+      color:#25D366;
+      font-weight:700;
+    }
+
     /* WhatsApp Support Section */
     .support-section{
       margin:65px 0 50px;
@@ -796,14 +790,13 @@
 
     @media (max-width:768px){
       .top-banner{margin-top:20px; margin-bottom:28px}
-      .exclusive-banner{padding:8px 26px;font-size:11px}
+      .exclusive-banner{padding:8px 26px;font-size:12px}
       .main{padding:8px 0 40px}
       .headline{font-size:46px}
       .intro-text{font-size:20px}
       .offer-box{padding:35px 28px}
       .offer-title{font-size:40px}
       .offer-subtitle{font-size:21px}
-      .offer-list{font-size:19px}
       .price{font-size:78px}
       .price-compare{font-size:22px}
       .cta-checkout{font-size:21px;padding:20px 45px;width:92%}
@@ -823,20 +816,18 @@
       .secure-payment{font-size:12px;margin-top:12px}
       .secure-payment svg{width:14px;height:14px}
       .stripe-badge{font-size:10px;padding:3px 10px}
+      .alternative-payment{font-size:12px;padding:14px}
     }
     
     @media (max-width:480px){
       .top-banner{margin-bottom:22px;margin-top:15px}
-      .exclusive-banner{padding:7px 20px;font-size:10px}
+      .exclusive-banner{padding:7px 20px;font-size:11px}
       .main{padding:5px 0 40px}
       .headline{font-size:32px;margin-bottom:22px;line-height:1.15}
       .intro-text{font-size:17px;margin-bottom:30px}
       .offer-box{padding:28px 20px;margin:15px auto 40px}
       .offer-title{font-size:30px;margin-bottom:12px}
       .offer-subtitle{font-size:17px;margin-bottom:25px}
-      .offer-list{font-size:15px;margin:25px 0;line-height:1.7}
-      .offer-list li{padding-left:28px;margin:12px 0}
-      .offer-list li:before{font-size:22px}
       .price{font-size:58px}
       .price-compare{font-size:19px;margin-bottom:25px}
       .cta-checkout{font-size:18px;padding:18px 35px;width:92%;margin-bottom:20px}
@@ -860,6 +851,7 @@
       .secure-payment svg{width:13px;height:13px}
       .stripe-badge{font-size:9px;padding:3px 8px}
       .stripe-badge svg{width:35px;height:14px}
+      .alternative-payment{font-size:11px;padding:12px}
     }
   </style>
 </head>
@@ -870,7 +862,7 @@
   <div class="container">
     <div class="top-banner">
       <div class="exclusive-banner">
-        OPPORTUNITÀ ESCLUSIVA
+        SOLO 20 POSTI DISPONIBILI
       </div>
     </div>
 
@@ -887,15 +879,6 @@
           60 minuti di chiamata privata con Thomas Macorig<br>
           <span class="gold">Completamente personalizzata</span>
         </p>
-
-        <ul class="offer-list">
-          <li>Analisi approfondita del tuo business model e identificazione delle opportunità di crescita immediate</li>
-          <li>Perfetta anche se parti da zero: riceverai una roadmap chiara e dettagliata per iniziare nel modo giusto</li>
-          <li>Strategia personalizzata per lanciare o scalare il tuo infobusiness nei prossimi 90 giorni</li>
-          <li>Revisione completa del tuo funnel di vendita e ottimizzazione per massimizzare le conversioni</li>
-          <li>Piano d'azione step-by-step con priorità chiare e timeline realistiche</li>
-          <li>Registrazione completa della consulenza da rivedere quando vuoi</li>
-        </ul>
 
         <div class="price-section">
           <div class="price">500€</div>
@@ -1005,11 +988,14 @@
           <div class="checkout-spots-text" id="checkoutSpotsText">20 POSTI DISPONIBILI</div>
         </div>
       </div>
+
+      <div class="alternative-payment">
+        Per pagamenti tramite <strong>bonifico</strong> o <strong>crypto</strong> contatta il tuo tutor su WhatsApp
+      </div>
     </div>
   </div>
 
   <script>
-    // Spots Counter
     const totalSpots = 20;
     let availableSpots = Math.floor(Math.random() * 8) + 13;
     
@@ -1025,15 +1011,13 @@
         spotsText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
       }
       
-      // Aggiorna anche la barra nel modal
       if (checkoutBar && checkoutText) {
         checkoutBar.style.width = percentage + '%';
         checkoutText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
       }
       
-      // Diminuisci i posti ogni 3-6 secondi (PIÙ VELOCE)
       if (availableSpots > 5) {
-        const randomDelay = Math.floor(Math.random() * 3000) + 3000; // tra 3 e 6 secondi
+        const randomDelay = Math.floor(Math.random() * 3000) + 3000;
         setTimeout(() => {
           availableSpots--;
           updateSpotsBar();
@@ -1047,7 +1031,6 @@
       window.open("https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+vorrei+maggiori+informazioni+sulla+consulenza+con+Thomas", "_blank");
     }
 
-    // Stripe Configuration
     const STRIPE_PUBLIC_KEY = 'pk_live_51IDw0AE9CzAMobs3J8gGyyQBkOK9GhUO1VIIb0RveSzQ3cv0qao4q14hwVe168gTx1WCn89Qvj1J8JR8l0iMnBNZ00iU2yhcKT';
     const stripe = Stripe(STRIPE_PUBLIC_KEY);
     const elements = stripe.elements({
@@ -1083,7 +1066,6 @@
         cardMounted = true;
       }
       
-      // Aggiorna anche la barra nel modal
       updateCheckoutSpots();
       
       if (typeof fbq !== 'undefined') {
@@ -1142,8 +1124,6 @@
           throw new Error('Compila tutti i campi richiesti');
         }
         
-        console.log('Creazione payment method...');
-        
         const {paymentMethod, error} = await stripe.createPaymentMethod({
           type: 'card',
           card: cardElement,
@@ -1154,13 +1134,9 @@
         });
         
         if (error) {
-          console.error('Errore creazione payment method:', error);
           throw new Error(error.message);
         }
         
-        console.log('Payment method creato:', paymentMethod.id);
-        
-        // Usa process-payment-consulenza (specifico per questa sales page)
         const response = await fetch('/.netlify/functions/process-payment-consulenza', {
           method: 'POST',
           headers: {
@@ -1168,7 +1144,7 @@
           },
           body: JSON.stringify({
             paymentMethodId: paymentMethod.id,
-            amount: 50000, // 500€ in centesimi
+            amount: 50000,
             currency: 'eur',
             customerEmail: customerEmail,
             customerName: customerName,
@@ -1177,16 +1153,12 @@
         });
         
         if (!response.ok) {
-          const errorText = await response.text();
-          console.error('Errore risposta server:', errorText);
           throw new Error('Errore nel processamento del pagamento');
         }
         
         const result = await response.json();
-        console.log('Risposta server:', result);
         
         if (result.success) {
-          // Traccia la conversione
           if (typeof fbq !== 'undefined') {
             fbq('track', 'Purchase', {
               value: 500.00,
@@ -1196,20 +1168,14 @@
             });
           }
           
-          // Redirect alla thank you page
           window.location.href = '/thankyou-consulenza';
           
         } else if (result.requiresAction && result.clientSecret) {
-          // Gestisci 3D Secure
-          console.log('Richiesta autenticazione 3D Secure...');
-          
           const {error: confirmError} = await stripe.confirmCardPayment(result.clientSecret);
           
           if (confirmError) {
-            console.error('Errore conferma pagamento:', confirmError);
             throw new Error(confirmError.message);
           } else {
-            // Pagamento confermato
             if (typeof fbq !== 'undefined') {
               fbq('track', 'Purchase', {
                 value: 500.00,
@@ -1222,14 +1188,10 @@
             window.location.href = '/thankyou-consulenza';
           }
         } else {
-          const errorMsg = result.error || 'Pagamento non riuscito. Riprova.';
-          console.error('Errore pagamento:', errorMsg);
-          throw new Error(errorMsg);
+          throw new Error(result.error || 'Pagamento non riuscito. Riprova.');
         }
         
       } catch (error) {
-        console.error('Errore nel processo di pagamento:', error);
-        
         errorElement.textContent = error.message || 'Si è verificato un errore. Riprova.';
         errorElement.style.display = 'block';
         
@@ -1248,18 +1210,6 @@
         closeCheckout();
       }
     });
-
-    if (window.innerWidth < 768) {
-      setTimeout(() => {
-        const headline = document.querySelector('.headline');
-        if (headline) {
-          window.scrollTo({
-            top: headline.offsetTop - 20,
-            behavior: 'smooth'
-          });
-        }
-      }, 500);
-    }
   </script>
 </body>
 </html>
