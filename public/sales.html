@@ -1015,6 +1015,8 @@
           throw new Error('Compila tutti i campi richiesti');
         }
         
+        console.log('Creazione payment method...');
+        
         const {paymentMethod, error} = await stripe.createPaymentMethod({
           type: 'card',
           card: cardElement,
@@ -1025,47 +1027,82 @@
         });
         
         if (error) {
+          console.error('Errore creazione payment method:', error);
           throw new Error(error.message);
         }
         
-        const response = await fetch('/.netlify/functions/create-checkout', {
+        console.log('Payment method creato:', paymentMethod.id);
+        
+        // Usa process-payment come nella OTO1
+        const response = await fetch('/.netlify/functions/process-payment', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            priceId: 'price_1SGGpSE9CzAMobs3EMQEvQVo',
+            paymentMethodId: paymentMethod.id,
+            amount: 50000, // 500€ in centesimi
+            currency: 'eur',
             customerEmail: customerEmail,
             customerName: customerName,
-            successUrl: window.location.origin + '/thankyou-consulenza',
-            cancelUrl: window.location.href,
-            metadata: {
-              product: 'consulenza_thomas_1h',
-              source: 'sales_page'
-            }
+            product: 'consulenza_thomas_1h'
           })
         });
         
         if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Errore risposta server:', errorText);
           throw new Error('Errore nel processamento del pagamento');
         }
         
         const result = await response.json();
+        console.log('Risposta server:', result);
         
-        if (result.sessionId) {
-          const {error: stripeError} = await stripe.redirectToCheckout({
-            sessionId: result.sessionId
-          });
+        if (result.success) {
+          // Traccia la conversione
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Purchase', {
+              value: 500.00,
+              currency: 'EUR',
+              content_name: 'Consulenza Thomas 1h',
+              content_type: 'product'
+            });
+          }
           
-          if (stripeError) {
-            throw new Error(stripeError.message);
+          // Redirect alla thank you page
+          window.location.href = '/thankyou-consulenza';
+          
+        } else if (result.requiresAction && result.clientSecret) {
+          // Gestisci 3D Secure
+          console.log('Richiesta autenticazione 3D Secure...');
+          
+          const {error: confirmError} = await stripe.confirmCardPayment(result.clientSecret);
+          
+          if (confirmError) {
+            console.error('Errore conferma pagamento:', confirmError);
+            throw new Error(confirmError.message);
+          } else {
+            // Pagamento confermato
+            if (typeof fbq !== 'undefined') {
+              fbq('track', 'Purchase', {
+                value: 500.00,
+                currency: 'EUR',
+                content_name: 'Consulenza Thomas 1h',
+                content_type: 'product'
+              });
+            }
+            
+            window.location.href = '/thankyou-consulenza';
           }
         } else {
-          throw new Error('Errore nella creazione della sessione');
+          const errorMsg = result.error || 'Pagamento non riuscito. Riprova.';
+          console.error('Errore pagamento:', errorMsg);
+          throw new Error(errorMsg);
         }
         
       } catch (error) {
-        console.error('Errore:', error);
+        console.error('Errore nel processo di pagamento:', error);
+        
         errorElement.textContent = error.message || 'Si è verificato un errore. Riprova.';
         errorElement.style.display = 'block';
         
