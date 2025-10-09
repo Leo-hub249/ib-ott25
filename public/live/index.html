@@ -500,12 +500,25 @@
   </div>
 
   <script>
-    // Countdown Timer
+    // Countdown Timer con Redirect automatico
     const eventDate = new Date('2025-10-09T21:00:00+02:00'); // 9 Ottobre 2025 ore 21:00 (ora italiana)
+    const redirectDate = new Date('2025-10-09T20:30:00+02:00'); // Redirect alle 20:30 (ora italiana)
+    const streamyardUrl = 'https://streamyard.com/watch/Ey7cgax29fSa';
     
     function updateCountdown() {
       const now = new Date();
       const difference = eventDate - now;
+      
+      // Controlla se è ora di fare il redirect (alle 20:30)
+      if (now >= redirectDate) {
+        // Traccia il redirect in Facebook Pixel
+        if (typeof fbq !== 'undefined') {
+          fbq('trackCustom', 'RedirectToStreamYard');
+        }
+        // Redirect automatico a StreamYard
+        window.location.href = streamyardUrl;
+        return;
+      }
       
       if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -518,9 +531,9 @@
         document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
         document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
       } else {
-        // Live started
+        // Live iniziata
         document.querySelector('h1').textContent = 'La Live è Iniziata!';
-        document.querySelector('.subtitle').innerHTML = 'Clicca sul link che hai ricevuto via email per accedere';
+        document.querySelector('.subtitle').innerHTML = 'Reindirizzamento in corso...';
         document.querySelector('.countdown-container').style.display = 'none';
       }
     }
