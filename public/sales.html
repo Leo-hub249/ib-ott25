@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Consulenza Esclusiva con Thomas Macorig</title>
+  <title>Consulenza Strategica - Thomas Macorig</title>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -27,563 +27,372 @@
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
 
-  <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --neon:#B8FC8D;
-      --gold:#FFD700;
-      --dark:#0a0a0a;
-      --accent:#00D9FF;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
     
-    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --gold:#D4AF37;
+      --dark:#0F0F0F;
+      --light:#F8F8F8;
+    }
     
     body{
       font-family:'Inter',sans-serif;
-      color:#fff;
-      background:#000;
-      overflow-x:hidden;
-      min-height:100vh;
-      position:relative;
+      background:#fff;
+      color:#1a1a1a;
+      line-height:1.6;
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    .background{
-      position:fixed;
-      inset:0;
-      z-index:0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(184,252,141,.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0,217,255,.06) 0%, transparent 50%),
-        linear-gradient(180deg, #000 0%, #0a0a0a 100%);
-    }
-    
-    .grid{
-      position:fixed;
-      inset:0;
-      z-index:1;
-      opacity:.03;
-      background-image:
-        linear-gradient(rgba(184,252,141,.5) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(184,252,141,.5) 1px, transparent 1px);
-      background-size:80px 80px;
-    }
-
-    .noise{
-      position:fixed;
-      inset:0;
-      z-index:1;
-      opacity:.02;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
     .container{
-      max-width:1200px;
+      max-width:1100px;
       margin:0 auto;
-      padding:0 30px;
-      position:relative;
-      z-index:2;
+      padding:0 40px;
     }
 
-    .header{
-      padding:30px 0 20px;
-      text-align:center;
+    /* Header */
+    header{
+      padding:40px 0;
+      border-bottom:1px solid #e8e8e8;
     }
 
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 28px;
-      background:linear-gradient(135deg, rgba(184,252,141,.1), rgba(184,252,141,.05));
-      border:1px solid rgba(184,252,141,.25);
-      border-radius:100px;
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:1.2px;
-      text-transform:uppercase;
-      backdrop-filter:blur(10px);
-      box-shadow:0 8px 32px rgba(184,252,141,.1);
-      animation:float 3s ease-in-out infinite;
-    }
-
-    @keyframes float{
-      0%, 100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
-    }
-
-    .badge-dot{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--neon);
-      box-shadow:0 0 20px var(--neon);
-      animation:pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot{
-      0%, 100%{opacity:1;transform:scale(1)}
-      50%{opacity:.6;transform:scale(1.2)}
-    }
-
-    .hero{
-      padding:60px 0 40px;
-      text-align:center;
-    }
-
-    .eyebrow{
-      font-size:14px;
-      font-weight:700;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      color:var(--neon);
-      margin-bottom:20px;
+    .logo{
+      max-width:160px;
       opacity:.9;
     }
 
-    h1{
-      font-size:72px;
-      font-weight:900;
-      line-height:1.1;
-      margin-bottom:30px;
-      background:linear-gradient(135deg, #fff 0%, rgba(255,255,255,.7) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      letter-spacing:-2px;
-    }
-
-    h1 .highlight{
-      background:linear-gradient(135deg, var(--neon) 0%, var(--accent) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
-
-    .subtitle{
-      font-size:22px;
-      line-height:1.6;
-      color:rgba(255,255,255,.8);
-      font-weight:400;
-      max-width:800px;
-      margin:0 auto 50px;
-    }
-
-    .hero-cta{
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      padding:20px 48px;
-      background:linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
-      border:none;
-      border-radius:100px;
-      color:#000;
-      font-size:18px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      cursor:pointer;
-      box-shadow:0 20px 60px rgba(255,215,0,.3), 0 0 0 1px rgba(255,255,255,.1) inset;
-      transition:all .4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-cta:before{
-      content:"";
-      position:absolute;
-      inset:-100%;
-      background:linear-gradient(45deg, transparent, rgba(255,255,255,.4), transparent);
-      transform:translateX(-100%) rotate(45deg);
-      transition:transform .6s;
-    }
-
-    .hero-cta:hover{
-      transform:translateY(-4px) scale(1.02);
-      box-shadow:0 30px 80px rgba(255,215,0,.4), 0 0 0 1px rgba(255,255,255,.2) inset;
-    }
-
-    .hero-cta:hover:before{
-      transform:translateX(100%) rotate(45deg);
-    }
-
-    .hero-cta svg{
-      width:20px;
-      height:20px;
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:30px;
-      margin:60px 0;
-    }
-
-    .stat-card{
-      padding:40px 30px;
-      background:linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:20px;
+    /* Hero */
+    .hero{
+      padding:100px 0 80px;
       text-align:center;
-      backdrop-filter:blur(10px);
+    }
+
+    .kicker{
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:#666;
+      margin-bottom:30px;
+    }
+
+    h1{
+      font-family:'Crimson Pro',serif;
+      font-size:68px;
+      font-weight:400;
+      line-height:1.1;
+      color:#0F0F0F;
+      margin-bottom:30px;
+      letter-spacing:-1px;
+    }
+
+    .lead{
+      font-size:20px;
+      color:#555;
+      max-width:700px;
+      margin:0 auto 50px;
+      font-weight:400;
+      line-height:1.7;
+    }
+
+    .cta-primary{
+      display:inline-block;
+      padding:18px 50px;
+      background:#0F0F0F;
+      color:#fff;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:600;
+      letter-spacing:0.5px;
+      border:none;
+      cursor:pointer;
       transition:all .3s;
     }
 
-    .stat-card:hover{
-      border-color:rgba(184,252,141,.3);
-      transform:translateY(-4px);
-      box-shadow:0 20px 60px rgba(184,252,141,.1);
+    .cta-primary:hover{
+      background:#2a2a2a;
+      transform:translateY(-2px);
+      box-shadow:0 10px 30px rgba(0,0,0,.15);
+    }
+
+    /* Stats */
+    .stats{
+      padding:80px 0;
+      border-top:1px solid #e8e8e8;
+      border-bottom:1px solid #e8e8e8;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:60px;
+      text-align:center;
     }
 
     .stat-number{
-      font-size:48px;
-      font-weight:900;
-      background:linear-gradient(135deg, var(--neon), var(--accent));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+      font-family:'Crimson Pro',serif;
+      font-size:52px;
+      font-weight:400;
+      color:#0F0F0F;
       margin-bottom:10px;
     }
 
     .stat-label{
       font-size:14px;
-      color:rgba(255,255,255,.7);
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:1px;
+      color:#666;
+      font-weight:500;
+      letter-spacing:0.5px;
     }
 
-    .offer-section{
-      padding:80px 0;
+    /* Offer Section */
+    .offer{
+      padding:100px 0;
     }
 
-    .offer-container{
-      max-width:900px;
-      margin:0 auto;
-      background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:2px solid rgba(184,252,141,.2);
-      border-radius:32px;
-      padding:60px;
-      backdrop-filter:blur(20px);
-      box-shadow:0 40px 120px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.05) inset;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .offer-container:before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      height:2px;
-      background:linear-gradient(90deg, transparent, var(--neon), transparent);
-    }
-
-    .offer-header{
+    .section-title{
+      font-family:'Crimson Pro',serif;
+      font-size:42px;
+      font-weight:400;
       text-align:center;
-      margin-bottom:50px;
-    }
-
-    .offer-title{
-      font-size:48px;
-      font-weight:900;
       margin-bottom:20px;
-      background:linear-gradient(135deg, var(--neon), var(--accent));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      letter-spacing:-1px;
+      color:#0F0F0F;
     }
 
-    .offer-description{
+    .section-subtitle{
+      text-align:center;
       font-size:18px;
-      color:rgba(255,255,255,.8);
-      line-height:1.7;
+      color:#666;
+      max-width:600px;
+      margin:0 auto 80px;
     }
 
-    .features{
-      margin:50px 0;
+    .features-list{
+      max-width:800px;
+      margin:0 auto 80px;
     }
 
-    .feature{
+    .feature-item{
       display:flex;
-      gap:20px;
-      padding:25px 0;
-      border-bottom:1px solid rgba(255,255,255,.05);
+      gap:30px;
+      padding:40px 0;
+      border-bottom:1px solid #e8e8e8;
     }
 
-    .feature:last-child{
+    .feature-item:first-child{
+      padding-top:0;
+    }
+
+    .feature-item:last-child{
       border-bottom:none;
     }
 
-    .feature-icon{
+    .feature-number{
       flex-shrink:0;
-      width:48px;
-      height:48px;
-      border-radius:12px;
-      background:linear-gradient(135deg, var(--neon), var(--accent));
+      width:50px;
+      height:50px;
       display:flex;
       align-items:center;
       justify-content:center;
-      color:#000;
-      font-weight:900;
-      font-size:20px;
+      border:1px solid #0F0F0F;
+      color:#0F0F0F;
+      font-weight:600;
+      font-size:16px;
     }
 
     .feature-content h3{
-      font-size:18px;
-      font-weight:700;
-      margin-bottom:8px;
+      font-size:20px;
+      font-weight:600;
+      margin-bottom:12px;
+      color:#0F0F0F;
     }
 
     .feature-content p{
-      font-size:15px;
-      color:rgba(255,255,255,.7);
-      line-height:1.6;
+      font-size:16px;
+      color:#666;
+      line-height:1.7;
     }
 
+    /* Pricing */
     .pricing{
-      text-align:center;
-      margin:50px 0 40px;
-      padding:40px 0;
-      border-top:1px solid rgba(255,255,255,.1);
-      border-bottom:1px solid rgba(255,255,255,.1);
-    }
-
-    .price-tag{
-      display:flex;
-      align-items:baseline;
-      justify-content:center;
-      gap:12px;
-      margin-bottom:15px;
-    }
-
-    .price-main{
-      font-size:80px;
-      font-weight:900;
-      background:linear-gradient(135deg, var(--neon), var(--accent));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      letter-spacing:-2px;
-    }
-
-    .price-compare{
-      font-size:28px;
-      color:rgba(255,255,255,.4);
-      text-decoration:line-through;
-      font-weight:600;
-    }
-
-    .price-save{
-      display:inline-block;
-      padding:8px 20px;
-      background:rgba(255,59,59,.15);
-      border:1px solid rgba(255,59,59,.3);
-      border-radius:100px;
-      color:#ff3b3b;
-      font-size:14px;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:1px;
-    }
-
-    .cta-button{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      width:100%;
-      max-width:500px;
+      max-width:700px;
       margin:0 auto;
-      padding:24px 48px;
-      background:linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
-      border:none;
-      border-radius:100px;
-      color:#000;
-      font-size:20px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:1.5px;
-      cursor:pointer;
-      box-shadow:0 20px 60px rgba(255,215,0,.4), 0 0 0 1px rgba(255,255,255,.1) inset;
-      transition:all .4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .cta-button:before{
-      content:"";
-      position:absolute;
-      inset:-100%;
-      background:linear-gradient(45deg, transparent, rgba(255,255,255,.4), transparent);
-      transform:translateX(-100%) rotate(45deg);
-      transition:transform .6s;
-    }
-
-    .cta-button:hover{
-      transform:translateY(-4px) scale(1.02);
-      box-shadow:0 30px 80px rgba(255,215,0,.5), 0 0 0 1px rgba(255,255,255,.2) inset;
-    }
-
-    .cta-button:hover:before{
-      transform:translateX(100%) rotate(45deg);
-    }
-
-    .spots-counter{
-      margin-top:30px;
-    }
-
-    .spots-label{
-      text-align:center;
-      font-size:13px;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      color:rgba(255,255,255,.6);
-      margin-bottom:12px;
-    }
-
-    .spots-bar-wrapper{
-      position:relative;
-      height:32px;
-      background:rgba(0,0,0,.4);
-      border-radius:100px;
-      border:1px solid rgba(255,59,59,.2);
-      overflow:hidden;
-    }
-
-    .spots-bar{
-      height:100%;
-      background:linear-gradient(90deg, #ff3b3b, #ff6b6b);
-      border-radius:100px;
-      transition:width 1s ease-out;
-      box-shadow:0 0 20px rgba(255,59,59,.4);
-    }
-
-    .spots-text{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:13px;
-      font-weight:800;
-      color:#fff;
-      text-shadow:0 2px 10px rgba(0,0,0,.8);
-      letter-spacing:1px;
-    }
-
-    .guarantee{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      margin-top:30px;
-      padding:20px;
-      background:rgba(184,252,141,.05);
-      border:1px solid rgba(184,252,141,.2);
-      border-radius:16px;
-      font-size:14px;
-      color:rgba(255,255,255,.8);
-    }
-
-    .guarantee svg{
-      width:24px;
-      height:24px;
-      flex-shrink:0;
-    }
-
-    .support-section{
-      margin:80px 0;
       padding:60px;
-      background:linear-gradient(135deg, rgba(37,211,102,.08), rgba(18,140,126,.05));
-      border:2px solid rgba(37,211,102,.2);
-      border-radius:32px;
+      border:1px solid #e8e8e8;
       text-align:center;
     }
 
-    .support-title{
-      font-size:36px;
-      font-weight:800;
-      margin-bottom:15px;
-    }
-
-    .support-subtitle{
-      font-size:20px;
-      color:rgba(255,255,255,.8);
+    .price-wrapper{
       margin-bottom:40px;
     }
 
-    .whatsapp-btn{
-      display:inline-flex;
+    .price-main{
+      font-family:'Crimson Pro',serif;
+      font-size:72px;
+      font-weight:400;
+      color:#0F0F0F;
+      margin-bottom:10px;
+    }
+
+    .price-original{
+      font-size:24px;
+      color:#999;
+      text-decoration:line-through;
+      margin-bottom:15px;
+    }
+
+    .price-note{
+      font-size:14px;
+      color:#666;
+      font-style:italic;
+    }
+
+    .cta-buy{
+      display:block;
+      width:100%;
+      padding:22px;
+      background:#0F0F0F;
+      color:#fff;
+      border:none;
+      font-size:16px;
+      font-weight:600;
+      letter-spacing:0.5px;
+      cursor:pointer;
+      margin-bottom:30px;
+      transition:all .3s;
+    }
+
+    .cta-buy:hover{
+      background:#2a2a2a;
+    }
+
+    /* Availability Bar */
+    .availability{
+      margin-top:40px;
+    }
+
+    .availability-label{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:#666;
+      margin-bottom:12px;
+      font-weight:600;
+    }
+
+    .bar-container{
+      height:6px;
+      background:#f0f0f0;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .bar-fill{
+      height:100%;
+      background:#0F0F0F;
+      transition:width 1s ease;
+    }
+
+    .bar-text{
+      position:absolute;
+      top:-25px;
+      right:0;
+      font-size:11px;
+      font-weight:600;
+      color:#666;
+      letter-spacing:0.5px;
+    }
+
+    /* Trust Signals */
+    .trust{
+      padding:80px 0;
+      text-align:center;
+      border-top:1px solid #e8e8e8;
+    }
+
+    .trust-items{
+      display:flex;
+      justify-content:center;
+      gap:60px;
+      margin-top:40px;
+    }
+
+    .trust-item{
+      display:flex;
       align-items:center;
       gap:12px;
-      padding:20px 44px;
-      background:linear-gradient(135deg, #25D366, #128C7E);
-      border:none;
-      border-radius:100px;
+      font-size:14px;
+      color:#666;
+    }
+
+    .trust-item svg{
+      width:20px;
+      height:20px;
+      stroke:#0F0F0F;
+      flex-shrink:0;
+    }
+
+    /* Contact */
+    .contact-section{
+      padding:80px 0;
+      background:#F8F8F8;
+    }
+
+    .contact-box{
+      max-width:600px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .contact-title{
+      font-family:'Crimson Pro',serif;
+      font-size:32px;
+      font-weight:400;
+      margin-bottom:20px;
+      color:#0F0F0F;
+    }
+
+    .contact-text{
+      font-size:16px;
+      color:#666;
+      margin-bottom:30px;
+    }
+
+    .btn-whatsapp{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:16px 40px;
+      background:#25D366;
       color:#fff;
-      font-size:18px;
-      font-weight:800;
-      text-transform:uppercase;
       text-decoration:none;
-      letter-spacing:1px;
-      box-shadow:0 20px 60px rgba(37,211,102,.3), 0 0 0 1px rgba(255,255,255,.1) inset;
-      transition:all .4s;
+      font-size:15px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      transition:all .3s;
     }
 
-    .whatsapp-btn:hover{
-      transform:translateY(-4px) scale(1.02);
-      box-shadow:0 30px 80px rgba(37,211,102,.4), 0 0 0 1px rgba(255,255,255,.2) inset;
+    .btn-whatsapp:hover{
+      background:#22c55e;
+      transform:translateY(-2px);
     }
 
-    .whatsapp-btn svg{
-      width:24px;
-      height:24px;
+    .btn-whatsapp svg{
+      width:20px;
+      height:20px;
       fill:#fff;
     }
 
-    .whatsapp-float{
-      position:fixed;
-      bottom:30px;
-      right:30px;
-      width:70px;
-      height:70px;
-      background:linear-gradient(135deg, #25D366, #128C7E);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 10px 40px rgba(37,211,102,.4);
-      cursor:pointer;
-      z-index:9999;
-      transition:all .3s;
-      animation:float 3s ease-in-out infinite;
-    }
-
-    .whatsapp-float:hover{
-      transform:scale(1.1);
-      box-shadow:0 15px 50px rgba(37,211,102,.5);
-    }
-
-    .whatsapp-float img{
-      width:40px;
-      height:40px;
-    }
-
+    /* Footer */
     footer{
-      margin-top:100px;
-      padding:50px 0 30px;
-      border-top:1px solid rgba(255,255,255,.1);
+      padding:60px 0 40px;
+      border-top:1px solid #e8e8e8;
     }
 
     .footer-content{
@@ -591,44 +400,70 @@
     }
 
     .footer-logo{
-      max-width:180px;
-      opacity:.7;
+      max-width:140px;
+      opacity:.5;
       margin-bottom:30px;
     }
 
-    .footer-disclaimer{
-      max-width:900px;
-      margin:0 auto 30px;
-      font-size:13px;
+    .footer-text{
+      font-size:12px;
+      color:#999;
       line-height:1.8;
-      color:rgba(255,255,255,.4);
+      max-width:800px;
+      margin:0 auto 30px;
     }
 
     .footer-links{
       display:flex;
-      gap:40px;
       justify-content:center;
-      padding-top:30px;
-      border-top:1px solid rgba(255,255,255,.05);
+      gap:30px;
     }
 
     .footer-links a{
-      color:rgba(255,255,255,.5);
+      font-size:13px;
+      color:#999;
       text-decoration:none;
-      font-size:14px;
       transition:.3s;
     }
 
     .footer-links a:hover{
-      color:var(--neon);
+      color:#0F0F0F;
     }
 
-    /* Checkout Modal */
-    .checkout-modal{
+    /* WhatsApp Float */
+    .whatsapp-float{
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      width:60px;
+      height:60px;
+      background:#25D366;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 4px 12px rgba(0,0,0,.15);
+      cursor:pointer;
+      z-index:9999;
+      border:none;
+      transition:all .3s;
+    }
+
+    .whatsapp-float:hover{
+      transform:scale(1.05);
+      box-shadow:0 6px 16px rgba(0,0,0,.2);
+    }
+
+    .whatsapp-float img{
+      width:32px;
+      height:32px;
+    }
+
+    /* Modal */
+    .modal{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,.95);
-      backdrop-filter:blur(20px);
+      background:rgba(255,255,255,.98);
       display:none;
       align-items:center;
       justify-content:center;
@@ -636,426 +471,365 @@
       padding:20px;
     }
 
-    .checkout-modal.active{
+    .modal.active{
       display:flex;
     }
 
-    .checkout-box{
+    .modal-content{
       width:100%;
       max-width:550px;
-      background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border:2px solid rgba(184,252,141,.2);
-      border-radius:32px;
-      padding:50px;
-      backdrop-filter:blur(30px);
-      box-shadow:0 50px 150px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.05) inset;
+      background:#fff;
+      padding:60px;
+      border:1px solid #e8e8e8;
       position:relative;
     }
 
-    .checkout-box:before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      height:2px;
-      background:linear-gradient(90deg, transparent, var(--neon), transparent);
-    }
-
-    .checkout-close{
+    .modal-close{
       position:absolute;
       top:20px;
       right:20px;
       width:40px;
       height:40px;
-      border:none;
-      background:rgba(255,255,255,.05);
-      border-radius:50%;
-      color:#fff;
-      font-size:24px;
+      border:1px solid #e8e8e8;
+      background:#fff;
       cursor:pointer;
-      transition:.3s;
+      font-size:20px;
+      color:#666;
       display:flex;
       align-items:center;
       justify-content:center;
+      transition:.3s;
     }
 
-    .checkout-close:hover{
-      background:rgba(255,255,255,.1);
-      transform:rotate(90deg);
+    .modal-close:hover{
+      background:#f8f8f8;
+      color:#0F0F0F;
     }
 
-    .checkout-header{
+    .modal-header{
       text-align:center;
-      margin-bottom:35px;
+      margin-bottom:40px;
     }
 
-    .checkout-title{
+    .modal-title{
+      font-family:'Crimson Pro',serif;
       font-size:32px;
-      font-weight:900;
+      font-weight:400;
       margin-bottom:10px;
-      background:linear-gradient(135deg, var(--neon), var(--accent));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+      color:#0F0F0F;
     }
 
-    .checkout-price{
-      font-size:18px;
-      color:rgba(255,255,255,.7);
+    .modal-price{
+      font-size:16px;
+      color:#666;
     }
 
-    .checkout-price strong{
-      color:var(--neon);
-      font-size:22px;
-    }
-
-    .checkout-form{
-      margin-bottom:30px;
+    .modal-price strong{
+      color:#0F0F0F;
+      font-weight:600;
     }
 
     .form-group{
       margin-bottom:25px;
-      position:relative;
     }
 
     .form-label{
-      position:absolute;
-      top:-10px;
-      left:20px;
-      padding:0 8px;
-      background:linear-gradient(180deg, transparent 50%, rgba(255,255,255,.08) 50%);
-      font-size:11px;
-      font-weight:700;
+      display:block;
+      font-size:12px;
+      font-weight:600;
       text-transform:uppercase;
       letter-spacing:1px;
-      color:rgba(184,252,141,.8);
-      z-index:1;
+      color:#666;
+      margin-bottom:8px;
     }
 
     .form-input{
       width:100%;
-      padding:18px 20px;
-      background:rgba(0,0,0,.4);
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:16px;
-      color:#fff;
-      font-size:16px;
+      padding:14px 16px;
+      border:1px solid #e8e8e8;
+      background:#fff;
+      font-size:15px;
       font-family:'Inter',sans-serif;
+      color:#0F0F0F;
       transition:.3s;
     }
 
     .form-input:focus{
       outline:none;
-      border-color:var(--neon);
-      background:rgba(0,0,0,.6);
-      box-shadow:0 0 0 4px rgba(184,252,141,.1);
+      border-color:#0F0F0F;
     }
 
     #card-element{
-      padding:18px 20px;
-      background:rgba(0,0,0,.4);
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:16px;
+      padding:14px 16px;
+      border:1px solid #e8e8e8;
+      background:#fff;
       transition:.3s;
     }
 
     #card-element.StripeElement--focus{
-      border-color:var(--neon);
-      background:rgba(0,0,0,.6);
-      box-shadow:0 0 0 4px rgba(184,252,141,.1);
+      border-color:#0F0F0F;
     }
 
-    .checkout-error{
-      color:#ff3b3b;
-      text-align:center;
+    .form-error{
+      color:#dc2626;
+      font-size:13px;
       margin:15px 0;
-      font-size:14px;
       display:none;
       padding:12px;
-      background:rgba(255,59,59,.1);
-      border:1px solid rgba(255,59,59,.3);
-      border-radius:12px;
+      background:#fef2f2;
+      border:1px solid #fee2e2;
     }
 
-    .checkout-submit{
+    .btn-submit{
       width:100%;
-      padding:20px;
-      background:linear-gradient(135deg, var(--gold), #FFA500);
+      padding:18px;
+      background:#0F0F0F;
+      color:#fff;
       border:none;
-      border-radius:100px;
-      color:#000;
-      font-size:18px;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:1.5px;
+      font-size:15px;
+      font-weight:600;
+      letter-spacing:0.5px;
       cursor:pointer;
-      box-shadow:0 20px 60px rgba(255,215,0,.4);
+      margin-top:10px;
+      margin-bottom:25px;
       transition:.3s;
-      margin-bottom:20px;
     }
 
-    .checkout-submit:hover:not(:disabled){
-      transform:translateY(-2px);
-      box-shadow:0 25px 70px rgba(255,215,0,.5);
+    .btn-submit:hover:not(:disabled){
+      background:#2a2a2a;
     }
 
-    .checkout-submit:disabled{
+    .btn-submit:disabled{
       opacity:.5;
       cursor:not-allowed;
     }
 
-    .checkout-submit.processing{
-      animation:pulse-btn 1.5s infinite;
-    }
-
-    @keyframes pulse-btn{
-      50%{box-shadow:0 20px 80px rgba(255,215,0,.6)}
-    }
-
-    .secure-badge{
+    .secure-info{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      font-size:13px;
-      color:rgba(255,255,255,.6);
+      gap:8px;
+      font-size:12px;
+      color:#999;
       margin-bottom:25px;
     }
 
-    .secure-badge svg{
-      width:16px;
-      height:16px;
+    .secure-info svg{
+      width:14px;
+      height:14px;
+      stroke:#999;
     }
 
-    .stripe-logo{
+    .stripe-badge{
       display:inline-flex;
       align-items:center;
       gap:6px;
-      padding:6px 14px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:20px;
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.5px;
+      padding:4px 12px;
+      background:#f8f8f8;
+      border:1px solid #e8e8e8;
+      font-size:10px;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:#666;
     }
 
-    .stripe-logo svg{
-      height:14px;
-      width:auto;
-    }
-
-    .checkout-spots{
+    .modal-availability{
       padding-top:25px;
-      border-top:1px solid rgba(255,255,255,.1);
+      border-top:1px solid #e8e8e8;
     }
 
+    /* Responsive */
     @media (max-width:768px){
-      h1{font-size:48px}
-      .subtitle{font-size:18px}
-      .stats{grid-template-columns:1fr;gap:20px}
-      .stat-card{padding:30px 20px}
-      .offer-container{padding:40px 30px}
-      .offer-title{font-size:36px}
-      .features{margin:40px 0}
-      .feature{padding:20px 0}
-      .pricing{margin:40px 0 30px;padding:30px 0}
-      .price-main{font-size:64px}
-      .support-section{padding:40px 30px}
-      .support-title{font-size:28px}
-      .checkout-box{padding:40px 30px}
-      .checkout-title{font-size:26px}
+      .container{padding:0 30px}
+      header{padding:30px 0}
+      .hero{padding:60px 0 50px}
+      h1{font-size:42px}
+      .lead{font-size:18px}
+      .stats-grid{grid-template-columns:1fr;gap:40px}
+      .offer{padding:60px 0}
+      .section-title{font-size:32px}
+      .features-list{margin-bottom:60px}
+      .feature-item{flex-direction:column;gap:20px;padding:30px 0}
+      .pricing{padding:40px 30px}
+      .price-main{font-size:56px}
+      .trust-items{flex-direction:column;gap:20px}
+      .contact-section{padding:60px 0}
+      .modal-content{padding:40px 30px}
+      .modal-title{font-size:26px}
     }
 
     @media (max-width:480px){
       .container{padding:0 20px}
-      .header{padding:20px 0 15px}
-      .badge{padding:10px 20px;font-size:11px}
-      .hero{padding:40px 0 30px}
-      h1{font-size:36px;line-height:1.2}
-      .subtitle{font-size:16px;margin-bottom:35px}
-      .hero-cta{padding:16px 36px;font-size:16px}
-      .stat-number{font-size:36px}
-      .offer-container{padding:30px 20px;border-radius:24px}
-      .offer-title{font-size:28px}
-      .offer-description{font-size:16px}
-      .feature{flex-direction:column;gap:15px;padding:20px 0}
-      .feature-icon{width:40px;height:40px;font-size:18px}
-      .feature-content h3{font-size:16px}
-      .feature-content p{font-size:14px}
-      .price-main{font-size:52px}
-      .price-compare{font-size:22px}
-      .cta-button{font-size:16px;padding:18px 36px}
-      .support-section{padding:30px 20px;margin:60px 0}
-      .support-title{font-size:24px}
-      .support-subtitle{font-size:16px;margin-bottom:30px}
-      .whatsapp-btn{padding:16px 32px;font-size:15px}
-      .whatsapp-float{width:60px;height:60px;bottom:20px;right:20px}
-      .whatsapp-float img{width:34px;height:34px}
-      .checkout-box{padding:30px 20px}
-      .checkout-title{font-size:22px}
-      .checkout-close{width:36px;height:36px;font-size:20px;top:15px;right:15px}
-      footer{margin-top:60px;padding:40px 0 20px}
-      .footer-logo{max-width:140px}
+      h1{font-size:34px}
+      .lead{font-size:16px;margin-bottom:40px}
+      .cta-primary{padding:16px 40px;font-size:14px}
+      .stat-number{font-size:40px}
+      .section-title{font-size:28px}
+      .feature-content h3{font-size:18px}
+      .pricing{padding:30px 20px}
+      .price-main{font-size:48px}
+      .modal-content{padding:30px 20px}
+      .modal-close{top:15px;right:15px}
+      .whatsapp-float{width:55px;height:55px;bottom:20px;right:20px}
+      .whatsapp-float img{width:28px;height:28px}
     }
   </style>
 </head>
 <body>
-  <div class="background"></div>
-  <div class="grid"></div>
-  <div class="noise"></div>
+  <header>
+    <div class="container">
+      <img src="2.webp" alt="Logo" class="logo">
+    </div>
+  </header>
 
   <div class="container">
-    <header class="header">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        <span>Posti Limitati Disponibili</span>
-      </div>
-    </header>
-
     <section class="hero">
-      <p class="eyebrow">Opportunità Esclusiva</p>
-      <h1>
-        Consulenza Privata<br>
-        <span class="highlight">ONE-TO-ONE</span><br>
-        con Thomas Macorig
-      </h1>
-      <p class="subtitle">
-        60 minuti esclusivi con uno dei più grandi esperti di infobusiness in Italia.<br>
-        Trasforma il tuo business digitale con una strategia personalizzata.
+      <p class="kicker">Sessione Strategica Esclusiva</p>
+      <h1>Consulenza Privata<br>con Thomas Macorig</h1>
+      <p class="lead">
+        60 minuti di strategia intensiva per accelerare la crescita del tuo business digitale.
+        Un'opportunità riservata a imprenditori seri che vogliono risultati concreti.
       </p>
-      <button class="hero-cta" onclick="scrollToOffer()">
-        <span>Prenota la Tua Sessione</span>
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </button>
+      <button class="cta-primary" onclick="scrollToOffer()">Scopri di più</button>
     </section>
 
     <section class="stats">
-      <div class="stat-card">
-        <div class="stat-number">1h</div>
-        <div class="stat-label">Completamente tua</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Personalizzata</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">1:1</div>
-        <div class="stat-label">Direttamente con Thomas</div>
+      <div class="stats-grid">
+        <div>
+          <div class="stat-number">60'</div>
+          <div class="stat-label">Completamente Dedicati</div>
+        </div>
+        <div>
+          <div class="stat-number">1:1</div>
+          <div class="stat-label">Direttamente con Thomas</div>
+        </div>
+        <div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Personalizzata</div>
+        </div>
       </div>
     </section>
 
-    <section class="offer-section" id="offer">
-      <div class="offer-container">
-        <div class="offer-header">
-          <h2 class="offer-title">Cosa Ricevi</h2>
-          <p class="offer-description">
-            Una sessione strategica intensiva progettata per accelerare<br>
-            la crescita del tuo business digitale
-          </p>
-        </div>
+    <section class="offer" id="offer">
+      <h2 class="section-title">Cosa Include la Consulenza</h2>
+      <p class="section-subtitle">
+        Una sessione strutturata per massimizzare il valore del tuo tempo e fornire risultati immediati.
+      </p>
 
-        <div class="features">
-          <div class="feature">
-            <div class="feature-icon">1</div>
-            <div class="feature-content">
-              <h3>Analisi Approfondita del Tuo Business</h3>
-              <p>Identificazione delle opportunità di crescita immediate e dei punti critici da ottimizzare per massimizzare i risultati.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">2</div>
-            <div class="feature-content">
-              <h3>Strategia Personalizzata 90 Giorni</h3>
-              <p>Un piano d'azione dettagliato per lanciare o scalare il tuo infobusiness con obiettivi chiari e tappe intermedie.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">3</div>
-            <div class="feature-content">
-              <h3>Ottimizzazione Funnel di Vendita</h3>
-              <p>Revisione completa della tua customer journey per massimizzare conversioni e lifetime value dei clienti.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">4</div>
-            <div class="feature-content">
-              <h3>Piano d'Azione Step-by-Step</h3>
-              <p>Roadmap pratica con priorità chiare, timeline realistiche e metriche di successo per ogni fase.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">5</div>
-            <div class="feature-content">
-              <h3>Registrazione Completa</h3>
-              <p>Accesso illimitato alla registrazione della sessione per rivedere ogni consiglio e implementare con calma.</p>
-            </div>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">6</div>
-            <div class="feature-content">
-              <h3>Perfetto Anche se Parti da Zero</h3>
-              <p>Non importa a che punto sei: riceverai una roadmap chiara per iniziare o scalare nel modo giusto.</p>
-            </div>
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-number">01</div>
+          <div class="feature-content">
+            <h3>Analisi Strategica del Business</h3>
+            <p>Valutazione approfondita del tuo modello di business, identificazione delle opportunità di crescita e dei punti critici da ottimizzare.</p>
           </div>
         </div>
 
-        <div class="pricing">
-          <div class="price-tag">
-            <span class="price-main">500€</span>
-            <span class="price-compare">€1.500</span>
-          </div>
-          <div class="price-save">Risparmi €1.000 oggi</div>
-        </div>
-
-        <button class="cta-button" id="checkoutBtn">
-          <span>Prenota Ora la Tua Consulenza</span>
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-          </svg>
-        </button>
-
-        <div class="spots-counter">
-          <p class="spots-label">⚠️ Disponibilità Limitata</p>
-          <div class="spots-bar-wrapper">
-            <div class="spots-bar" id="spotsBar"></div>
-            <div class="spots-text" id="spotsText">20 POSTI DISPONIBILI</div>
+        <div class="feature-item">
+          <div class="feature-number">02</div>
+          <div class="feature-content">
+            <h3>Piano d'Azione Personalizzato</h3>
+            <p>Strategia dettagliata su misura per lanciare o scalare il tuo infobusiness nei prossimi 90 giorni, con priorità chiare e milestone definite.</p>
           </div>
         </div>
 
-        <div class="guarantee">
+        <div class="feature-item">
+          <div class="feature-number">03</div>
+          <div class="feature-content">
+            <h3>Ottimizzazione Funnel di Vendita</h3>
+            <p>Revisione completa del tuo percorso cliente per massimizzare conversioni, lifetime value e ridurre l'attrito nel processo d'acquisto.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-number">04</div>
+          <div class="feature-content">
+            <h3>Roadmap Implementativa</h3>
+            <p>Piano step-by-step con azioni concrete, timeline realistiche e metriche di successo per ogni fase del percorso.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-number">05</div>
+          <div class="feature-content">
+            <h3>Registrazione Completa</h3>
+            <p>Accesso permanente alla registrazione della sessione per rivedere ogni consiglio e implementare con i tuoi tempi.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-number">06</div>
+          <div class="feature-content">
+            <h3>Adatta a Ogni Livello</h3>
+            <p>Che tu stia iniziando o scalando, riceverai una strategia calibrata sul tuo punto di partenza e sui tuoi obiettivi specifici.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <div class="price-wrapper">
+          <div class="price-main">500€</div>
+          <div class="price-original">Valore 1.500€</div>
+          <p class="price-note">Investimento una tantum</p>
+        </div>
+
+        <button class="cta-buy" id="checkoutBtn">Prenota la Consulenza</button>
+
+        <div class="availability">
+          <div class="availability-label">Disponibilità Limitata</div>
+          <div class="bar-container">
+            <div class="bar-fill" id="availBar"></div>
+            <div class="bar-text" id="availText">20 posti disponibili</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust">
+      <h2 class="section-title">Investimento Protetto</h2>
+      <div class="trust-items">
+        <div class="trust-item">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
-          <span><strong>Garanzia 100%:</strong> Se non sei soddisfatto, ti rimborsiamo completamente</span>
+          <span>Garanzia Soddisfatti o Rimborsati</span>
+        </div>
+        <div class="trust-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+          <span>Pagamento Sicuro SSL</span>
+        </div>
+        <div class="trust-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Sessione Registrata Inclusa</span>
         </div>
       </div>
     </section>
+  </div>
 
-    <section class="support-section">
-      <h2 class="support-title">Hai Domande?</h2>
-      <p class="support-subtitle">Il nostro team è qui per aiutarti</p>
-      <a href="https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+vorrei+informazioni+sulla+consulenza+con+Thomas" target="_blank" class="whatsapp-btn">
+  <section class="contact-section">
+    <div class="contact-box">
+      <h2 class="contact-title">Hai Domande?</h2>
+      <p class="contact-text">Il nostro team è disponibile per rispondere a qualsiasi dubbio prima della tua prenotazione.</p>
+      <a href="https://api.whatsapp.com/send/?phone=393714408271&text=Ciao,+vorrei+informazioni+sulla+consulenza+con+Thomas" target="_blank" class="btn-whatsapp">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
         <span>Contatta il Supporto</span>
       </a>
-    </section>
+    </div>
+  </section>
 
-    <footer>
+  <footer>
+    <div class="container">
       <div class="footer-content">
         <img src="2.webp" alt="Logo" class="footer-logo">
-        <p class="footer-disclaimer">
-          I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo ai contenuti gratuiti di infobiz.com potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito.
+        <p class="footer-text">
+          I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo ai contenuti gratuiti di infobiz.com potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te.
         </p>
         <div class="footer-links">
           <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank">Privacy Policy</a>
@@ -1063,32 +837,32 @@
           <a href="https://learn.infobiz.com/terms-of-service/" target="_blank">Terms of Service</a>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   <button class="whatsapp-float" onclick="openWhatsApp()">
     <img src="https://learn.infobiz.com/wp-content/uploads/2022/10/whatsApp.png" alt="WhatsApp">
   </button>
 
-  <!-- Checkout Modal -->
-  <div class="checkout-modal" id="checkoutModal">
-    <div class="checkout-box">
-      <button class="checkout-close" onclick="closeCheckout()">×</button>
+  <!-- Modal -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
       
-      <div class="checkout-header">
-        <h3 class="checkout-title">Completa il Tuo Ordine</h3>
-        <p class="checkout-price">Consulenza 1h - <strong>500€</strong></p>
+      <div class="modal-header">
+        <h3 class="modal-title">Completa l'Ordine</h3>
+        <p class="modal-price">Consulenza 60 minuti — <strong>500€</strong></p>
       </div>
 
-      <form id="payment-form" class="checkout-form">
+      <form id="paymentForm">
         <div class="form-group">
           <label class="form-label">Email</label>
-          <input type="email" id="checkout-email" class="form-input" required>
+          <input type="email" id="email" class="form-input" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">Nome Completo</label>
-          <input type="text" id="checkout-name" class="form-input" required>
+          <input type="text" id="name" class="form-input" required>
         </div>
 
         <div class="form-group">
@@ -1096,224 +870,173 @@
           <div id="card-element"></div>
         </div>
 
-        <div class="checkout-error" id="card-errors"></div>
+        <div class="form-error" id="cardError"></div>
 
-        <button type="submit" class="checkout-submit" id="submit-payment">
-          Conferma Acquisto
-        </button>
+        <button type="submit" class="btn-submit" id="submitBtn">Conferma Pagamento</button>
 
-        <div class="secure-badge">
+        <div class="secure-info">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
           </svg>
           <span>Pagamento sicuro con</span>
-          <span class="stripe-logo">
-            <svg viewBox="0 0 60 25" xmlns="http://www.w3.org/2000/svg">
-              <path fill="#635bff" d="M59.64 14.28h-8.06c.19 1.93 1.6 2.55 3.2 2.55 1.64 0 2.96-.37 4.05-.95v3.32a8.33 8.33 0 0 1-4.56 1.1c-4.01 0-6.83-2.5-6.83-7.48 0-4.19 2.39-7.52 6.3-7.52 3.92 0 5.96 3.28 5.96 7.5 0 .4-.04 1.26-.06 1.48zm-5.92-5.62c-1.03 0-2.17.73-2.17 2.58h4.25c0-1.85-1.07-2.58-2.08-2.58zM40.95 20.3c-1.44 0-2.32-.6-2.9-1.04l-.02 4.63-4.12.87V5.57h3.76l.08 1.02a4.7 4.7 0 0 1 3.23-1.29c2.9 0 5.62 2.6 5.62 7.4 0 5.23-2.7 7.6-5.65 7.6zM40 8.95c-.95 0-1.54.34-1.97.81l.02 6.12c.4.44.98.78 1.95.78 1.52 0 2.54-1.65 2.54-3.87 0-2.15-1.04-3.84-2.54-3.84zM28.24 5.57h4.13v14.44h-4.13V5.57zm0-4.7L32.37 0v3.36l-4.13.88V.88zm-4.32 9.35v9.79H19.8V5.57h3.7l.12 1.22c1-1.77 3.07-1.41 3.62-1.22v3.79c-.52-.17-2.29-.43-3.32.86zm-8.55 4.72c0 2.43 2.6 1.68 3.12 1.46v3.36c-.55.3-1.54.54-2.89.54a4.15 4.15 0 0 1-4.27-4.24l.01-13.17 4.02-.86v3.54h3.14V9.1h-3.13v5.85zm-4.91.7c0 2.97-2.31 4.66-5.73 4.66a11.2 11.2 0 0 1-4.46-.93v-3.93c1.38.75 3.1 1.31 4.46 1.31.92 0 1.53-.24 1.53-1C6.26 13.77 0 14.51 0 9.95 0 7.04 2.28 5.3 5.62 5.3c1.36 0 2.72.2 4.09.75v3.88a9.23 9.23 0 0 0-4.1-1.06c-.86 0-1.44.25-1.44.93 0 1.85 6.29.97 6.29 5.88z"/>
-            </svg>
-          </span>
+          <span class="stripe-badge">Stripe</span>
+        </div>
+
+        <div class="modal-availability">
+          <div class="availability-label">Disponibilità Limitata</div>
+          <div class="bar-container">
+            <div class="bar-fill" id="modalBar"></div>
+            <div class="bar-text" id="modalText">20 posti disponibili</div>
+          </div>
         </div>
       </form>
-
-      <div class="checkout-spots">
-        <p class="spots-label">⚠️ Disponibilità Limitata</p>
-        <div class="spots-bar-wrapper">
-          <div class="spots-bar" id="checkoutSpotsBar"></div>
-          <div class="spots-text" id="checkoutSpotsText">20 POSTI DISPONIBILI</div>
-        </div>
-      </div>
     </div>
   </div>
 
   <script>
-    // Smooth scroll
-    function scrollToOffer() {
-      document.getElementById('offer').scrollIntoView({ behavior: 'smooth' });
+    function scrollToOffer(){
+      document.getElementById('offer').scrollIntoView({behavior:'smooth'});
     }
 
-    // Spots Counter
-    const totalSpots = 20;
-    let availableSpots = Math.floor(Math.random() * 8) + 13;
+    function openWhatsApp(){
+      window.open("https://api.whatsapp.com/send/?phone=393714408271&text=Ciao,+vorrei+informazioni+sulla+consulenza+con+Thomas","_blank");
+    }
 
-    function updateSpotsBar() {
-      const percentage = (availableSpots / totalSpots) * 100;
-      const spotsBar = document.getElementById('spotsBar');
-      const spotsText = document.getElementById('spotsText');
-      const checkoutBar = document.getElementById('checkoutSpotsBar');
-      const checkoutText = document.getElementById('checkoutSpotsText');
+    // Availability
+    const total=20;
+    let available=Math.floor(Math.random()*8)+13;
 
-      if (spotsBar && spotsText) {
-        spotsBar.style.width = percentage + '%';
-        spotsText.textContent = availableSpots + ' POSTI RIMANENTI';
-      }
+    function updateAvailability(){
+      const pct=(available/total)*100;
+      const bar1=document.getElementById('availBar');
+      const text1=document.getElementById('availText');
+      const bar2=document.getElementById('modalBar');
+      const text2=document.getElementById('modalText');
 
-      if (checkoutBar && checkoutText) {
-        checkoutBar.style.width = percentage + '%';
-        checkoutText.textContent = availableSpots + ' POSTI RIMANENTI';
-      }
+      if(bar1)bar1.style.width=pct+'%';
+      if(text1)text1.textContent=available+' posti disponibili';
+      if(bar2)bar2.style.width=pct+'%';
+      if(text2)text2.textContent=available+' posti disponibili';
 
-      if (availableSpots > 5) {
-        const randomDelay = Math.floor(Math.random() * 3000) + 3000;
-        setTimeout(() => {
-          availableSpots--;
-          updateSpotsBar();
-        }, randomDelay);
+      if(available>5){
+        setTimeout(()=>{
+          available--;
+          updateAvailability();
+        },Math.random()*3000+3000);
       }
     }
 
-    setTimeout(updateSpotsBar, 1000);
-
-    function openWhatsApp() {
-      window.open("https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+vorrei+informazioni+sulla+consulenza+con+Thomas", "_blank");
-    }
+    setTimeout(updateAvailability,1000);
 
     // Stripe
-    const STRIPE_PUBLIC_KEY = 'pk_live_51IDw0AE9CzAMobs3J8gGyyQBkOK9GhUO1VIIb0RveSzQ3cv0qao4q14hwVe168gTx1WCn89Qvj1J8JR8l0iMnBNZ00iU2yhcKT';
-    const stripe = Stripe(STRIPE_PUBLIC_KEY);
-    const elements = stripe.elements();
+    const stripe=Stripe('pk_live_51IDw0AE9CzAMobs3J8gGyyQBkOK9GhUO1VIIb0RveSzQ3cv0qao4q14hwVe168gTx1WCn89Qvj1J8JR8l0iMnBNZ00iU2yhcKT');
+    const elements=stripe.elements();
+    const card=elements.create('card',{
+      style:{
+        base:{
+          fontSize:'15px',
+          color:'#0F0F0F',
+          fontFamily:'Inter, sans-serif',
+          '::placeholder':{color:'#999'}
+        },
+        invalid:{color:'#dc2626'}
+      }
+    });
+    let mounted=false;
 
-    const cardStyle = {
-      base: {
-        color: '#fff',
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '16px',
-        '::placeholder': { color: 'rgba(255,255,255,0.4)' }
-      },
-      invalid: { color: '#ff3b3b', iconColor: '#ff3b3b' }
-    };
-
-    const cardElement = elements.create('card', {style: cardStyle});
-    let cardMounted = false;
-
-    function openCheckout() {
+    function openModal(){
       document.getElementById('checkoutModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-
-      if (!cardMounted) {
-        cardElement.mount('#card-element');
-        cardMounted = true;
+      document.body.style.overflow='hidden';
+      if(!mounted){
+        card.mount('#card-element');
+        mounted=true;
       }
-
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'InitiateCheckout', {
-          value: 500.00,
-          currency: 'EUR'
-        });
+      if(typeof fbq!=='undefined'){
+        fbq('track','InitiateCheckout',{value:500,currency:'EUR'});
       }
     }
 
-    function closeCheckout() {
+    function closeModal(){
       document.getElementById('checkoutModal').classList.remove('active');
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow='auto';
     }
 
-    document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+    document.getElementById('checkoutBtn').addEventListener('click',openModal);
 
-    cardElement.on('change', function(event) {
-      const displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-        displayError.style.display = 'block';
-      } else {
-        displayError.textContent = '';
-        displayError.style.display = 'none';
+    card.on('change',e=>{
+      const err=document.getElementById('cardError');
+      if(e.error){
+        err.textContent=e.error.message;
+        err.style.display='block';
+      }else{
+        err.textContent='';
+        err.style.display='none';
       }
     });
 
-    const form = document.getElementById('payment-form');
-    form.addEventListener('submit', async function(event) {
-      event.preventDefault();
+    document.getElementById('paymentForm').addEventListener('submit',async e=>{
+      e.preventDefault();
+      const btn=document.getElementById('submitBtn');
+      const err=document.getElementById('cardError');
+      btn.disabled=true;
+      btn.textContent='Elaborazione...';
 
-      const submitButton = document.getElementById('submit-payment');
-      const errorElement = document.getElementById('card-errors');
+      try{
+        const email=document.getElementById('email').value;
+        const name=document.getElementById('name').value;
 
-      submitButton.disabled = true;
-      submitButton.classList.add('processing');
-      submitButton.textContent = 'Elaborazione...';
+        if(!email||!name)throw new Error('Compila tutti i campi');
 
-      try {
-        const customerEmail = document.getElementById('checkout-email').value;
-        const customerName = document.getElementById('checkout-name').value;
-
-        if (!customerEmail || !customerName) {
-          throw new Error('Compila tutti i campi richiesti');
-        }
-
-        const {paymentMethod, error} = await stripe.createPaymentMethod({
-          type: 'card',
-          card: cardElement,
-          billing_details: {
-            name: customerName,
-            email: customerEmail
-          }
+        const {paymentMethod,error}=await stripe.createPaymentMethod({
+          type:'card',
+          card:card,
+          billing_details:{name,email}
         });
 
-        if (error) {
-          throw new Error(error.message);
-        }
+        if(error)throw new Error(error.message);
 
-        const response = await fetch('/.netlify/functions/process-payment-consulenza', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            paymentMethodId: paymentMethod.id,
-            amount: 50000,
-            currency: 'eur',
-            customerEmail: customerEmail,
-            customerName: customerName,
-            product: 'consulenza_thomas_1h'
+        const res=await fetch('/.netlify/functions/process-payment-consulenza',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            paymentMethodId:paymentMethod.id,
+            amount:50000,
+            currency:'eur',
+            customerEmail:email,
+            customerName:name,
+            product:'consulenza_thomas_1h'
           })
         });
 
-        if (!response.ok) {
-          throw new Error('Errore nel processamento del pagamento');
-        }
+        if(!res.ok)throw new Error('Errore pagamento');
 
-        const result = await response.json();
+        const data=await res.json();
 
-        if (result.success) {
-          if (typeof fbq !== 'undefined') {
-            fbq('track', 'Purchase', {
-              value: 500.00,
-              currency: 'EUR',
-              content_name: 'Consulenza Thomas 1h',
-              content_type: 'product'
-            });
+        if(data.success){
+          if(typeof fbq!=='undefined'){
+            fbq('track','Purchase',{value:500,currency:'EUR',content_name:'Consulenza Thomas 1h'});
           }
-          window.location.href = '/thankyou-consulenza';
-        } else if (result.requiresAction && result.clientSecret) {
-          const {error: confirmError} = await stripe.confirmCardPayment(result.clientSecret);
-          if (confirmError) {
-            throw new Error(confirmError.message);
-          } else {
-            if (typeof fbq !== 'undefined') {
-              fbq('track', 'Purchase', {
-                value: 500.00,
-                currency: 'EUR',
-                content_name: 'Consulenza Thomas 1h',
-                content_type: 'product'
-              });
-            }
-            window.location.href = '/thankyou-consulenza';
+          window.location.href='/thankyou-consulenza';
+        }else if(data.requiresAction&&data.clientSecret){
+          const {error:confirmError}=await stripe.confirmCardPayment(data.clientSecret);
+          if(confirmError)throw new Error(confirmError.message);
+          if(typeof fbq!=='undefined'){
+            fbq('track','Purchase',{value:500,currency:'EUR',content_name:'Consulenza Thomas 1h'});
           }
-        } else {
-          throw new Error(result.error || 'Pagamento non riuscito. Riprova.');
+          window.location.href='/thankyou-consulenza';
+        }else{
+          throw new Error(data.error||'Pagamento non riuscito');
         }
-      } catch (error) {
-        console.error('Errore:', error);
-        errorElement.textContent = error.message || 'Si è verificato un errore. Riprova.';
-        errorElement.style.display = 'block';
-
-        submitButton.disabled = false;
-        submitButton.classList.remove('processing');
-        submitButton.textContent = 'Conferma Acquisto';
+      }catch(error){
+        err.textContent=error.message;
+        err.style.display='block';
+        btn.disabled=false;
+        btn.textContent='Conferma Pagamento';
       }
     });
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && document.getElementById('checkoutModal').classList.contains('active')) {
-        closeCheckout();
-      }
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape')closeModal();
     });
   </script>
 </body>
