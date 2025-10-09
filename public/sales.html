@@ -1017,14 +1017,23 @@
       const percentage = (availableSpots / totalSpots) * 100;
       const spotsBar = document.getElementById('spotsBar');
       const spotsText = document.getElementById('spotsText');
+      const checkoutBar = document.getElementById('checkoutSpotsBar');
+      const checkoutText = document.getElementById('checkoutSpotsText');
       
       if (spotsBar && spotsText) {
         spotsBar.style.width = percentage + '%';
         spotsText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
       }
       
+      // Aggiorna anche la barra nel modal
+      if (checkoutBar && checkoutText) {
+        checkoutBar.style.width = percentage + '%';
+        checkoutText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
+      }
+      
+      // Diminuisci i posti ogni 3-6 secondi (PIÙ VELOCE)
       if (availableSpots > 5) {
-        const randomDelay = Math.floor(Math.random() * 5000) + 5000;
+        const randomDelay = Math.floor(Math.random() * 3000) + 3000; // tra 3 e 6 secondi
         setTimeout(() => {
           availableSpots--;
           updateSpotsBar();
@@ -1074,25 +1083,11 @@
         cardMounted = true;
       }
       
-      // Aggiorna anche la barra nel modal
-      updateCheckoutSpots();
-      
       if (typeof fbq !== 'undefined') {
         fbq('track', 'InitiateCheckout', {
           value: 500.00,
           currency: 'EUR'
         });
-      }
-    }
-    
-    function updateCheckoutSpots() {
-      const percentage = (availableSpots / totalSpots) * 100;
-      const checkoutBar = document.getElementById('checkoutSpotsBar');
-      const checkoutText = document.getElementById('checkoutSpotsText');
-      
-      if (checkoutBar && checkoutText) {
-        checkoutBar.style.width = percentage + '%';
-        checkoutText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
       }
     }
     
