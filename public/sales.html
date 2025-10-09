@@ -592,13 +592,13 @@
 
     .alternative-payment{
       margin:18px 0 0;
-      padding:16px;
+      padding:20px 24px;
       background:rgba(37,211,102,.08);
       border:1px solid rgba(37,211,102,.25);
       border-radius:15px;
       text-align:center;
-      font-size:13px;
-      line-height:1.6;
+      font-size:15px;
+      line-height:1.7;
       color:rgba(255,255,255,.85);
     }
 
@@ -816,7 +816,7 @@
       .secure-payment{font-size:12px;margin-top:12px}
       .secure-payment svg{width:14px;height:14px}
       .stripe-badge{font-size:10px;padding:3px 10px}
-      .alternative-payment{font-size:12px;padding:14px}
+      .alternative-payment{font-size:14px;padding:18px 20px}
     }
     
     @media (max-width:480px){
@@ -851,7 +851,7 @@
       .secure-payment svg{width:13px;height:13px}
       .stripe-badge{font-size:9px;padding:3px 8px}
       .stripe-badge svg{width:35px;height:14px}
-      .alternative-payment{font-size:11px;padding:12px}
+      .alternative-payment{font-size:13px;padding:16px 18px}
     }
   </style>
 </head>
@@ -882,7 +882,7 @@
 
         <div class="price-section">
           <div class="price">500€</div>
-          <div class="price-compare">VALORE REALE: €1.000</div>
+          <div class="price-compare">VALORE REALE: €1.500</div>
         </div>
 
         <button class="cta-checkout" id="checkoutBtn">
@@ -1016,8 +1016,9 @@
         checkoutText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
       }
       
+      // Diminuisci i posti ogni 2-4 secondi (PIÙ VELOCE)
       if (availableSpots > 5) {
-        const randomDelay = Math.floor(Math.random() * 3000) + 3000;
+        const randomDelay = Math.floor(Math.random() * 2000) + 2000; // tra 2 e 4 secondi
         setTimeout(() => {
           availableSpots--;
           updateSpotsBar();
