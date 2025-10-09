@@ -959,7 +959,7 @@
 
   <!-- Main Script -->
   <script>
-    // Spots Counter Animation - PIÙ VELOCE
+    // Spots Counter Animation - ULTRA VELOCE
     const totalSpots = 20;
     let availableSpots = Math.floor(Math.random() * 8) + 13; // Random tra 13-20
     
@@ -982,9 +982,9 @@
         modalSpotsText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
       }
       
-      // Diminuisci i posti ogni 15-30 secondi (MOLTO PIÙ VELOCE)
+      // Diminuisci i posti ogni 5-10 secondi (ULTRA VELOCE - MASSIMA URGENZA)
       if (availableSpots > 5) {
-        const randomDelay = Math.floor(Math.random() * 15000) + 15000;
+        const randomDelay = Math.floor(Math.random() * 5000) + 5000;
         setTimeout(() => {
           availableSpots--;
           updateSpotsBar();
@@ -1000,11 +1000,10 @@
       window.open("https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+vorrei+maggiori+informazioni+sulla+consulenza+con+Thomas", "_blank");
     }
 
-    // Stripe Modal Functions - FIX: usa window.location invece di iframe
+    // Stripe Modal Functions - Carica Payment Link in iframe
     function openStripeModal() {
-      // SOLUZIONE: Apri Stripe in una nuova tab invece che in iframe
-      // Gli iframe di Stripe hanno restrizioni CORS che impediscono il caricamento
-      const stripeUrl = 'https://buy.stripe.com/aFa6oHe3t7hP5HTfbu7Vm3S';
+      const modal = document.getElementById('stripeModal');
+      const iframe = document.getElementById('stripeIframe');
       
       // Track event
       if (typeof fbq !== 'undefined') {
@@ -1015,10 +1014,16 @@
         });
       }
       
-      // Apri in nuova tab
-      window.open(stripeUrl, '_blank');
+      // Carica direttamente il Payment Link nell'iframe
+      // Stripe Payment Links SONO embeddable dal 2023
+      iframe.src = 'https://buy.stripe.com/aFa6oHe3t7hP5HTfbu7Vm3S';
       
-      // La barra continuerà a scendere in background
+      // Mostra il modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Aggiorna la barra nel modal
+      updateSpotsBar();
     }
 
     function closeStripeModal() {
@@ -1029,13 +1034,22 @@
       modal.classList.remove('active');
       document.body.style.overflow = 'auto';
       
-      // Resetta l'iframe
-      iframe.src = '';
+      // Resetta l'iframe dopo un breve delay
+      setTimeout(() => {
+        iframe.src = '';
+      }, 300);
     }
 
     // Chiudi modal con ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
+        closeStripeModal();
+      }
+    });
+
+    // Chiudi modal cliccando fuori
+    document.getElementById('stripeModal').addEventListener('click', function(e) {
+      if (e.target === this) {
         closeStripeModal();
       }
     });
