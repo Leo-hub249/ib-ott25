@@ -554,13 +554,12 @@
       overflow:hidden;
       box-shadow:0 30px 90px rgba(0,0,0,.5);
       margin-bottom:30px;
+      min-height:600px;
     }
 
-    .stripe-iframe{
+    #checkout{
       width:100%;
-      height:700px;
-      border:none;
-      display:block;
+      min-height:600px;
     }
 
     .modal-spots-bar{
@@ -713,6 +712,7 @@
         height:35px;
       }
       .stripe-iframe{height:650px}
+      #checkout{min-height:550px}
       .modal-spots-bar{max-width:500px}
       .modal-spots-title{font-size:18px}
       .modal-spots-bar-container{height:30px}
@@ -817,6 +817,7 @@
         font-size:28px;
       }
       .stripe-iframe{height:600px}
+      #checkout{min-height:500px}
       .modal-spots-bar{
         max-width:100%;
         padding:15px;
@@ -927,12 +928,8 @@
     <button class="stripe-modal-close" onclick="closeStripeModal()">×</button>
     
     <div class="stripe-iframe-container">
-      <iframe 
-        id="stripeIframe"
-        class="stripe-iframe"
-        src=""
-        allow="payment"
-      ></iframe>
+      <!-- Stripe Embedded Checkout verrà montato qui -->
+      <div id="checkout"></div>
     </div>
 
     <div class="modal-spots-bar">
@@ -943,6 +940,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Stripe.js SDK -->
+  <script src="https://js.stripe.com/v3/"></script>
 
   <!-- Script Vidalytics -->
   <script type="text/javascript">
@@ -1022,7 +1022,7 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            priceId: 'price_1SGGpSE9CzAMobs3EMQEvQVo', 
+            priceId: 'price_1SGGpSE9CzAMobs3EMQEvQVo', // Price ID Consulenza Thomas
             successUrl: window.location.origin + '/thankyou-consulenza',
             cancelUrl: window.location.href
           })
