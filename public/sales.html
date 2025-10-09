@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulenza Privata con Thomas - 1 Ora</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2180408928835338');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {
+    content_name: 'Consulenza Thomas 1h',
+    content_type: 'product',
+    value: 500.00,
+    currency: 'EUR'
+  });
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
+
+  <!-- Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --neon:#B8FC8D;
+      --red:#FF3B3B;
+      --gold1:#FFD700; 
+      --gold2:#FFA500;
+      --dark:#0a0a0a;
+    }
+    
+    *{box-sizing:border-box;margin:0;padding:0}
+    
+    body{
+      font-family:'Oswald',sans-serif;
+      color:#fff;
+      background:#000;
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+    }
+
+    .background{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(184,252,141,.18) 0%, transparent 50%),
+        radial-gradient(circle at 50% 70%, rgba(184,252,141,.12) 0%, transparent 55%),
+        #000;
+    }
+    
+    .grid{
+      position:fixed;
+      inset:0;
+      z-index:1;
+      opacity:.07;
+      background-image:
+        linear-gradient(rgba(184,252,141,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,252,141,1) 1px, transparent 1px);
+      background-size:60px 60px;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      padding:0 25px;
+      position:relative;
+      z-index:2;
+    }
+
+    .top-banner{
+      text-align:center;
+      padding:0;
+      margin-bottom:35px;
+      margin-top:25px;
+    }
+    
+    .exclusive-banner{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 32px;
+      background:linear-gradient(135deg, rgba(184,252,141,.12), rgba(184,252,141,.06));
+      border:1.5px solid rgba(184,252,141,.4);
+      border-radius:50px;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:#B8FC8D;
+      text-shadow:0 0 15px rgba(184,252,141,.5);
+      box-shadow:
+        0 0 25px rgba(184,252,141,.2),
+        inset 0 1px 0 rgba(255,255,255,.1);
+      transition:all .3s;
+      animation:glow-pulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes glow-pulse{
+      0%, 100%{
+        box-shadow:
+          0 0 25px rgba(184,252,141,.2),
+          inset 0 1px 0 rgba(255,255,255,.1);
+        border-color:rgba(184,252,141,.4);
+      }
+      50%{
+        box-shadow:
+          0 0 35px rgba(184,252,141,.3),
+          inset 0 1px 0 rgba(255,255,255,.15);
+        border-color:rgba(184,252,141,.6);
+      }
+    }
+    
+    .exclusive-banner:hover{
+      background:linear-gradient(135deg, rgba(184,252,141,.18), rgba(184,252,141,.1));
+      box-shadow:
+        0 0 40px rgba(184,252,141,.35),
+        inset 0 1px 0 rgba(255,255,255,.15);
+    }
+
+    .main{
+      text-align:center;
+      padding:10px 0 50px;
+    }
+
+    .headline{
+      font-size:68px;
+      font-weight:800;
+      color:var(--neon);
+      text-transform:uppercase;
+      margin-bottom:30px;
+      line-height:1.1;
+      letter-spacing:-1px;
+      text-shadow:0 0 40px rgba(184,252,141,.3);
+    }
+
+    .subheadline{
+      font-size:32px;
+      font-weight:400;
+      margin-bottom:15px;
+      line-height:1.3;
+      opacity:.96;
+    }
+
+    .highlight{
+      font-size:38px;
+      font-weight:700;
+      color:var(--gold1);
+      text-transform:uppercase;
+      margin:20px 0 15px;
+      text-shadow:0 0 25px rgba(255,215,0,.4);
+      letter-spacing:.5px;
+    }
+
+    .intro-text{
+      font-size:26px;
+      margin-bottom:35px;
+      line-height:1.4;
+      opacity:.94;
+      max-width:900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .video-container{
+      max-width:920px;
+      margin:0 auto 40px;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 40px 100px rgba(0,0,0,.85);
+      background:#000;
+      border:1px solid rgba(184,252,141,.15);
+    }
+
+    .offer-box{
+      background:linear-gradient(145deg,#1a1a1a,#0a0a0a);
+      border:2px solid var(--neon);
+      border-radius:30px;
+      padding:50px;
+      margin:20px auto 60px;
+      max-width:800px;
+      box-shadow:
+        0 40px 90px rgba(184,252,141,.25),
+        inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .offer-title{
+      font-size:58px;
+      font-weight:800;
+      color:var(--neon);
+      text-transform:uppercase;
+      margin-bottom:15px;
+      text-shadow:0 0 30px rgba(184,252,141,.35);
+      letter-spacing:-1px;
+    }
+
+    .offer-subtitle{
+      font-size:26px;
+      margin-bottom:35px;
+      line-height:1.4;
+      opacity:.95;
+    }
+
+    .offer-subtitle .gold{
+      color:var(--gold1);
+      font-weight:700;
+    }
+
+    .offer-list{
+      text-align:left;
+      margin:35px 0;
+      font-size:22px;
+      line-height:1.8;
+    }
+
+    .offer-list li{
+      margin:16px 0;
+      padding-left:35px;
+      position:relative;
+      list-style:none;
+    }
+
+    .offer-list li:before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      color:var(--neon);
+      font-weight:bold;
+      font-size:26px;
+    }
+
+    .price-section{
+      margin:40px 0 35px;
+      text-align:center;
+    }
+
+    .price{
+      font-size:100px;
+      font-weight:800;
+      color:var(--neon);
+      text-shadow:0 0 40px rgba(184,252,141,.45);
+      line-height:1;
+      margin:15px 0;
+      letter-spacing:-2px;
+    }
+
+    .price-compare{
+      font-size:26px;
+      color:var(--red);
+      text-decoration:line-through;
+      opacity:.85;
+      margin-bottom:30px;
+    }
+
+    /* Spots Counter */
+    .spots-section{
+      margin:25px 0 0;
+      padding:0;
+      background:transparent;
+      border:none;
+    }
+
+    .spots-bar-container{
+      background:rgba(0,0,0,.4);
+      height:28px;
+      border-radius:999px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(255,59,59,.25);
+    }
+
+    .spots-bar{
+      height:100%;
+      background:linear-gradient(90deg,#FF3B3B,#FF6B6B);
+      transition:width 1.5s ease-out;
+      border-radius:999px;
+      box-shadow:0 0 15px rgba(255,59,59,.4);
+    }
+
+    .spots-text{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      font-weight:700;
+      color:#fff;
+      text-shadow:0 0 10px rgba(0,0,0,.9);
+      z-index:1;
+      letter-spacing:.5px;
+    }
+
+    .cta-checkout{
+      display:block;
+      width:90%;
+      max-width:500px;
+      padding:24px 50px;
+      margin:0 auto 20px;
+      border-radius:999px;
+      border:none;
+      background:linear-gradient(135deg,#FFD700,#FF8C00);
+      color:#000;
+      font-family:'Oswald',sans-serif;
+      font-size:26px;
+      font-weight:900;
+      text-transform:uppercase;
+      cursor:pointer;
+      box-shadow:
+        0 12px 30px rgba(255,215,0,.35),
+        0 6px 15px rgba(255,165,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.45);
+      transition:all .35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position:relative;
+      overflow:hidden;
+      letter-spacing:1px;
+      transform:perspective(1px) translateZ(0);
+    }
+
+    .cta-checkout:hover{
+      transform:translateY(-5px) scale(1.04);
+      box-shadow:
+        0 18px 40px rgba(255,215,0,.45),
+        0 10px 22px rgba(255,165,0,.3),
+        inset 0 1px 0 rgba(255,255,255,.55);
+    }
+
+    .cta-checkout:before{
+      content:"";
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255,255,255,.6) 50%,
+        transparent 70%
+      );
+      transform:rotate(45deg) translateX(-100%);
+      transition:transform .7s;
+    }
+
+    .cta-checkout:hover:before{
+      transform:rotate(45deg) translateX(100%);
+    }
+
+    .cta-checkout:active{
+      transform:translateY(-2px) scale(1.02);
+    }
+
+    /* WhatsApp Support Section */
+    .support-section{
+      margin:70px 0 50px;
+      padding:60px 40px;
+      text-align:center;
+      background:linear-gradient(145deg, rgba(37,211,102,.08), rgba(18,140,126,.05));
+      border:2px solid rgba(37,211,102,.3);
+      border-radius:30px;
+      box-shadow:0 20px 60px rgba(37,211,102,.15);
+    }
+
+    .support-text{
+      font-size:42px;
+      margin-bottom:18px;
+      font-weight:800;
+      line-height:1.2;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+    
+    .support-subtext{
+      font-size:32px;
+      margin-bottom:35px;
+      opacity:.94;
+      font-weight:600;
+      line-height:1.3;
+    }
+    
+    .arrows-down{
+      font-size:50px;
+      margin:18px 0 25px;
+      color:#25D366;
+      animation:bounce-arrows 1.8s ease-in-out infinite;
+      filter:drop-shadow(0 0 20px rgba(37,211,102,.4));
+    }
+    
+    @keyframes bounce-arrows{
+      0%, 100%{transform:translateY(0)}
+      50%{transform:translateY(15px)}
+    }
+
+    .whatsapp-button{
+      display:inline-flex;
+      align-items:center;
+      gap:16px;
+      padding:24px 60px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#25D366,#128C7E);
+      color:#fff;
+      text-decoration:none;
+      font-size:26px;
+      font-weight:900;
+      text-transform:uppercase;
+      box-shadow:
+        0 15px 40px rgba(37,211,102,.4),
+        inset 0 1px 0 rgba(255,255,255,.35);
+      transition:all .35s;
+      letter-spacing:1.2px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .whatsapp-button:before{
+      content:"";
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255,255,255,.3) 50%,
+        transparent 70%
+      );
+      transform:rotate(45deg) translateX(-100%);
+      transition:transform .6s;
+    }
+
+    .whatsapp-button:hover{
+      transform:translateY(-5px) scale(1.03);
+      box-shadow:
+        0 22px 50px rgba(37,211,102,.5),
+        inset 0 1px 0 rgba(255,255,255,.45);
+    }
+    
+    .whatsapp-button:hover:before{
+      transform:rotate(45deg) translateX(100%);
+    }
+
+    .whatsapp-button svg{
+      width:32px;
+      height:32px;
+      fill:#fff;
+      position:relative;
+      z-index:1;
+    }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float{
+      position:fixed;
+      width:65px;
+      height:65px;
+      bottom:25px;
+      right:25px;
+      background:linear-gradient(135deg,#25D366,#128C7E);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 8px 25px rgba(37,211,102,.4);
+      cursor:pointer;
+      z-index:9999;
+      border:none;
+      transition:all .3s;
+      animation:float 3s ease-in-out infinite;
+    }
+
+    .whatsapp-float:hover{
+      transform:scale(1.1);
+      box-shadow:0 12px 35px rgba(37,211,102,.5);
+    }
+
+    .whatsapp-float img{
+      width:38px;
+      height:38px;
+    }
+
+    @keyframes float{
+      0%, 100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    /* Stripe Modal Overlay */
+    .stripe-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.92);
+      backdrop-filter:blur(8px);
+      z-index:10000;
+      padding:20px;
+      overflow-y:auto;
+    }
+
+    .stripe-modal.active{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding-top:40px;
+    }
+
+    .stripe-modal-close{
+      position:fixed;
+      top:20px;
+      right:20px;
+      width:50px;
+      height:50px;
+      background:rgba(255,255,255,.1);
+      border:2px solid rgba(255,255,255,.3);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:all .3s;
+      z-index:10001;
+      color:#fff;
+      font-size:32px;
+      font-weight:300;
+      line-height:1;
+    }
+
+    .stripe-modal-close:hover{
+      background:rgba(255,255,255,.2);
+      border-color:rgba(255,255,255,.5);
+      transform:rotate(90deg);
+    }
+
+    .stripe-iframe-container{
+      width:100%;
+      max-width:800px;
+      background:#fff;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 30px 90px rgba(0,0,0,.5);
+      margin-bottom:30px;
+    }
+
+    .stripe-iframe{
+      width:100%;
+      height:700px;
+      border:none;
+      display:block;
+    }
+
+    .modal-spots-bar{
+      width:100%;
+      max-width:600px;
+      margin-top:20px;
+      padding:20px;
+      background:rgba(255,59,59,.1);
+      border:2px solid var(--red);
+      border-radius:20px;
+      backdrop-filter:blur(10px);
+    }
+
+    .modal-spots-title{
+      font-size:20px;
+      font-weight:700;
+      color:var(--red);
+      text-transform:uppercase;
+      margin-bottom:15px;
+      text-align:center;
+      letter-spacing:.5px;
+    }
+
+    .modal-spots-bar-container{
+      background:rgba(0,0,0,.5);
+      height:32px;
+      border-radius:999px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(255,59,59,.3);
+    }
+
+    .modal-spots-bar-fill{
+      height:100%;
+      background:linear-gradient(90deg,#FF3B3B,#FF6B6B);
+      transition:width 1.5s ease-out;
+      border-radius:999px;
+      box-shadow:0 0 20px rgba(255,59,59,.5);
+    }
+
+    .modal-spots-text{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:15px;
+      font-weight:700;
+      color:#fff;
+      text-shadow:0 0 10px rgba(0,0,0,.9);
+      z-index:1;
+      letter-spacing:.5px;
+    }
+
+    footer{
+      margin-top:60px;
+      padding-top:40px;
+      border-top:1px solid rgba(184,252,141,.18);
+      background:linear-gradient(180deg,transparent,rgba(0,0,0,1));
+    }
+    
+    .footer-content{
+      text-align:center;
+      padding-bottom:15px;
+    }
+    
+    .footer-logo{
+      max-width:200px;
+      width:100%;
+      opacity:.88;
+      margin-bottom:18px;
+    }
+    
+    .disclaimer{
+      max-width:1000px;
+      margin:0 auto 18px;
+      font-size:13px;
+      line-height:1.9;
+      color:rgba(255,255,255,.48);
+      font-family:system-ui,sans-serif;
+      padding:0 25px;
+    }
+    
+    .footer-links{
+      display:flex;
+      gap:32px;
+      justify-content:center;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    
+    .footer-links a{
+      color:rgba(255,255,255,.68);
+      text-decoration:none;
+      font-size:14px;
+      font-family:system-ui,sans-serif;
+      transition:.3s;
+    }
+    
+    .footer-links a:hover{
+      color:var(--neon);
+    }
+
+    @media (max-width:768px){
+      .top-banner{margin-top:20px; margin-bottom:28px}
+      .exclusive-banner{
+        padding:8px 26px;
+        font-size:11px;
+      }
+      .main{padding:8px 0 40px}
+      .headline{font-size:46px}
+      .intro-text{font-size:20px}
+      .offer-box{padding:35px 28px}
+      .offer-title{font-size:40px}
+      .offer-subtitle{font-size:21px}
+      .offer-list{font-size:19px}
+      .price{font-size:78px}
+      .price-compare{font-size:22px}
+      .cta-checkout{
+        font-size:21px;
+        padding:20px 45px;
+        width:92%;
+      }
+      .spots-bar-container{height:26px}
+      .spots-text{font-size:12px}
+      .support-section{
+        margin:55px 0 45px;
+        padding:45px 30px;
+      }
+      .support-text{font-size:34px}
+      .support-subtext{font-size:26px}
+      .arrows-down{font-size:48px}
+      .arrows-down svg{width:60px; height:60px}
+      .whatsapp-button{
+        font-size:21px;
+        padding:20px 45px;
+      }
+      .whatsapp-button svg{
+        width:28px;
+        height:28px;
+      }
+      .whatsapp-float{
+        width:60px;
+        height:60px;
+        bottom:20px;
+        right:20px;
+      }
+      .whatsapp-float img{
+        width:35px;
+        height:35px;
+      }
+      .stripe-iframe{height:650px}
+      .modal-spots-bar{max-width:500px}
+      .modal-spots-title{font-size:18px}
+      .modal-spots-bar-container{height:30px}
+      .modal-spots-text{font-size:14px}
+    }
+    
+    @media (max-width:480px){
+      .top-banner{margin-bottom:22px; margin-top:15px}
+      .exclusive-banner{
+        padding:7px 20px;
+        font-size:10px;
+      }
+      .main{padding:5px 0 40px}
+      .headline{
+        font-size:32px;
+        margin-bottom:22px;
+        line-height:1.15;
+      }
+      .intro-text{
+        font-size:17px;
+        margin-bottom:30px;
+      }
+      .offer-box{
+        padding:28px 20px;
+        margin:15px auto 40px;
+      }
+      .offer-title{
+        font-size:30px;
+        margin-bottom:12px;
+      }
+      .offer-subtitle{
+        font-size:17px;
+        margin-bottom:25px;
+      }
+      .offer-list{
+        font-size:15px;
+        margin:25px 0;
+        line-height:1.7;
+      }
+      .offer-list li{
+        padding-left:28px;
+        margin:12px 0;
+      }
+      .offer-list li:before{
+        font-size:22px;
+      }
+      .price{font-size:58px}
+      .price-compare{
+        font-size:19px;
+        margin-bottom:25px;
+      }
+      .cta-checkout{
+        font-size:18px;
+        padding:18px 35px;
+        width:92%;
+        margin-bottom:20px;
+      }
+      .spots-bar-container{height:24px}
+      .spots-text{font-size:11px}
+      .support-section{
+        margin:45px 0 35px;
+        padding:35px 20px;
+      }
+      .support-text{
+        font-size:26px;
+        padding:0 10px;
+      }
+      .support-subtext{
+        font-size:20px;
+        margin-bottom:25px;
+      }
+      .arrows-down{
+        font-size:45px;
+        margin:15px 0 22px;
+      }
+      .arrows-down svg{width:55px; height:55px}
+      .whatsapp-button{
+        font-size:17px;
+        padding:18px 35px;
+      }
+      .whatsapp-button svg{
+        width:24px;
+        height:24px;
+      }
+      .footer-logo{max-width:140px}
+      .whatsapp-float{
+        width:55px;
+        height:55px;
+        bottom:18px;
+        right:18px;
+      }
+      .whatsapp-float img{
+        width:32px;
+        height:32px;
+      }
+      .stripe-modal{padding:15px; padding-top:70px}
+      .stripe-modal-close{
+        top:15px;
+        right:15px;
+        width:45px;
+        height:45px;
+        font-size:28px;
+      }
+      .stripe-iframe{height:600px}
+      .modal-spots-bar{
+        max-width:100%;
+        padding:15px;
+        margin-top:15px;
+      }
+      .modal-spots-title{font-size:16px; margin-bottom:12px}
+      .modal-spots-bar-container{height:28px}
+      .modal-spots-text{font-size:13px}
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="grid"></div>
+  
+  <div class="container">
+    <div class="top-banner">
+      <div class="exclusive-banner">
+        OPPORTUNITÀ ESCLUSIVA
+      </div>
+    </div>
+
+    <main class="main">
+      <h1 class="headline">ACCEDI AD UNA CONSULENZA<br>PRIVATA CON THOMAS</h1>
+
+      <p class="intro-text">
+        Questa è l'opportunità di avere Thomas completamente a tua disposizione per 60 minuti, dove potrai fargli tutte le domande che vuoi sul tuo business digitale
+      </p>
+
+      <div class="offer-box">
+        <h3 class="offer-title">CONSULENZA ONE TO ONE</h3>
+        <p class="offer-subtitle">
+          60 minuti di chiamata privata con Thomas Macorig<br>
+          <span class="gold">Completamente personalizzata</span>
+        </p>
+
+        <ul class="offer-list">
+          <li>Analisi approfondita del tuo business model e identificazione delle opportunità di crescita immediate</li>
+          <li>Perfetta anche se parti da zero: riceverai una roadmap chiara e dettagliata per iniziare nel modo giusto</li>
+          <li>Strategia personalizzata per lanciare o scalare il tuo infobusiness nei prossimi 90 giorni</li>
+          <li>Revisione completa del tuo funnel di vendita e ottimizzazione per massimizzare le conversioni</li>
+          <li>Piano d'azione step-by-step con priorità chiare e timeline realistiche</li>
+          <li>Registrazione completa della consulenza da rivedere quando vuoi</li>
+        </ul>
+
+        <div class="price-section">
+          <div class="price">500€</div>
+          <div class="price-compare">VALORE REALE: €1.500</div>
+        </div>
+
+        <button class="cta-checkout" id="checkoutBtn">
+          → PRENOTA ORA LA TUA CONSULENZA ←
+        </button>
+
+        <!-- Spots Counter -->
+        <div class="spots-section">
+          <div class="spots-bar-container">
+            <div class="spots-bar" id="spotsBar"></div>
+            <div class="spots-text" id="spotsText">20 POSTI DISPONIBILI</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Support Section -->
+      <div class="support-section">
+        <p class="support-text">
+          Hai dubbi o domande?
+        </p>
+        <p class="support-subtext">
+          Contatta il nostro tutor su WhatsApp
+        </p>
+        <div class="arrows-down">
+          <svg width="65" height="65" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <a href="https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+vorrei+acquistare+la+consulenza+di+1h+con+Thomas" target="_blank" class="whatsapp-button">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          CONTATTACI
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <img class="footer-logo" src="2.webp" alt="Logo">
+        <p class="disclaimer">
+          I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo ai contenuti gratuiti di infobiz.com potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito.
+        </p>
+        <div class="footer-links">
+          <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank">Privacy Policy</a>
+          <a href="https://learn.infobiz.com/cookie-policy/" target="_blank">Cookie Policy</a>
+          <a href="https://learn.infobiz.com/terms-of-service/" target="_blank">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Floating WhatsApp Button -->
+  <button class="whatsapp-float" onclick="openWhatsApp()">
+    <img src="https://learn.infobiz.com/wp-content/uploads/2022/10/whatsApp.png" alt="WhatsApp">
+  </button>
+
+  <!-- Stripe Modal -->
+  <div class="stripe-modal" id="stripeModal">
+    <button class="stripe-modal-close" onclick="closeStripeModal()">×</button>
+    
+    <div class="stripe-iframe-container">
+      <iframe 
+        id="stripeIframe"
+        class="stripe-iframe"
+        src=""
+        allow="payment"
+      ></iframe>
+    </div>
+
+    <div class="modal-spots-bar">
+      <div class="modal-spots-title">⚠️ Posti Limitati</div>
+      <div class="modal-spots-bar-container">
+        <div class="modal-spots-bar-fill" id="modalSpotsBar"></div>
+        <div class="modal-spots-text" id="modalSpotsText">20 POSTI DISPONIBILI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Vidalytics -->
+  <script type="text/javascript">
+  (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+      if (!vsl){vsl=function(u,cb){
+          if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+          if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+          i.getElementsByTagName("head")[0].appendChild(s);
+      };}
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+  })(window, document, 'Vidalytics', 'vidalytics_embed_4PQhLTaHHKqckZ78', 'https://fast.vidalytics.com/embeds/41zpqkg6/4PQhLTaHHKqckZ78/');
+  </script>
+
+  <!-- Main Script -->
+  <script>
+    // Spots Counter Animation
+    const totalSpots = 20;
+    let availableSpots = Math.floor(Math.random() * 8) + 13; // Random tra 13-20
+    
+    function updateSpotsBar() {
+      const percentage = (availableSpots / totalSpots) * 100;
+      const spotsBar = document.getElementById('spotsBar');
+      const spotsText = document.getElementById('spotsText');
+      const modalSpotsBar = document.getElementById('modalSpotsBar');
+      const modalSpotsText = document.getElementById('modalSpotsText');
+      
+      // Aggiorna barra principale
+      if (spotsBar && spotsText) {
+        spotsBar.style.width = percentage + '%';
+        spotsText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
+      }
+      
+      // Aggiorna barra nel modal
+      if (modalSpotsBar && modalSpotsText) {
+        modalSpotsBar.style.width = percentage + '%';
+        modalSpotsText.textContent = availableSpots + ' POSTI RIMANENTI SU ' + totalSpots;
+      }
+      
+      // Diminuisci i posti ogni 25-45 secondi (più veloce)
+      if (availableSpots > 5) {
+        const randomDelay = Math.floor(Math.random() * 20000) + 25000;
+        setTimeout(() => {
+          availableSpots--;
+          updateSpotsBar();
+        }, randomDelay);
+      }
+    }
+    
+    // Inizializza la barra
+    setTimeout(updateSpotsBar, 1000);
+
+    // WhatsApp Functions
+    function openWhatsApp() {
+      window.open("https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+vorrei+maggiori+informazioni+sulla+consulenza+con+Thomas", "_blank");
+    }
+
+    // Stripe Modal Functions
+    function openStripeModal() {
+      const modal = document.getElementById('stripeModal');
+      const iframe = document.getElementById('stripeIframe');
+      
+      // Imposta l'URL di Stripe nell'iframe
+      iframe.src = 'https://buy.stripe.com/aFa6oHe3t7hP5HTfbu7Vm3S';
+      
+      // Mostra il modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Aggiorna la barra nel modal
+      updateSpotsBar();
+    }
+
+    function closeStripeModal() {
+      const modal = document.getElementById('stripeModal');
+      const iframe = document.getElementById('stripeIframe');
+      
+      // Chiudi il modal
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      
+      // Resetta l'iframe
+      iframe.src = '';
+    }
+
+    // Chiudi modal con ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeStripeModal();
+      }
+    });
+
+    // Checkout Button - Open Stripe Modal
+    document.getElementById('checkoutBtn').addEventListener('click', function() {
+      // Track event
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: 'Consulenza Thomas 1h',
+          value: 500.00,
+          currency: 'EUR'
+        });
+      }
+      
+      // Apri il modal invece del popup
+      openStripeModal();
+    });
+
+    // Auto-scroll su mobile
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        const headline = document.querySelector('.headline');
+        if (headline) {
+          window.scrollTo({
+            top: headline.offsetTop - 20,
+            behavior: 'smooth'
+          });
+        }
+      }, 500);
+    }
+  </script>
+</body>
+</html>

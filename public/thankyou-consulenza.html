@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acquisto Confermato - Consulenza con Thomas</title>
+
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2180408928835338');
+  fbq('track', 'PageView');
+  fbq('track', 'Purchase', {
+    value: 500.00,
+    currency: 'EUR',
+    content_name: 'Consulenza Thomas 1h',
+    content_type: 'product'
+  });
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Oswald', sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(184,252,141,.2) 0%, transparent 50%),
+        radial-gradient(circle at 50% 70%, rgba(184,252,141,.15) 0%, transparent 55%),
+        #000;
+    }
+    
+    .grid {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: .08;
+      background-image:
+        linear-gradient(rgba(184,252,141,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,252,141,1) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      padding: 40px 25px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      min-height: calc(100vh - 180px);
+    }
+
+    .success-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 35px;
+      background: linear-gradient(135deg, #B8FC8D, #8FD86F);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 65px;
+      box-shadow: 
+        0 0 60px rgba(184,252,141,.4),
+        inset 0 2px 0 rgba(255,255,255,.3);
+      animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    @keyframes pop-in {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      color: #B8FC8D;
+      font-size: 72px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      text-shadow: 0 0 40px rgba(184,252,141,0.4);
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      opacity: 0.96;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+    
+    .info-box {
+      background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+      border: 2px solid #B8FC8D;
+      border-radius: 30px;
+      padding: 45px;
+      margin: 45px auto;
+      max-width: 750px;
+      box-shadow:
+        0 40px 90px rgba(184,252,141,.25),
+        inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    
+    .info-title {
+      font-size: 38px;
+      font-weight: 700;
+      color: #B8FC8D;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      text-shadow: 0 0 25px rgba(184,252,141,.3);
+    }
+    
+    .info-text {
+      font-size: 26px;
+      line-height: 1.6;
+      opacity: .96;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    .email-highlight {
+      color: #FFD700;
+      font-weight: 800;
+      text-shadow: 0 0 25px rgba(255,215,0,.4);
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    
+    .checklist {
+      text-align: left;
+      margin: 35px 0;
+      font-size: 22px;
+      line-height: 1.8;
+    }
+    
+    .checklist li {
+      margin: 16px 0;
+      padding-left: 35px;
+      position: relative;
+      list-style: none;
+    }
+    
+    .checklist li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #B8FC8D;
+      font-weight: bold;
+      font-size: 26px;
+    }
+    
+    .support-section {
+      margin: 50px 0 40px;
+      text-align: center;
+    }
+    
+    .support-text {
+      font-size: 22px;
+      margin-bottom: 22px;
+      opacity: .92;
+      font-weight: 500;
+    }
+    
+    .email-link {
+      display: inline-block;
+      color: #B8FC8D;
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: 700;
+      padding: 18px 45px;
+      border: 2px solid #B8FC8D;
+      border-radius: 50px;
+      transition: all .3s;
+      letter-spacing: .5px;
+    }
+    
+    .email-link:hover {
+      background: rgba(184,252,141,.1);
+      box-shadow: 0 0 30px rgba(184,252,141,.3);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(184,252,141,0.18);
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,1));
+      position: relative;
+      z-index: 2;
+    }
+    
+    .footer-content {
+      text-align: center;
+      padding-bottom: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      max-width: 200px;
+      width: 100%;
+      opacity: 0.88;
+      margin-bottom: 18px;
+    }
+    
+    .footer-disclaimer {
+      max-width: 1000px;
+      margin: 0 auto 18px;
+      font-size: 13px;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.48);
+      font-family: system-ui, sans-serif;
+      padding: 0 25px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.68);
+      text-decoration: none;
+      font-size: 14px;
+      font-family: system-ui, sans-serif;
+      transition: 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: #B8FC8D;
+    }
+
+    @media (max-width: 768px) {
+      .success-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 55px;
+        margin-bottom: 28px;
+      }
+      h1 { font-size: 56px; }
+      .subtitle { font-size: 26px; }
+      .info-box { padding: 35px 25px; }
+      .info-title { font-size: 32px; }
+      .info-text { font-size: 20px; }
+      .support-text { font-size: 19px; }
+      .email-link {
+        font-size: 23px;
+        padding: 16px 38px;
+      }
+      .footer-logo { max-width: 160px; }
+    }
+    
+    @media (max-width: 480px) {
+      .container { padding: 30px 20px 60px; }
+      .success-icon {
+        width: 85px;
+        height: 85px;
+        font-size: 45px;
+        margin-bottom: 22px;
+      }
+      h1 { 
+        font-size: 40px;
+        margin-bottom: 18px;
+      }
+      .subtitle { 
+        font-size: 20px;
+        line-height: 1.3;
+      }
+      .info-box {
+        padding: 28px 18px;
+        margin: 35px auto;
+      }
+      .info-title {
+        font-size: 26px;
+        margin-bottom: 20px;
+      }
+      .info-text {
+        font-size: 17px;
+        line-height: 1.5;
+      }
+      .support-section { margin: 40px 0 35px; }
+      .support-text {
+        font-size: 17px;
+        padding: 0 10px;
+        margin-bottom: 18px;
+      }
+      .email-link {
+        font-size: 18px;
+        padding: 14px 28px;
+      }
+      .footer-logo { max-width: 130px; }
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="grid"></div>
+  
+  <div class="container">
+    <div class="success-icon">✓</div>
+
+    <h1>CONFERMATO!</h1>
+    
+    <p class="subtitle">
+      La tua consulenza è stata prenotata con successo
+    </p>
+
+    <div class="info-box">
+      <h2 class="info-title">Cosa succede ora?</h2>
+      
+      <p class="info-text">
+        Riceverai tutte le informazioni via <span class="email-highlight">email</span> entro pochi minuti
+      </p>
+      
+      <p class="info-text" style="margin-top:30px; font-size:20px; opacity:.85;">
+        <strong>Controlla anche la cartella spam/promozioni</strong><br>
+        se non dovessi trovare l'email nella inbox
+      </p>
+    </div>
+
+    <div class="support-section">
+      <p class="support-text">
+        Per qualsiasi assistenza, contatta:
+      </p>
+      <a href="mailto:info@infobiz.com" class="email-link">
+        info@infobiz.com
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <img src="2.webp" alt="Logo" class="footer-logo">
+      <p class="footer-disclaimer">
+        I nostri risultati e quelli dei miei studenti non sono tipici. Acquistando o accedendo ai contenuti gratuiti di infobiz.com potrai guadagnare di meno o di più rispetto ai risultati che vedi. Tutti i business comportano rischi e tempo per consolidarsi. Se stai cercando guadagni facili questo NON fa per te. Lasciando i tuoi dati accetti la Privacy Policy del sito.
+      </p>
+      <div class="footer-links">
+        <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank">Privacy Policy</a>
+        <a href="https://learn.infobiz.com/cookie-policy/" target="_blank">Cookie Policy</a>
+        <a href="https://learn.infobiz.com/terms-of-service/" target="_blank">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    console.log('Purchase event tracked: €500 - Consulenza Thomas 1h');
+  </script>
+</body>
+</html>

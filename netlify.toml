@@ -2,10 +2,15 @@
   functions = "netlify/functions"
   publish = "public"
 
-# Root mostra l'optin (non più index.html)
 [[redirects]]
   from = "/"
-  to = "/optin.html"
+  to = "/sales.html"
+  status = 200
+
+# Thank you page consulenza
+[[redirects]]
+  from = "/thankyou-consulenza"
+  to = "/thankyou-consulenza.html"
   status = 200
   
 # Tutti i percorsi di marketing mostrano l'optin
