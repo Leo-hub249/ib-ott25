@@ -1,3 +1,12 @@
+Ecco il codice aggiornato con:
+
+* titolo forzato su **una sola riga**
+* **tre** frecce più piccole (sia sotto al titolo, sia nella sezione WhatsApp)
+* sostituzione del video con **Vidalytics** usando lo snippet che mi hai dato
+
+Copia-incolla tutto così com’è 👇
+
+```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -80,27 +89,44 @@
     }
 
     .headline{
-      font-size:64px;
+      /* una sola riga */
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+
+      font-size:clamp(28px, 7.2vw, 64px);
       font-weight:800;
       color:var(--neon);
       text-transform:uppercase;
-      margin-bottom:35px;
-      line-height:1.15;
+      margin-bottom:30px;
+      line-height:1.1;
       letter-spacing:-1px;
       text-shadow:0 0 40px rgba(184,252,141,.3);
     }
 
-    .arrows-down{
-      font-size:60px;
-      margin:25px 0 40px;
+    /* Contenitore per 3 frecce */
+    .arrows-down,
+    .support-arrows{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin:18px 0 30px;
       color:var(--neon);
+      filter:drop-shadow(0 0 20px rgba(184,252,141,.4));
       animation:bounce-arrows 1.8s ease-in-out infinite;
-      filter:drop-shadow(0 0 30px rgba(184,252,141,.5));
     }
-    
+
+    .arrows-down svg,
+    .support-arrows svg{
+      width:30px;  /* più piccole */
+      height:30px; /* più piccole */
+      flex:0 0 auto;
+    }
+
     @keyframes bounce-arrows{
       0%, 100%{transform:translateY(0)}
-      50%{transform:translateY(20px)}
+      50%{transform:translateY(10px)}
     }
 
     .video-container{
@@ -112,17 +138,7 @@
       background:#000;
       border:2px solid rgba(184,252,141,.2);
       position:relative;
-      padding-bottom:56.25%;
-      height:0;
-    }
-
-    .video-container iframe{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      border:0;
+      /* niente padding-bottom/height qui: lo gestisce il div Vidalytics interno */
     }
 
     .support-section{
@@ -137,7 +153,7 @@
 
     .support-text{
       font-size:40px;
-      margin-bottom:15px;
+      margin-bottom:10px;
       font-weight:800;
       line-height:1.2;
       text-transform:uppercase;
@@ -145,24 +161,11 @@
     }
     
     .support-subtext{
-      font-size:30px;
-      margin-bottom:30px;
+      font-size:28px;
+      margin-bottom:10px;
       opacity:.94;
       font-weight:600;
       line-height:1.3;
-    }
-    
-    .support-arrows{
-      font-size:48px;
-      margin:20px 0 28px;
-      color:#25D366;
-      animation:bounce-arrows-wa 1.8s ease-in-out infinite;
-      filter:drop-shadow(0 0 20px rgba(37,211,102,.4));
-    }
-    
-    @keyframes bounce-arrows-wa{
-      0%, 100%{transform:translateY(0)}
-      50%{transform:translateY(15px)}
     }
 
     .whatsapp-button{
@@ -307,13 +310,11 @@
 
     @media (max-width:768px){
       .main{padding:40px 0 60px}
-      .headline{font-size:42px;margin-bottom:28px}
-      .arrows-down{font-size:50px;margin:20px 0 35px}
+      .headline{font-size:clamp(24px, 7.5vw, 42px)}
       .video-container{margin-bottom:50px}
       .support-section{margin:60px 0 50px;padding:45px 30px}
       .support-text{font-size:32px}
-      .support-subtext{font-size:24px}
-      .support-arrows{font-size:45px;margin:18px 0 25px}
+      .support-subtext{font-size:22px}
       .whatsapp-button{font-size:22px;padding:20px 45px}
       .whatsapp-button svg{width:30px;height:30px}
       .whatsapp-float{width:60px;height:60px;bottom:20px;right:20px}
@@ -322,13 +323,11 @@
     
     @media (max-width:480px){
       .main{padding:30px 0 50px}
-      .headline{font-size:32px;margin-bottom:22px;line-height:1.2}
-      .arrows-down{font-size:45px;margin:18px 0 30px}
+      .headline{font-size:clamp(20px, 8.2vw, 32px);letter-spacing:-.5px}
       .video-container{margin-bottom:45px;border-radius:16px}
       .support-section{margin:50px 0 40px;padding:35px 22px}
       .support-text{font-size:26px;padding:0 10px}
-      .support-subtext{font-size:20px;margin-bottom:25px}
-      .support-arrows{font-size:42px;margin:15px 0 22px}
+      .support-subtext{font-size:20px;margin-bottom:18px}
       .whatsapp-button{font-size:18px;padding:18px 35px;gap:12px}
       .whatsapp-button svg{width:26px;height:26px}
       .footer-logo{max-width:140px}
@@ -343,31 +342,45 @@
   
   <div class="container">
     <main class="main">
-      <h1 class="headline">GUARDA LA REPLICA<br>DELL'EVENTO</h1>
+      <!-- Titolo in UNA riga -->
+      <h1 class="headline">GUARDA LA REPLICA DELL'EVENTO</h1>
 
-      <div class="arrows-down">
-        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Tre frecce piccole -->
+      <div class="arrows-down" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
 
+      <!-- Video Vidalytics -->
       <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/1038948639?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="LIVE PUBBLICA 9 OTT"></iframe>
+        <div id="vidalytics_embed_lqSMzwO5LrVT9iIT" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
       </div>
 
       <div class="support-section">
-        <p class="support-text">
-          Hai dubbi o domande?
-        </p>
-        <p class="support-subtext">
-          Contatta il nostro tutor su WhatsApp
-        </p>
-        <div class="support-arrows">
-          <svg width="65" height="65" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <p class="support-text">Hai dubbi o domande?</p>
+        <p class="support-subtext">Contatta il nostro tutor su WhatsApp</p>
+
+        <!-- Tre frecce piccole verso il pulsante -->
+        <div class="support-arrows" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <a href="https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+ho+visto+la+replica+e+vorrei+maggiori+informazioni" target="_blank" class="whatsapp-button">
+
+        <a href="https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+ho+visto+la+replica+e+vorrei+maggiori+informazioni" target="_blank" class="whatsapp-button" aria-label="Contattaci su WhatsApp">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
@@ -391,11 +404,23 @@
     </footer>
   </div>
 
-  <button class="whatsapp-float" onclick="openWhatsApp()">
+  <button class="whatsapp-float" onclick="openWhatsApp()" aria-label="Apri WhatsApp">
     <img src="https://learn.infobiz.com/wp-content/uploads/2022/10/whatsApp.png" alt="WhatsApp">
   </button>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
+  <!-- Vidalytics Loader -->
+  <script type="text/javascript">
+  (function (v, i, d, a, l, y, t, c, s) {
+      y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+      if (!vsl){vsl=function(u,cb){
+          if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+          if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+          i.getElementsByTagName("head")[0].appendChild(s);
+      }; }
+      vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+  })(window, document, 'Vidalytics', 'vidalytics_embed_lqSMzwO5LrVT9iIT', 'https://fast.vidalytics.com/embeds/41zpqkg6/lqSMzwO5LrVT9iIT/');
+  </script>
+
   <script>
     function openWhatsApp() {
       window.open("https://api.whatsapp.com/send/?phone=393714408271&text=Ciao+Matteo,+ho+visto+la+replica+e+vorrei+maggiori+informazioni", "_blank");
@@ -403,3 +428,4 @@
   </script>
 </body>
 </html>
+```
