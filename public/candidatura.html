@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidatura Grafico - INFOBIZ</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2180408928835338');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --neon:#B8FC8D;
+      --gold1:#FFD700; 
+      --gold2:#FFC700;
+    }
+    
+    *{box-sizing:border-box;margin:0;padding:0}
+    
+    body{
+      font-family:'Oswald',sans-serif;
+      color:#fff;
+      background:#000;
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+    }
+
+    .background{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(184,252,141,.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 70%, rgba(184,252,141,.15) 0%, transparent 50%),
+        #000;
+    }
+    
+    .grid{
+      position:fixed;
+      inset:0;
+      z-index:1;
+      opacity:.08;
+      background-image:
+        linear-gradient(rgba(184,252,141,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,252,141,1) 1px, transparent 1px);
+      background-size:50px 50px;
+    }
+
+    .container{
+      max-width:800px;
+      margin:0 auto;
+      padding:40px 20px;
+      position:relative;
+      z-index:2;
+    }
+
+    .top-banner{
+      text-align:center;
+      padding:10px 0 20px;
+    }
+    
+    .live-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 20px;
+      border-radius:999px;
+      background:rgba(40,40,40,.9);
+      backdrop-filter:blur(12px);
+      font-size:14px;
+      font-weight:400;
+      letter-spacing:.1px;
+    }
+    
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--neon);
+      box-shadow:
+        0 0 20px rgba(184,252,141,.9),
+        0 0 40px rgba(184,252,141,.6),
+        0 0 60px rgba(184,252,141,.4),
+        inset 0 0 10px rgba(255,255,255,.5);
+      animation:pulse 1.5s infinite;
+      filter:brightness(1.2);
+    }
+    
+    @keyframes pulse{
+      0%, 100%{
+        box-shadow:
+          0 0 20px rgba(184,252,141,.9),
+          0 0 40px rgba(184,252,141,.6),
+          0 0 60px rgba(184,252,141,.4),
+          inset 0 0 10px rgba(255,255,255,.5);
+        transform:scale(1);
+      }
+      50%{
+        box-shadow:
+          0 0 30px rgba(184,252,141,1),
+          0 0 50px rgba(184,252,141,.8),
+          0 0 80px rgba(184,252,141,.6),
+          inset 0 0 15px rgba(255,255,255,.7);
+        transform:scale(1.1);
+      }
+    }
+
+    .hero{
+      text-align:center;
+      padding:0 0 30px;
+    }
+    
+    .headline{
+      font-family:'Oswald',sans-serif;
+      text-transform:uppercase;
+      line-height:1.1;
+      letter-spacing:0;
+    }
+    
+    .headline .line1{
+      font-size:52px;
+      font-weight:700;
+      color:#fff;
+      margin-bottom:15px;
+      line-height:1.1;
+    }
+    
+    .headline .highlight{
+      color:var(--neon);
+      text-shadow:
+        0 0 25px rgba(184,252,141,.3),
+        0 0 50px rgba(184,252,141,.15);
+    }
+
+    .sub{
+      font-family:'Oswald',sans-serif;
+      font-size:22px;
+      font-weight:400;
+      line-height:1.5;
+      margin:20px auto;
+      max-width:700px;
+      opacity:.95;
+    }
+
+    .form-container{
+      background:rgba(20,20,20,.95);
+      border:1px solid rgba(184,252,141,.2);
+      border-radius:20px;
+      padding:40px;
+      margin-top:30px;
+      box-shadow:
+        0 0 50px rgba(184,252,141,.1),
+        0 10px 40px rgba(0,0,0,.5);
+    }
+
+    .progress-bar{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:40px;
+      position:relative;
+    }
+
+    .progress-bar::before{
+      content:'';
+      position:absolute;
+      top:15px;
+      left:0;
+      right:0;
+      height:2px;
+      background:rgba(184,252,141,.2);
+      z-index:0;
+    }
+
+    .progress-step{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      position:relative;
+      z-index:1;
+      flex:1;
+    }
+
+    .step-circle{
+      width:35px;
+      height:35px;
+      border-radius:50%;
+      background:rgba(40,40,40,.9);
+      border:2px solid rgba(184,252,141,.3);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:16px;
+      transition:all .3s ease;
+    }
+
+    .step-circle.active{
+      background:var(--neon);
+      color:#000;
+      border-color:var(--neon);
+      box-shadow:0 0 20px rgba(184,252,141,.5);
+    }
+
+    .step-circle.completed{
+      background:rgba(184,252,141,.3);
+      border-color:var(--neon);
+    }
+
+    .step-label{
+      font-size:13px;
+      font-weight:500;
+      text-align:center;
+      opacity:.7;
+      transition:opacity .3s ease;
+    }
+
+    .step-label.active{
+      opacity:1;
+      color:var(--neon);
+    }
+
+    .form-step{
+      display:none;
+    }
+
+    .form-step.active{
+      display:block;
+      animation:fadeIn .4s ease;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .step-title{
+      font-size:28px;
+      font-weight:700;
+      text-transform:uppercase;
+      color:var(--neon);
+      margin-bottom:25px;
+      text-align:center;
+    }
+
+    .field{
+      margin-bottom:25px;
+    }
+
+    .field label{
+      display:block;
+      font-size:14px;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      margin-bottom:10px;
+      color:var(--neon);
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      padding:15px 20px;
+      border-radius:10px;
+      border:1px solid rgba(184,252,141,.3);
+      background:rgba(0,0,0,.6);
+      color:#fff;
+      font-family:'Oswald',sans-serif;
+      font-size:16px;
+      transition:all .3s ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      outline:none;
+      border-color:var(--neon);
+      box-shadow:0 0 15px rgba(184,252,141,.2);
+    }
+
+    .field textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    .phone-row{
+      display:flex;
+      gap:10px;
+    }
+
+    .country-select{
+      flex:0 0 140px;
+    }
+
+    .checkbox-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .checkbox-item{
+      flex:1;
+      min-width:calc(50% - 5px);
+    }
+
+    .checkbox-label{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 15px;
+      border-radius:8px;
+      border:1px solid rgba(184,252,141,.3);
+      background:rgba(0,0,0,.4);
+      cursor:pointer;
+      transition:all .3s ease;
+      font-size:15px;
+      text-transform:none;
+      letter-spacing:normal;
+    }
+
+    .checkbox-label:hover{
+      border-color:var(--neon);
+      background:rgba(184,252,141,.05);
+    }
+
+    .checkbox-label input{
+      width:auto;
+      margin:0;
+    }
+
+    .button-group{
+      display:flex;
+      gap:15px;
+      margin-top:30px;
+    }
+
+    .btn{
+      flex:1;
+      padding:16px 30px;
+      border-radius:999px;
+      border:none;
+      font-family:'Oswald',sans-serif;
+      font-size:16px;
+      font-weight:600;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      letter-spacing:.5px;
+    }
+
+    .btn-back{
+      background:rgba(40,40,40,.9);
+      color:#fff;
+      border:1px solid rgba(184,252,141,.3);
+    }
+
+    .btn-back:hover{
+      background:rgba(60,60,60,.9);
+      border-color:var(--neon);
+    }
+
+    .btn-next,
+    .btn-submit{
+      background:linear-gradient(135deg,#FFD700,#FFA500);
+      color:#000;
+      box-shadow:
+        0 10px 25px rgba(255,215,0,.3),
+        0 5px 12px rgba(255,165,0,.2),
+        inset 0 1px 0 rgba(255,255,255,.4);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .btn-next::before,
+    .btn-submit::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        135deg,
+        transparent 30%,
+        rgba(255,255,255,.4) 50%,
+        transparent 70%
+      );
+      transform:translateX(-100%) skewX(-20deg);
+      transition:transform .6s;
+    }
+
+    .btn-next:hover,
+    .btn-submit:hover{
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:
+        0 15px 35px rgba(255,215,0,.4),
+        0 8px 18px rgba(255,165,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.5);
+    }
+
+    .btn-next:hover::before,
+    .btn-submit:hover::before{
+      transform:translateX(100%) skewX(-20deg);
+    }
+
+    .loading{
+      display:none;
+      text-align:center;
+      padding:20px;
+      font-size:18px;
+      color:var(--neon);
+    }
+
+    footer{
+      padding:40px 0 30px;
+      text-align:center;
+    }
+
+    .footer-content{
+      max-width:800px;
+      margin:0 auto;
+    }
+
+    .disclaimer{
+      font-size:12px;
+      line-height:1.6;
+      opacity:.6;
+      margin-bottom:15px;
+    }
+
+    .footer-links{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:var(--neon);
+      text-decoration:none;
+      font-size:13px;
+      opacity:.8;
+      transition:opacity .3s ease;
+    }
+
+    .footer-links a:hover{
+      opacity:1;
+    }
+
+    @media (max-width:768px){
+      .container{
+        padding:20px 15px;
+      }
+      .headline .line1{
+        font-size:32px;
+      }
+      .sub{
+        font-size:18px;
+      }
+      .form-container{
+        padding:25px 20px;
+      }
+      .step-title{
+        font-size:22px;
+      }
+      .progress-bar{
+        margin-bottom:30px;
+      }
+      .step-label{
+        font-size:11px;
+      }
+      .step-circle{
+        width:30px;
+        height:30px;
+        font-size:14px;
+      }
+      .checkbox-item{
+        min-width:100%;
+      }
+      .button-group{
+        flex-direction:column;
+      }
+      .btn{
+        width:100%;
+      }
+      .country-select{
+        flex:0 0 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="grid"></div>
+  
+  <div class="container">
+    <div class="top-banner">
+      <div class="live-pill">
+        <span class="dot"></span>
+        POSIZIONI APERTE: Grafico Digitale
+      </div>
+    </div>
+
+    <main>
+      <section class="hero">
+        <h1 class="headline">
+          <div class="line1">ENTRA NEL TEAM DI <span class="highlight">INFOBIZ</span></div>
+        </h1>
+        
+        <p class="sub">
+          Stiamo cercando un grafico creativo e motivato per progetti di digital marketing.<br>
+          Compila il form in 3 semplici step per candidarti.
+        </p>
+      </section>
+
+      <div class="form-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+          <div class="progress-step">
+            <div class="step-circle active" id="circle-1">1</div>
+            <div class="step-label active">Dati Personali</div>
+          </div>
+          <div class="progress-step">
+            <div class="step-circle" id="circle-2">2</div>
+            <div class="step-label">Esperienza</div>
+          </div>
+          <div class="progress-step">
+            <div class="step-circle" id="circle-3">3</div>
+            <div class="step-label">Disponibilità</div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form id="candidaturaForm">
+          <!-- Step 1: Dati Personali -->
+          <div class="form-step active" id="step-1">
+            <h2 class="step-title">📋 Dati Personali</h2>
+            
+            <div class="field">
+              <label for="fullName">NOME COMPLETO *</label>
+              <input type="text" id="fullName" placeholder="Inserisci nome e cognome" required>
+            </div>
+
+            <div class="field">
+              <label for="email">EMAIL *</label>
+              <input type="email" id="email" placeholder="La tua email professionale" required>
+            </div>
+
+            <div class="field">
+              <label>TELEFONO *</label>
+              <div class="phone-row">
+                <select id="countryCode" class="country-select" required>
+                  <option value="+39">🇮🇹 +39</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+41">🇨🇭 +41</option>
+                </select>
+                <input type="tel" id="phone" placeholder="Numero di telefono" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="age">ETÀ *</label>
+              <input type="number" id="age" placeholder="Inserisci la tua età" min="16" max="99" required>
+            </div>
+
+            <div class="button-group">
+              <button type="button" class="btn btn-next" onclick="nextStep(1)">Avanti →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Esperienza -->
+          <div class="form-step" id="step-2">
+            <h2 class="step-title">💼 Esperienza Professionale</h2>
+            
+            <div class="field">
+              <label for="experience">ANNI DI ESPERIENZA *</label>
+              <select id="experience" required>
+                <option value="">Seleziona...</option>
+                <option value="0-1">Meno di 1 anno</option>
+                <option value="1-3">1-3 anni</option>
+                <option value="3-5">3-5 anni</option>
+                <option value="5+">Oltre 5 anni</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>SOFTWARE CHE USI *</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="software" value="Premiere">
+                    Premiere
+                  </label>
+                </div>
+                <div class="checkbox-item">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="software" value="CapCut">
+                    CapCut
+                  </label>
+                </div>
+                <div class="checkbox-item">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="software" value="Photoshop">
+                    Photoshop
+                  </label>
+                </div>
+                <div class="checkbox-item">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="software" value="Illustrator">
+                    Illustrator
+                  </label>
+                </div>
+                <div class="checkbox-item">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="software" value="Figma">
+                    Figma
+                  </label>
+                </div>
+                <div class="checkbox-item">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="software" value="Canva">
+                    Canva
+                  </label>
+                </div>
+                <div class="checkbox-item">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="software" value="After Effects">
+                    After Effects
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="portfolio">LINK PORTFOLIO (opzionale)</label>
+              <input type="url" id="portfolio" placeholder="https://...">
+            </div>
+
+            <div class="button-group">
+              <button type="button" class="btn btn-back" onclick="prevStep(2)">← Indietro</button>
+              <button type="button" class="btn btn-next" onclick="nextStep(2)">Avanti →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Disponibilità -->
+          <div class="form-step" id="step-3">
+            <h2 class="step-title">⏰ Disponibilità</h2>
+            
+            <div class="field">
+              <label for="availability">DISPONIBILITÀ *</label>
+              <select id="availability" required>
+                <option value="">Seleziona...</option>
+                <option value="full-time">Full-time</option>
+                <option value="part-time">Part-time</option>
+                <option value="freelance">Freelance/Progetto</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="startDate">QUANDO PUOI INIZIARE? *</label>
+              <select id="startDate" required>
+                <option value="">Seleziona...</option>
+                <option value="immediate">Immediatamente</option>
+                <option value="1-week">Tra 1 settimana</option>
+                <option value="2-weeks">Tra 2 settimane</option>
+                <option value="1-month">Tra 1 mese</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">MESSAGGIO (opzionale)</label>
+              <textarea id="message" placeholder="Parlaci di te, delle tue competenze e perché vuoi unirti al team..."></textarea>
+            </div>
+
+            <div class="button-group">
+              <button type="button" class="btn btn-back" onclick="prevStep(3)">← Indietro</button>
+              <button type="submit" class="btn btn-submit">Invia Candidatura 🚀</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="loading">⏳ Invio candidatura in corso...</div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p class="disclaimer">
+          INFOBIZ - Tutti i dati forniti saranno trattati nel rispetto della Privacy Policy.
+        </p>
+        <div class="footer-links">
+          <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank">Privacy Policy</a>
+          <a href="https://learn.infobiz.com/cookie-policy/" target="_blank">Cookie Policy</a>
+          <a href="https://learn.infobiz.com/terms-of-service/" target="_blank">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    function nextStep(step) {
+      // Valida i campi dello step corrente
+      const currentStepEl = document.getElementById(`step-${step}`);
+      const requiredFields = currentStepEl.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value || (field.type === 'checkbox' && !isCheckboxGroupValid())) {
+          isValid = false;
+          field.style.borderColor = '#FF3B3B';
+          setTimeout(() => {
+            field.style.borderColor = '';
+          }, 2000);
+        }
+      });
+
+      // Validazione speciale per checkbox software
+      if (step === 2) {
+        const softwareChecked = document.querySelectorAll('input[name="software"]:checked');
+        if (softwareChecked.length === 0) {
+          alert('Seleziona almeno un software che utilizzi');
+          return;
+        }
+      }
+
+      if (!isValid) {
+        alert('Compila tutti i campi obbligatori');
+        return;
+      }
+
+      // Passa allo step successivo
+      if (step < totalSteps) {
+        document.getElementById(`step-${step}`).classList.remove('active');
+        document.getElementById(`step-${step + 1}`).classList.add('active');
+        
+        // Aggiorna progress bar
+        document.getElementById(`circle-${step}`).classList.remove('active');
+        document.getElementById(`circle-${step}`).classList.add('completed');
+        document.querySelector(`.progress-step:nth-child(${step}) .step-label`).classList.remove('active');
+        
+        document.getElementById(`circle-${step + 1}`).classList.add('active');
+        document.querySelector(`.progress-step:nth-child(${step + 1}) .step-label`).classList.add('active');
+        
+        currentStep = step + 1;
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+    }
+
+    function prevStep(step) {
+      document.getElementById(`step-${step}`).classList.remove('active');
+      document.getElementById(`step-${step - 1}`).classList.add('active');
+      
+      // Aggiorna progress bar
+      document.getElementById(`circle-${step}`).classList.remove('active');
+      document.querySelector(`.progress-step:nth-child(${step}) .step-label`).classList.remove('active');
+      
+      document.getElementById(`circle-${step - 1}`).classList.remove('completed');
+      document.getElementById(`circle-${step - 1}`).classList.add('active');
+      document.querySelector(`.progress-step:nth-child(${step - 1}) .step-label`).classList.add('active');
+      
+      currentStep = step - 1;
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    function isCheckboxGroupValid() {
+      const checkboxes = document.querySelectorAll('input[name="software"]');
+      return Array.from(checkboxes).some(cb => cb.checked);
+    }
+
+    // Form submission
+    const NETLIFY_FUNCTION_URL = '/.netlify/functions/submit-candidatura';
+    
+    document.getElementById('candidaturaForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const form = document.getElementById('candidaturaForm');
+      const loading = document.querySelector('.loading');
+      
+      // Nascondi form e mostra loading
+      form.style.display = 'none';
+      loading.style.display = 'block';
+      
+      // Raccogli i software selezionati
+      const softwareChecked = Array.from(document.querySelectorAll('input[name="software"]:checked'))
+        .map(cb => cb.value);
+      
+      const payload = {
+        nome_completo: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        telefono: document.getElementById('countryCode').value + document.getElementById('phone').value,
+        eta: document.getElementById('age').value,
+        anni_esperienza: document.getElementById('experience').value,
+        software: softwareChecked.join(', '),
+        portfolio: document.getElementById('portfolio').value || 'Non fornito',
+        disponibilita: document.getElementById('availability').value,
+        inizio: document.getElementById('startDate').value,
+        messaggio: document.getElementById('message').value || 'Nessun messaggio',
+        timestamp: new Date().toISOString()
+      };
+      
+      try {
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'SubmitApplication');
+        }
+        
+        const res = await fetch(NETLIFY_FUNCTION_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        
+        if (!res.ok) throw new Error('Errore invio candidatura');
+        
+        // Redirect alla thank you page
+        window.location.href = '/thankyou-candidatura';
+        
+      } catch (err) {
+        console.error('Errore:', err);
+        alert('Si è verificato un errore. Riprova o contattaci direttamente.');
+        form.style.display = 'block';
+        loading.style.display = 'none';
+      }
+    });
+
+    // Limita input telefono a soli numeri
+    document.getElementById('phone').addEventListener('input', function(e) {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+  </script>
+</body>
+</html>

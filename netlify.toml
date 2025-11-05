@@ -46,3 +46,15 @@
   from = "/ytd"
   to = "/optin.html"
   status = 200
+
+# Pagina candidatura grafico
+[[redirects]]
+  from = "/candidatura"
+  to = "/candidatura.html"
+  status = 200
+
+# Thank you page candidatura
+[[redirects]]
+  from = "/thankyou-candidatura"
+  to = "/thankyou-candidatura.html"
+  status = 200
