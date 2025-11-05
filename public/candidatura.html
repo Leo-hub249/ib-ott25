@@ -400,25 +400,25 @@
     .checkbox-group{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
+      gap:10px;
     }
 
     .checkbox-item{
       flex:1;
-      min-width:calc(50% - 6px);
+      min-width:calc(50% - 5px);
     }
 
     .checkbox-label{
       display:flex;
       align-items:center;
-      gap:12px;
-      padding:14px 18px;
-      border-radius:10px;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:8px;
       border:2px solid rgba(184,252,141,.25);
       background:rgba(0,0,0,.5);
       cursor:pointer;
       transition:all .25s cubic-bezier(0.4, 0, 0.2, 1);
-      font-size:16px;
+      font-size:14px;
       font-weight:400;
       text-transform:none;
       letter-spacing:normal;
@@ -433,13 +433,13 @@
     }
 
     .checkbox-label input[type="checkbox"]{
-      width:20px;
-      height:20px;
+      width:18px;
+      height:18px;
       margin:0;
       cursor:pointer;
       appearance:none;
       border:2px solid rgba(184,252,141,.4);
-      border-radius:5px;
+      border-radius:4px;
       background:rgba(0,0,0,.6);
       position:relative;
       transition:all .2s ease;
@@ -459,7 +459,7 @@
       left:50%;
       transform:translate(-50%, -50%);
       color:#000;
-      font-size:14px;
+      font-size:12px;
       font-weight:bold;
     }
 
@@ -615,6 +615,10 @@
       .checkbox-item{
         min-width:100%;
       }
+      .checkbox-label{
+        font-size:14px;
+        padding:10px 14px;
+      }
       .button-group{
         flex-direction:column;
       }
@@ -643,7 +647,7 @@
     <div class="top-banner">
       <div class="live-pill">
         <span class="dot"></span>
-        POSIZIONI APERTE: Grafico Digitale
+        POSIZIONI APERTE: Grafico
       </div>
     </div>
 
@@ -654,7 +658,7 @@
         </h1>
         
         <p class="sub">
-          Stiamo cercando un grafico creativo e motivato per progetti di digital marketing.<br>
+          Stiamo cercando un grafico creativo e motivato per nuovi progetti.<br>
           Compila il form in 3 semplici step per candidarti.
         </p>
       </section>
@@ -799,7 +803,7 @@
             <div class="field">
               <label for="availability">DISPONIBILITÀ *</label>
               <select id="availability" required>
-                <option value="">Seleziona il tipo di contratto</option>
+                <option value="">Seleziona la tua disponibilità</option>
                 <option value="full-time">Full-time</option>
                 <option value="part-time">Part-time</option>
                 <option value="freelance">Freelance/Progetto</option>
