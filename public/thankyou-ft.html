@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidatura Ricevuta - INFOBIZ</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2180408928835338');
+  fbq('track', 'PageView');
+  fbq('track', 'CompleteRegistration');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2180408928835338&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --neon:#B8FC8D;
+      --gold1:#FFD700; 
+      --gold2:#FFC700;
+    }
+    
+    *{box-sizing:border-box;margin:0;padding:0}
+    
+    body{
+      font-family:'Oswald',sans-serif;
+      color:#fff;
+      background:#000;
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .background{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(184,252,141,.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 70%, rgba(184,252,141,.15) 0%, transparent 50%),
+        #000;
+    }
+    
+    .grid{
+      position:fixed;
+      inset:0;
+      z-index:1;
+      opacity:.08;
+      background-image:
+        linear-gradient(rgba(184,252,141,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,252,141,1) 1px, transparent 1px);
+      background-size:50px 50px;
+    }
+
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      padding:40px 20px 120px;
+      position:relative;
+      z-index:2;
+      text-align:center;
+    }
+
+    .success-card{
+      background:rgba(20,20,20,.95);
+      border:1px solid rgba(184,252,141,.2);
+      border-radius:20px;
+      padding:60px 40px;
+      box-shadow:
+        0 0 50px rgba(184,252,141,.1),
+        0 10px 40px rgba(0,0,0,.5);
+      animation:fadeInUp .6s ease;
+    }
+
+    @keyframes fadeInUp{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .success-title{
+      font-size:48px;
+      font-weight:700;
+      color:var(--neon);
+      margin-bottom:20px;
+      padding-top:20px;
+      text-transform:uppercase;
+      line-height:1.2;
+      text-shadow:
+        0 0 25px rgba(184,252,141,.3),
+        0 0 50px rgba(184,252,141,.15);
+      animation:fadeIn .5s ease .3s backwards;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0}
+      to{opacity:1}
+    }
+
+    .success-text{
+      font-size:22px;
+      line-height:1.6;
+      opacity:.9;
+      margin-bottom:35px;
+      animation:fadeIn .5s ease .4s backwards;
+    }
+
+    .whatsapp-info{
+      background:rgba(184,252,141,.05);
+      border:2px solid rgba(184,252,141,.3);
+      border-radius:15px;
+      padding:30px;
+      margin:30px 0;
+      animation:fadeIn .5s ease .5s backwards;
+    }
+
+    .whatsapp-icon{
+      font-size:60px;
+      margin-bottom:15px;
+      animation:bounce 2s infinite;
+    }
+
+    @keyframes bounce{
+      0%, 100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-10px);
+      }
+    }
+
+    .whatsapp-title{
+      font-size:28px;
+      font-weight:700;
+      color:var(--neon);
+      margin-bottom:15px;
+      text-transform:uppercase;
+    }
+
+    .whatsapp-text{
+      font-size:20px;
+      line-height:1.6;
+      opacity:.95;
+    }
+
+    .highlight{
+      color:var(--neon);
+      font-weight:700;
+      text-shadow:0 0 20px rgba(184,252,141,.3);
+    }
+
+    footer{
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      padding:25px 20px;
+      text-align:center;
+      z-index:2;
+    }
+
+    .footer-links{
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:var(--neon);
+      text-decoration:none;
+      font-size:12px;
+      opacity:.7;
+      transition:opacity .3s ease;
+    }
+
+    .footer-links a:hover{
+      opacity:1;
+    }
+
+    @media (max-width:768px){
+      .container{
+        padding:20px 15px 100px;
+      }
+      .success-card{
+        padding:40px 25px;
+      }
+      .success-title{
+        font-size:32px;
+        padding-top:15px;
+      }
+      .success-text{
+        font-size:18px;
+      }
+      .whatsapp-icon{
+        font-size:50px;
+      }
+      .whatsapp-title{
+        font-size:22px;
+      }
+      .whatsapp-text{
+        font-size:17px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="grid"></div>
+  
+  <div class="container">
+    <div class="success-card">
+      <h1 class="success-title">Grazie per il tuo interesse!</h1>
+      
+      <p class="success-text">
+        Grazie per il tuo interesse nel <span class="highlight">diventare frontman di INFOBIZ</span>.<br>
+        La tua candidatura è stata inviata con successo!
+      </p>
+
+      <div class="whatsapp-info">
+        <div class="whatsapp-icon">💬</div>
+        <h2 class="whatsapp-title">Ti contatteremo su WhatsApp</h2>
+        <p class="whatsapp-text">
+          Il nostro team esaminerà la tua candidatura e<br>
+          <span class="highlight">ti ricontatterà su WhatsApp entro 24 ore</span><br>
+          per discutere i prossimi passi.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://learn.infobiz.com/privacy-policy-2/" target="_blank">Privacy Policy</a>
+      <a href="https://learn.infobiz.com/cookie-policy/" target="_blank">Cookie Policy</a>
+      <a href="https://learn.infobiz.com/terms-of-service/" target="_blank">Terms of Service</a>
+    </div>
+  </footer>
+</body>
+</html>
