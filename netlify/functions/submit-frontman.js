@@ -1,15 +1,19 @@
-// netlify/functions/submit-candidatura.js
-// VERSIONE FIXATA - Problema risolto con Google Sheets che legge "1-3" come date
+// netlify/functions/submit-frontman.js
+// VERSIONE DEBUG - Con logging dettagliato
 
 const { google } = require('googleapis');
 
 // Google Sheets
-const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID_CANDIDATURE || process.env.GOOGLE_SHEET_ID;
+const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID_FRONTMAN || process.env.GOOGLE_SHEET_ID;
 const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
+const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n') : null;
 
 exports.handler = async (event, context) => {
+  console.log('🚀 Function started');
+  console.log('📝 HTTP Method:', event.httpMethod);
+  
   if (event.httpMethod !== 'POST') {
+    console.log('❌ Method not allowed');
     return {
       statusCode: 405,
       body: JSON.stringify({ error: 'Method not allowed' })
@@ -23,10 +27,13 @@ exports.handler = async (event, context) => {
   };
 
   try {
+    console.log('📦 Parsing request body...');
     const data = JSON.parse(event.body);
+    console.log('✅ Data received:', JSON.stringify(data, null, 2));
     
     // Valida i dati essenziali
     if (!data.nome_completo || !data.email || !data.telefono) {
+      console.log('❌ Missing required fields');
       return {
         statusCode: 400,
         headers,
@@ -34,9 +41,27 @@ exports.handler = async (event, context) => {
       };
     }
 
+    console.log('🔑 Checking environment variables...');
+    console.log('- GOOGLE_SHEET_ID:', GOOGLE_SHEET_ID ? '✅ Present' : '❌ Missing');
+    console.log('- GOOGLE_SERVICE_ACCOUNT_EMAIL:', GOOGLE_SERVICE_ACCOUNT_EMAIL ? '✅ Present' : '❌ Missing');
+    console.log('- GOOGLE_PRIVATE_KEY:', GOOGLE_PRIVATE_KEY ? '✅ Present' : '❌ Missing');
+
+    if (!GOOGLE_SHEET_ID || !GOOGLE_SERVICE_ACCOUNT_EMAIL || !GOOGLE_PRIVATE_KEY) {
+      console.log('❌ Missing environment variables!');
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Missing Google Sheets configuration',
+          details: 'Check Netlify environment variables'
+        })
+      };
+    }
+
     // Salva su Google Sheets
+    console.log('📊 Attempting to save to Google Sheets...');
     await saveToGoogleSheets(data);
-    console.log('✅ Candidatura salvata su Google Sheets');
+    console.log('✅ Successfully saved to Google Sheets');
 
     return {
       statusCode: 200,
@@ -48,13 +73,15 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
-    console.error('Errore:', error);
+    console.error('💥 ERROR:', error);
+    console.error('Stack trace:', error.stack);
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({ 
         error: 'Errore durante l\'invio della candidatura',
-        details: error.message 
+        details: error.message,
+        stack: error.stack
       })
     };
   }
@@ -63,6 +90,7 @@ exports.handler = async (event, context) => {
 // Funzione per salvare su Google Sheets
 async function saveToGoogleSheets(data) {
   try {
+    console.log('🔐 Creating Google Auth...');
     const auth = new google.auth.JWT(
       GOOGLE_SERVICE_ACCOUNT_EMAIL,
       null,
@@ -70,6 +98,7 @@ async function saveToGoogleSheets(data) {
       ['https://www.googleapis.com/auth/spreadsheets']
     );
 
+    console.log('📊 Initializing Google Sheets API...');
     const sheets = google.sheets({ version: 'v4', auth });
 
     // Formatta la data in orario italiano
@@ -83,6 +112,7 @@ async function saveToGoogleSheets(data) {
       minute: '2-digit',
       second: '2-digit'
     });
+    console.log('📅 Formatted date:', dataFormattata);
     
     // Estrai numero senza prefisso internazionale
     let phoneWithoutPrefix = data.telefono;
@@ -104,47 +134,59 @@ async function saveToGoogleSheets(data) {
     } else if (data.telefono.startsWith('+')) {
       phoneWithoutPrefix = data.telefono.replace(/^\+\d{1,3}/, '');
     }
+    console.log('📱 Phone without prefix:', phoneWithoutPrefix);
 
-    // Prepara i dati per lo sheet - Colonne per candidature grafici
-    // A: Nome | B: Email | C: Telefono Completo | D: Età | E: Data | F: Anni Esperienza 
-    // G: Software | H: Portfolio | I: Disponibilità | J: Inizio | K: Messaggio | L: Tel senza prefisso
+    // Prepara i dati per lo sheet
     const values = [[
       data.nome_completo,           // A
       data.email,                   // B
       data.telefono,                // C
       data.eta,                     // D
       dataFormattata,               // E
-      `'${data.anni_esperienza}`,   // F - ✅ FIX: Apostrofo per forzare testo e evitare che "1-3" diventi data
-      data.software,                // G
-      data.portfolio,               // H
-      data.disponibilita,           // I
-      `'${data.inizio}`,            // J - ✅ FIX: Apostrofo per forzare testo
-      data.messaggio,               // K
-      phoneWithoutPrefix            // L
+      data.esperienza_business,     // F
+      `'${data.anni_esperienza}`,   // G
+      data.parla_telecamera,        // H
+      data.piattaforme,             // I
+      data.link_contenuti || 'Non fornito',  // J
+      data.link_social || 'Non fornito',     // K
+      data.disponibilita,           // L
+      `'${data.inizio}`,            // M
+      data.messaggio || 'Nessun messaggio',  // N
+      phoneWithoutPrefix            // O
     ]];
 
-    // Prima, ottieni l'ultima riga con dati per copiare la formattazione
+    console.log('📝 Data to write:', JSON.stringify(values, null, 2));
+    console.log('🎯 Sheet ID:', GOOGLE_SHEET_ID);
+    console.log('📍 Target sheet: Frontman');
+
+    // Prima, ottieni l'ultima riga
+    console.log('🔍 Getting existing rows...');
     const rangeResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: GOOGLE_SHEET_ID,
-      range: 'Candidature!A:L', // Usa un foglio dedicato chiamato "Candidature"
+      range: 'Frontman!A:O',
     });
 
     const existingRows = rangeResponse.data.values || [];
     const lastRowNumber = existingRows.length;
     const nextRow = lastRowNumber + 1;
+    
+    console.log('📊 Last row number:', lastRowNumber);
+    console.log('📌 Next row:', nextRow);
+    console.log('🎯 Writing to range:', `Frontman!A${nextRow}:O${nextRow}`);
 
-    // Inserisci i dati nella riga specifica (forza colonne A-L)
-    await sheets.spreadsheets.values.update({
+    // Inserisci i dati nella riga specifica
+    const updateResponse = await sheets.spreadsheets.values.update({
       spreadsheetId: GOOGLE_SHEET_ID,
-      range: `Candidature!A${nextRow}:L${nextRow}`,
+      range: `Frontman!A${nextRow}:O${nextRow}`,
       valueInputOption: 'USER_ENTERED',
       requestBody: { values }
     });
 
-    // Copia la formattazione dalla riga precedente alla nuova riga
+    console.log('✅ Update response:', JSON.stringify(updateResponse.data, null, 2));
+
+    // Copia la formattazione dalla riga precedente
     if (lastRowNumber > 1) {
-      const newRowNumber = lastRowNumber + 1;
-      
+      console.log('🎨 Copying formatting from previous row...');
       try {
         await sheets.spreadsheets.batchUpdate({
           spreadsheetId: GOOGLE_SHEET_ID,
@@ -153,18 +195,18 @@ async function saveToGoogleSheets(data) {
               {
                 copyPaste: {
                   source: {
-                    sheetId: 0,  // Potrebbe essere necessario cambiare questo ID
+                    sheetId: 0,
                     startRowIndex: lastRowNumber - 1,
                     endRowIndex: lastRowNumber,
                     startColumnIndex: 0,
-                    endColumnIndex: 12  // Colonne A-L (0-11)
+                    endColumnIndex: 15
                   },
                   destination: {
                     sheetId: 0,
-                    startRowIndex: newRowNumber - 1,
-                    endRowIndex: newRowNumber,
+                    startRowIndex: nextRow - 1,
+                    endRowIndex: nextRow,
                     startColumnIndex: 0,
-                    endColumnIndex: 12
+                    endColumnIndex: 15
                   },
                   pasteType: 'PASTE_FORMAT'
                 }
@@ -172,13 +214,21 @@ async function saveToGoogleSheets(data) {
             ]
           }
         });
+        console.log('✅ Formatting copied successfully');
       } catch (formatError) {
-        console.warn('⚠️ Impossibile copiare la formattazione, ma i dati sono stati salvati:', formatError.message);
+        console.warn('⚠️ Could not copy formatting:', formatError.message);
       }
     }
 
+    console.log('🎉 All done!');
+
   } catch (error) {
-    console.error('Errore Google Sheets:', error);
-    throw new Error('Impossibile salvare la candidatura su Google Sheets');
+    console.error('💥 Error in saveToGoogleSheets:', error);
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      errors: error.errors
+    });
+    throw new Error('Impossibile salvare la candidatura su Google Sheets: ' + error.message);
   }
 }
