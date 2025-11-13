@@ -119,16 +119,17 @@ async function saveToGoogleSheets(data) {
       data.parla_telecamera,        // H
       data.piattaforme,             // I
       data.link_contenuti,          // J
-      data.disponibilita,           // K
-      `'${data.inizio}`,            // L - Apostrofo per forzare testo
-      data.messaggio,               // M
-      phoneWithoutPrefix            // N
+      data.link_social,             // K
+      data.disponibilita,           // L
+      `'${data.inizio}`,            // M - Apostrofo per forzare testo
+      data.messaggio,               // N
+      phoneWithoutPrefix            // O
     ]];
 
     // Prima, ottieni l'ultima riga con dati per copiare la formattazione
     const rangeResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: GOOGLE_SHEET_ID,
-      range: 'Frontman!A:N', // Usa un foglio dedicato chiamato "Frontman"
+      range: 'Frontman!A:O', // Usa un foglio dedicato chiamato "Frontman"
     });
 
     const existingRows = rangeResponse.data.values || [];
@@ -137,7 +138,7 @@ async function saveToGoogleSheets(data) {
     // Inserisci i dati
     await sheets.spreadsheets.values.append({
       spreadsheetId: GOOGLE_SHEET_ID,
-      range: 'Frontman!A:N',
+      range: 'Frontman!A:O',
       valueInputOption: 'USER_ENTERED',
       requestBody: { values }
     });
@@ -158,14 +159,14 @@ async function saveToGoogleSheets(data) {
                     startRowIndex: lastRowNumber - 1,
                     endRowIndex: lastRowNumber,
                     startColumnIndex: 0,
-                    endColumnIndex: 14  // Colonne A-N (0-13)
+                    endColumnIndex: 15  // Colonne A-O (0-14)
                   },
                   destination: {
                     sheetId: 0,
                     startRowIndex: newRowNumber - 1,
                     endRowIndex: newRowNumber,
                     startColumnIndex: 0,
-                    endColumnIndex: 14
+                    endColumnIndex: 15
                   },
                   pasteType: 'PASTE_FORMAT'
                 }
