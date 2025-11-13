@@ -53,8 +53,20 @@
   to = "/candidatura.html"
   status = 200
 
-# Thank you page candidatura
+# Thank you page candidatura grafico
 [[redirects]]
   from = "/thankyou-candidatura"
   to = "/thankyou-candidatura.html"
+  status = 200
+
+# Pagina candidatura frontman
+[[redirects]]
+  from = "/ft"
+  to = "/ft.html"
+  status = 200
+
+# Thank you page candidatura frontman
+[[redirects]]
+  from = "/thankyou-ft"
+  to = "/thankyou-ft.html"
   status = 200
